@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_posts"
+    app:startDestination="@id/MainPostsFragment">
+
+    <fragment
+        android:id="@+id/MainPostsFragment"
+        android:name="utn.frba.mobile.konzern.posts.ui.MainPostsFragment"
+        android:label="@string/label_posts_main"
+        tools:layout="@layout/fragment_main_posts">
+        <action
+            android:id="@+id/action_MainPostsFragment_to_ItemPostFragment"
+            app:destination="@id/ItemPostFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ItemPostFragment"
+        android:name="utn.frba.mobile.konzern.posts.ui.ItemPostFragment"
+        tools:layout="@layout/fragment_item_post">
+
+        <argument
+            android:name="itemPostFragmentArgs"
+            app:argType="utn.frba.mobile.konzern.posts.model.Post" />
+    </fragment>
+</navigation>
