@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "utn.frba.mobile.konzern"
-        minSdkVersion 26
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"

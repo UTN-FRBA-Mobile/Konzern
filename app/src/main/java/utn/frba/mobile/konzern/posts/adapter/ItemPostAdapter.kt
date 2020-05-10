@@ -1,21 +1,18 @@
 package utn.frba.mobile.konzern.posts.adapter
 
 import android.content.Context
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.posts.model.Post
-import java.time.format.DateTimeFormatter
 
 class ItemPostAdapter(
-    var items: List<Post>?,
+    private var items: List<Post>?,
     private val onClickListener: OnItemPostClickListener
 ) : RecyclerView.Adapter<ItemPostViewHolder>() {
     override fun getItemCount(): Int = items?.size ?: 0
@@ -35,8 +32,7 @@ class ItemPostAdapter(
     }
 
     private fun setView(aView: ItemPostViewHolder, item: Post) {
-        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
-        aView.tvDate?.text = item.date.format(formatter)
+        aView.tvDate?.text = item.date
         aView.tvSummary?.text = item.summary
         if(item.text != null)
             aView.tvDescription?.text = item.text

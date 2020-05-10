@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.fragment_item_post.*
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.posts.model.Post
 import utn.frba.mobile.konzern.posts.viewModel.PostsViewModel
-import java.time.format.DateTimeFormatter
 
 class ItemPostFragment : Fragment() {
 
@@ -38,8 +37,7 @@ class ItemPostFragment : Fragment() {
     }
 
     private fun setView(item: Post){
-        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
-        tv_date?.text = item.date.format(formatter)
+        tv_date?.text = item.date
         tv_summary?.text = item.summary
         if(item.text != null)
             tv_description.text = item.text
