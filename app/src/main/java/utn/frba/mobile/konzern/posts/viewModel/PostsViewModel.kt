@@ -14,14 +14,14 @@ class PostsViewModel : ViewModel() {
         itemList.postValue(getItemList())
     }
 
-    fun getItemList(): List<Post>{
+    private fun getItemList(): List<Post>{
         val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
         return arrayListOf(
-            Post(1, "Prueba", "Es una prueba", LocalDateTime.parse("09/05/2020 18:10", formatter)),
-            Post(2, "Prueba 2", null, LocalDateTime.parse("09/05/2020 20:12", formatter)),
-            Post(3, "Prueba 3", "Es una prueba 3", LocalDateTime.parse("09/05/2020 21:17", formatter)),
-            Post(4, "Prueba 4", null, LocalDateTime.parse("10/05/2020 03:09", formatter)),
-            Post(5, "Prueba 5", "Es una prueba 5", LocalDateTime.parse("10/05/2020 14:55", formatter))
+            Post(1, "Prueba", "Es una prueba", LocalDateTime.parse("09/05/2020 18:10", formatter), "Prueba.jpg"),
+            Post(2, "Prueba 2", null, LocalDateTime.parse("09/05/2020 20:12", formatter), null),
+            Post(3, "Prueba 3", "Es una prueba 3", LocalDateTime.parse("09/05/2020 21:17", formatter), "Prueba.jpg"),
+            Post(4, "Prueba 4", null, LocalDateTime.parse("10/05/2020 03:09", formatter), null),
+            Post(5, "Prueba 5", "Es una prueba 5", LocalDateTime.parse("10/05/2020 14:55", formatter), "Prueba.jpg")
         )
     }
 

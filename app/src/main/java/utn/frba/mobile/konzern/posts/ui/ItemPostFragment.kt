@@ -3,6 +3,7 @@ package utn.frba.mobile.konzern.posts.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -42,5 +43,7 @@ class ItemPostFragment : Fragment() {
         tv_summary?.text = item.summary
         if(item.text != null)
             tv_description.text = item.text
+        if(item.image == null)
+            img_main.visibility = GONE
     }
 }

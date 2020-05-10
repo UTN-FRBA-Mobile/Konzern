@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,7 +16,7 @@ import java.time.format.DateTimeFormatter
 
 class ItemPostAdapter(
     var items: List<Post>?,
-    val onClickListener: OnItemPostClickListener
+    private val onClickListener: OnItemPostClickListener
 ) : RecyclerView.Adapter<ItemPostViewHolder>() {
     override fun getItemCount(): Int = items?.size ?: 0
 
@@ -27,20 +28,20 @@ class ItemPostAdapter(
         )
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(aView: ItemPostViewHolder, position: Int) {
         val item = items?.get(position)
         setView(aView, item!!)
         aView.itemView.setOnClickListener { onClickListener.onClick(position) }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun setView(aView: ItemPostViewHolder, item: Post) {
         val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
         aView.tvDate?.text = item.date.format(formatter)
         aView.tvSummary?.text = item.summary
         if(item.text != null)
             aView.tvDescription?.text = item.text
+        if(item.image == null)
+            aView.imgMain?.visibility = GONE
     }
 }
 

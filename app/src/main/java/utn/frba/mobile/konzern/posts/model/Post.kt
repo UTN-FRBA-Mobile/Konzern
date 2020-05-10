@@ -11,11 +11,13 @@ class Post(): Serializable{
     lateinit var summary: String
     var text: String? = null
     lateinit var date: LocalDateTime
+    var image: String? = null
 
-    constructor(id: Int, summary: String, text: String?, date: LocalDateTime) : this() {
+    constructor(id: Int, summary: String, text: String?, date: LocalDateTime, image: String?) : this() {
         this.id = id
         this.summary = summary
         this.text = text
         this.date = date
+        this.image = image
     }
 }
