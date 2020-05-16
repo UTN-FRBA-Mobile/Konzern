@@ -42,4 +42,6 @@ class PostMainFragment : PostBaseFragment(), OnItemPostClickListener {
         viewModel.selectItem(id)
         findNavController().navigate(R.id.action_MainPostsFragment_to_ItemPostFragment)
     }
+
+
 }
