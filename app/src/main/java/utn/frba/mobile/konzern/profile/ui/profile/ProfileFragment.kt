@@ -24,9 +24,10 @@ class ProfileFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = activity?.run { ViewModelProvider(this).get(ProfileViewModel::class.java) } ?: throw Exception("Invalid Activity")
-        var profile = viewModel.getProfile()
-        username.text = profile.username
-        phone.text = profile.phone
-        info.text = profile.info
+        viewModel.getProfile().run {
+            vProfileUsername.text = username
+            vProfilePhone.text = phone
+            vProfileInfo.text = info
+        }
     }
 }
