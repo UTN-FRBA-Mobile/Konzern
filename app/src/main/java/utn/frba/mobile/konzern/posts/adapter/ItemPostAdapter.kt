@@ -28,7 +28,7 @@ class ItemPostAdapter(
     override fun onBindViewHolder(aView: ItemPostViewHolder, position: Int) {
         val item = items?.get(position)
         setView(aView, item!!)
-        aView.itemView.setOnClickListener { onClickListener.onClick(position) }
+        aView.itemView.setOnClickListener { onClickListener.onClick(item.id) }
     }
 
     private fun setView(aView: ItemPostViewHolder, item: Post) {
@@ -41,7 +41,7 @@ class ItemPostAdapter(
 }
 
 interface OnItemPostClickListener{
-    fun onClick(position: Int)
+    fun onClick(id: Int)
 }
 
 class ItemPostViewHolder(view: View, var context: Context) : RecyclerView.ViewHolder(view) {

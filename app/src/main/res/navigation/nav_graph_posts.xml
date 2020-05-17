@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_MainPostsFragment_to_ItemPostFragment"
             app:destination="@id/ItemPostFragment" />
+        <action
+            android:id="@+id/action_MainPostsFragment_to_NewItemPostFragment"
+            app:destination="@id/NewItemPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/ItemPostFragment"
@@ -23,4 +26,10 @@
             android:name="itemPostFragmentArgs"
             app:argType="utn.frba.mobile.konzern.posts.model.Post" />
     </fragment>
+
+    <fragment
+        android:id="@+id/NewItemPostFragment"
+        android:name="utn.frba.mobile.konzern.posts.ui.NewItemPostFragment"
+        tools:layout="@layout/fragment_new_item_post">
+</fragment>
 </navigation>

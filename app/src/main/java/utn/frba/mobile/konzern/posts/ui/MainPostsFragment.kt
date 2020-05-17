@@ -19,6 +19,13 @@ import utn.frba.mobile.konzern.posts.viewModel.PostsViewModel
 class MainPostsFragment : Fragment(), OnItemPostClickListener {
     private lateinit var viewModel: PostsViewModel
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        viewModel = activity?.run { ViewModelProvider(this).get(PostsViewModel::class.java) } ?: throw Exception("Invalid Activity")
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,19 +33,25 @@ class MainPostsFragment : Fragment(), OnItemPostClickListener {
         return inflater.inflate(R.layout.fragment_main_posts, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        viewModel = activity?.run { ViewModelProvider(this).get(PostsViewModel::class.java) } ?: throw Exception("Invalid Activity")
-        viewModel.loadItemList()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         viewModel.itemList.observe(viewLifecycleOwner, Observer<List<Post>> {
             recycler_posts.adapter = ItemPostAdapter(it, this)
         })
+
+        btn_add.setOnClickListener {
+            findNavController().navigate(R.id.action_MainPostsFragment_to_NewItemPostFragment)
+        }
     }
 
-    override fun onClick(position: Int) {
-        viewModel.selectItem(position)
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadItemList()
+    }
+
+    override fun onClick(id: Int) {
+        viewModel.selectItem(id)
         findNavController().navigate(R.id.action_MainPostsFragment_to_ItemPostFragment)
     }
 }
