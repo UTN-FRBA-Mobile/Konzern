@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -37,15 +36,12 @@ class LoginFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val googleSignInOptions =GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.firebase_key))
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), googleSignInOptions)
         firebaseAuth = FirebaseAuth.getInstance()
-
-        vLoginGoogleSignInButton.setOnClickListener { signIn() }
     }
 
     override fun onCreateView(
@@ -56,25 +52,28 @@ class LoginFragment : Fragment() {
         return inflater.inflate(R.layout.login_fragment_layout, container, false)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        vLoginGoogleSignInButton.setOnClickListener { loginView?.onGoogleSignInPressed(googleSignInClient, RC_SIGN_IN) }
+        vLoginGoToMain.setOnClickListener { loginView?.onGoToMainButtonClicked() }
+    }
 
-        if (resultCode == RC_SIGN_IN) {
-            val task =GoogleSignIn.getSignedInAccountFromIntent(data)
+    fun onGoogleSignInResult(requestCode: Int, data: Intent?) {
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
 
             try {
                 val account = task.getResult(ApiException::class.java)
                 loginView?.showSuccessSignInToast()
-                Log.d("GoogleSignIn", "Success, ID: ${account?.idToken}")
+                Log.d("SignIn", "Sign in with google Success")
+                firebaseAuthProcess(account!!)
             } catch (e: ApiException) {
-
+                Log.d("SignIn", "Sign in with google Failed")
+                loginView?.finishSignInActivity()
             }
+        } else {
+            Log.d("SignIn", "RequestCode for SignIn: $requestCode")
         }
-    }
-
-    private fun signIn() {
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     private fun firebaseAuthProcess(account: GoogleSignInAccount) {
@@ -83,9 +82,10 @@ class LoginFragment : Fragment() {
         firebaseAuth.signInWithCredential(credentials)
             .addOnCompleteListener(requireActivity()){ task ->
                 if (task.isSuccessful) {
-                    Log.d("GoogleSignIn", "Success Firebase Register, ID: ${account.idToken}")
+                    Log.d("SignIn", "Success Firebase Register")
+                    loginView?.successfulSignIn()
                 } else {
-                    Log.d("GoogleSignIn", "Failed Firebase Register, ID: ${account.idToken}")
+                    Log.d("SignIn", "Failed Firebase Register")
                 }
             }
     }
@@ -97,5 +97,13 @@ class LoginFragment : Fragment() {
 
     interface LoginFragmenView {
         fun showSuccessSignInToast()
+
+        fun finishSignInActivity()
+
+        fun successfulSignIn()
+
+        fun onGoogleSignInPressed(googleSignInClient: GoogleSignInClient, resultCode: Int)
+
+        fun onGoToMainButtonClicked()
     }
 }
