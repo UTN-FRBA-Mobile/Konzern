@@ -1,5 +1,6 @@
 package utn.frba.mobile.konzern.posts.ui
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.smarteist.autoimageslider.SliderViewAdapter
 import kotlinx.android.synthetic.main.fragment_item_post.*
+import kotlinx.android.synthetic.main.fragment_item_post.imageSlider
+import kotlinx.android.synthetic.main.fragment_new_item_post.*
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.posts.adapter.ImageSliderAdapter
 import utn.frba.mobile.konzern.posts.model.Post
@@ -41,10 +44,15 @@ class ItemPostFragment : Fragment() {
         tv_date?.text = item.date
         tv_summary?.text = item.summary
         tv_description.text = item.text
+        setImageSlider(item.images)
+    }
 
-        if(item.hasImages())
-            imageSlider.setSliderAdapter(ImageSliderAdapter(item.images),false)
+    private fun setImageSlider(images: List<Uri>) {
+        if(images.count() > 0) {
+            imageSlider.visibility = View.VISIBLE
+            imageSlider.setSliderAdapter(ImageSliderAdapter(images), false)
+        }
         else
-            imageSlider.visibility = GONE
+            imageSlider.visibility = View.GONE
     }
 }

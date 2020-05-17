@@ -41,6 +41,7 @@ class MainPostsFragment : Fragment(), OnItemPostClickListener {
         })
 
         btn_add.setOnClickListener {
+            viewModel.selectItem(null)
             findNavController().navigate(R.id.action_MainPostsFragment_to_NewItemPostFragment)
         }
     }

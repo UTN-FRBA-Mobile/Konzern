@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.posts.model.Post
 
@@ -35,7 +36,9 @@ class ItemPostAdapter(
         aView.tvDate?.text = item.date
         aView.tvSummary?.text = item.summary
         aView.tvDescription?.text = item.text
-        if(item.getMainImage() == null)
+        if(item.getMainImage() != null)
+            Glide.with(aView.context).load(item.getMainImage()).into(aView.imgMain!!)
+        else
             aView.imgMain?.visibility = GONE
     }
 }

@@ -1,6 +1,7 @@
 package utn.frba.mobile.konzern.posts.model
 
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import java.io.Serializable
 import kotlin.properties.Delegates
 
@@ -9,9 +10,9 @@ class Post(): Serializable{
     lateinit var summary: String
     lateinit var text: String
     lateinit var date: String
-    var images: List<Drawable> = ArrayList()
+    var images: List<Uri> = ArrayList()
 
-    constructor(id: Int, summary: String, text: String, date: String, images: List<Drawable>?) : this() {
+    constructor(id: Int, summary: String, text: String, date: String, images: List<Uri>?) : this() {
         this.id = id
         this.summary = summary
         this.text = text
@@ -20,10 +21,10 @@ class Post(): Serializable{
             this.images = images
     }
 
-    constructor(id: Int, summary: String, text: String, date: String, image: Drawable) :
+    constructor(id: Int, summary: String, text: String, date: String, image: Uri) :
             this(id, summary, text, date, arrayListOf(image))
 
-    fun getMainImage(): Drawable?{
+    fun getMainImage(): Uri?{
         return if(this.hasImages())
             this.images[0]
         else
