@@ -35,10 +35,6 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmenView {
         Toast.makeText(this, "Sign In Successful", Toast.LENGTH_SHORT).show()
     }
 
-    override fun finishSignInActivity() {
-        finish()
-    }
-
     override fun successfulSignIn() {
         val goToMainView = Intent(applicationContext, MainActivity::class.java)
         startActivity(goToMainView)
@@ -54,6 +50,14 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmenView {
         val goToMainView = Intent(applicationContext, MainActivity::class.java)
         startActivity(goToMainView)
         finish()
+    }
+
+    override fun signInWithGoogleFailed() {
+        Toast.makeText(this, "Sign In with Google Failed.", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun firebaseAuthProcessFailed() {
+        Toast.makeText(this, "Firebase Auth Failed", Toast.LENGTH_SHORT).show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

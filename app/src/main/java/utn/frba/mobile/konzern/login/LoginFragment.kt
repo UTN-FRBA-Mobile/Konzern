@@ -18,6 +18,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.login_fragment_layout.*
 import utn.frba.mobile.konzern.R
 import java.lang.RuntimeException
+import kotlin.math.log
 
 class LoginFragment : Fragment() {
 
@@ -69,7 +70,7 @@ class LoginFragment : Fragment() {
                 firebaseAuthProcess(account!!)
             } catch (e: ApiException) {
                 Log.d("SignIn", "Sign in with google Failed")
-                loginView?.finishSignInActivity()
+                loginView?.signInWithGoogleFailed()
             }
         } else {
             Log.d("SignIn", "RequestCode for SignIn: $requestCode")
@@ -86,6 +87,7 @@ class LoginFragment : Fragment() {
                     loginView?.successfulSignIn()
                 } else {
                     Log.d("SignIn", "Failed Firebase Register")
+                    loginView?.firebaseAuthProcessFailed()
                 }
             }
     }
@@ -98,12 +100,14 @@ class LoginFragment : Fragment() {
     interface LoginFragmenView {
         fun showSuccessSignInToast()
 
-        fun finishSignInActivity()
-
         fun successfulSignIn()
 
         fun onGoogleSignInPressed(googleSignInClient: GoogleSignInClient, resultCode: Int)
 
         fun onGoToMainButtonClicked()
+
+        fun signInWithGoogleFailed()
+
+        fun firebaseAuthProcessFailed()
     }
 }
