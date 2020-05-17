@@ -7,21 +7,104 @@
     tools:context=".ReservationsCreationFragment">
 
     <TextView
-        android:id="@+id/textview_second"
+        android:id="@+id/vReservationsFormTitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/button_second"
+        android:layout_marginTop="32dp"
+        android:textSize="24sp"
+        android:text="@string/res_form_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_second"
+    <EditText
+        android:id="@+id/vReservationsForm1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/previous"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"
+        android:hint="@string/res_form_1_hint"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_second" />
+        app:layout_constraintTop_toBottomOf="@+id/vReservationsFormTitle1" />
+
+    <TextView
+        android:id="@+id/vReservationsFormTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/res_form_2"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vReservationsForm1" />
+
+    <EditText
+        android:id="@+id/vReservationsFormDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/res_form_2_hint"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vReservationsFormTitle2"
+        tools:ignore="TextFields" />
+
+    <ImageView
+        android:id="@+id/vReservationsForm2Bton"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:background="@android:color/white"
+        android:src="@drawable/calendar"
+        app:layout_constraintStart_toEndOf="@+id/vReservationsFormDate"
+        app:layout_constraintTop_toBottomOf="@+id/vReservationsFormTitle2" />
+
+    <TextView
+        android:id="@+id/vReservationsFormTitle3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textSize="24sp"
+        android:text="@string/res_form_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vReservationsFormDate" />
+
+    <EditText
+        android:id="@+id/vReservationsFormTime1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/res_form_3_hint"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vReservationsFormTitle3" />
+
+    <ImageView
+        android:id="@+id/vReservationsForm3Bton"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:background="@android:color/white"
+        android:src="@drawable/clock"
+        app:layout_constraintStart_toEndOf="@+id/vReservationsFormTime1"
+        app:layout_constraintTop_toBottomOf="@+id/vReservationsFormTitle3" />
+
+    <Button
+        android:id="@+id/vReservationsFormCreateBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/btn_create_reservation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
