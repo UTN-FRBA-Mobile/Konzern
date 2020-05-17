@@ -8,7 +8,8 @@
     app:cardCornerRadius="5dp"
     android:clickable="true"
     android:layout_margin="@dimen/margin_general"
-    card_view:cardUseCompatPadding="false">
+    card_view:cardUseCompatPadding="false"
+    android:focusable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +20,7 @@
             android:id="@+id/img_main"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            app:srcCompat="@drawable/mock_post"
+            app:srcCompat="@drawable/mock_post_1"
             android:scaleType="centerCrop"/>
 
         <LinearLayout

@@ -34,9 +34,8 @@ class ItemPostAdapter(
     private fun setView(aView: ItemPostViewHolder, item: Post) {
         aView.tvDate?.text = item.date
         aView.tvSummary?.text = item.summary
-        if(item.text != null)
-            aView.tvDescription?.text = item.text
-        if(item.image == null)
+        aView.tvDescription?.text = item.text
+        if(item.getMainImage() == null)
             aView.imgMain?.visibility = GONE
     }
 }
