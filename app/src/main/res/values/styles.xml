@@ -49,4 +49,13 @@
         <item name="sliderIndicatorUnselectedColor">#FFFFFF</item>
         <item name="sliderScrollTimeInSec">1</item>
     </style>
+
+    <!-- Splash Theme -->
+    <style name="AppTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
 </resources>
