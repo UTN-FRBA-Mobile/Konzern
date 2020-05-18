@@ -8,4 +8,17 @@
     <string name="login_sign_in_button_text">Iniciar Sesión</string>
     <string name="login_sign_up_button_text">Registrarme</string>
 
+    <string name="home_reservations">Ver Reservaciones</string>
+    <string name="title_activity_reservations">ReservationsActivity</string>
+    <string name="reservations_title">Reservas realizadas</string>
+    <string name="btn_create_reservation">Crear Reserva</string>
+    <string name="reservation_name">Nombre de reserva</string>
+    <string name="reservation_descr">Reserva Descripción</string>
+    <string name="res_form_1">¿Que querés reservar?</string>
+    <string name="res_form_2">¿Para que fecha?</string>
+    <string name="res_form_1_hint">Lo que quieras!</string>
+    <string name="res_form_3">¿En que horario?</string>
+    <string name="res_form_2_hint">Selecciona un día</string>
+    <string name="res_form_3_hint">Selecciona un horario</string>
+
 </resources>
