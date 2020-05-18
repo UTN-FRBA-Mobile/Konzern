@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:padding="@dimen/margin_general">
+    android:padding="@dimen/margin_general"
+    android:orientation="vertical">
 
     <Button
         android:layout_width="match_parent"
@@ -17,8 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Perfil"
-        android:id="@+id/btn_home_profile"
-        android:layout_below="@+id/btn_home_posts">
+        android:id="@+id/btn_home_profile">
     </Button>
 
     <Button
@@ -27,4 +27,4 @@
         android:text="@string/home_reservations"
         android:id="@+id/btn_home_reservations">
     </Button>
-</RelativeLayout>
+</LinearLayout>

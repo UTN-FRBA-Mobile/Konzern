@@ -11,7 +11,7 @@ class ReservationsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.reservations_activity)
-        setSupportActionBar(toolbar)
+        //setSupportActionBar(toolbar)
     }
 
 }
