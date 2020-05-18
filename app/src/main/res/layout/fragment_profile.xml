@@ -13,7 +13,7 @@
         android:id="@+id/vProfilePicture"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:srcCompat="@drawable/mock_post"
+        app:srcCompat="@drawable/mock_post_1"
         android:scaleType="fitXY"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
