@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".posts.ui.ItemPostFragment"
+    tools:context=".posts.ui.PostDetailFragment"
     android:padding="@dimen/margin_general">
 
     <LinearLayout
@@ -13,19 +12,8 @@
         android:orientation="vertical">
 
         <com.smarteist.autoimageslider.SliderView
-            android:id="@+id/imageSlider"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:sliderAnimationDuration="600"
-            app:sliderIndicatorAnimationDuration="600"
-            app:sliderIndicatorGravity="center_horizontal|bottom"
-            app:sliderIndicatorMargin="15dp"
-            app:sliderIndicatorOrientation="horizontal"
-            app:sliderIndicatorPadding="3dp"
-            app:sliderIndicatorRadius="2dp"
-            app:sliderIndicatorSelectedColor="@color/colorAccent"
-            app:sliderIndicatorUnselectedColor="#FFF"
-            app:sliderScrollTimeInSec="1"/>
+            android:id="@+id/vSliderImagePostDetail"
+            style="@style/SliderImageView"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +23,7 @@
             android:paddingTop="0dp">
 
             <TextView
-                android:id="@+id/tv_date"
+                android:id="@+id/vTextViewDatePostDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="16/05/2020 18:52"
@@ -44,14 +32,14 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:id="@+id/tv_summary"
+                android:id="@+id/vTextSummaryPostDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Resumen"
+                android:text="@string/post_summary"
                 android:textAppearance="?attr/textAppearanceHeadline6"/>
 
             <TextView
-                android:id="@+id/tv_description"
+                android:id="@+id/vTextDescriptionPostDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lorem_ipsum"

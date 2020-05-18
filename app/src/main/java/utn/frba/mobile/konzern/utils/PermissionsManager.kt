@@ -1,20 +1,13 @@
 package utn.frba.mobile.konzern.utils
 
-import android.Manifest
 import android.app.Activity
-import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import utn.frba.mobile.konzern.posts.PostsActivity
 
 class PermissionsManager(
     private val resultListener: PermissionResultListener,

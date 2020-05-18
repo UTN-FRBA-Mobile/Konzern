@@ -10,42 +10,38 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.fragment_new_item_post.*
+import kotlinx.android.synthetic.main.fragment_post_item.*
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.posts.adapter.ImageSliderAdapter
 import utn.frba.mobile.konzern.posts.model.Post
-import utn.frba.mobile.konzern.posts.viewModel.PostsViewModel
+import utn.frba.mobile.konzern.posts.viewModel.PostViewModel
 import utn.frba.mobile.konzern.utils.FilePickerManager
 
-class NewItemPostFragment : Fragment(), FilePickerManager.ResultListener {
-    private lateinit var viewModel: PostsViewModel
+class PostItemFragment : PostBaseFragment(), FilePickerManager.ResultListener {
     private lateinit var filePickerManager: FilePickerManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = activity?.run {
-            ViewModelProvider(this).get(PostsViewModel::class.java)
-        } ?: throw Exception("Invalid Activity")
         filePickerManager = FilePickerManager(this, FilePickerManager.FILE_PICKED_REQUEST_CODE)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_new_item_post, container, false)
+        return inflater.inflate(R.layout.fragment_post_item, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn_save.setOnClickListener {
+        vButtonSavePostItem.setOnClickListener {
             this.onBtnSave()
         }
 
-        btn_cancel.setOnClickListener {
+        vButtonCancelPostItem.setOnClickListener {
             findNavController().navigateUp()
         }
 
-        btn_add_image.setOnClickListener{
+        vButtonAddImagePostItem.setOnClickListener{
             filePickerManager.showFilePicker()
         }
 
@@ -60,11 +56,11 @@ class NewItemPostFragment : Fragment(), FilePickerManager.ResultListener {
 
     private fun setImageSlider(images: List<Uri>) {
         if(images.count() > 0) {
-            imageSlider.visibility = View.VISIBLE
-            imageSlider.setSliderAdapter(ImageSliderAdapter(images), false)
+            vSliderImagePostItem.visibility = View.VISIBLE
+            vSliderImagePostItem.setSliderAdapter(ImageSliderAdapter(images), false)
         }
         else
-            imageSlider.visibility = View.GONE
+            vSliderImagePostItem.visibility = View.GONE
     }
 
     private fun setView(item: Post){
@@ -72,21 +68,21 @@ class NewItemPostFragment : Fragment(), FilePickerManager.ResultListener {
 
     private fun onBtnSave(){
         validateFields()
-        if(layout_summary.error == null && layout_description.error == null) {
-            viewModel.addItem(et_summary.text.toString(), et_description.text.toString())
+        if(vLayoutSummaryPostItem.error == null && vLayoutDescriptionPostItem.error == null) {
+            viewModel.addItem(vInputSummaryPostItem.text.toString(), vInputDescriptionPostItem.text.toString())
             findNavController().navigateUp()
         }
     }
 
     private fun validateFields() {
-        layout_summary.error = null
-        layout_description.error = null
+        vLayoutSummaryPostItem.error = null
+        vLayoutDescriptionPostItem.error = null
 
-        if(et_summary.text.isNullOrEmpty())
-            layout_summary.error = layout_summary.helperText
+        if(vInputSummaryPostItem.text.isNullOrEmpty())
+            vLayoutSummaryPostItem.error = vLayoutSummaryPostItem.helperText
 
-        if(et_description.text.isNullOrEmpty())
-            layout_description.error = layout_description.helperText
+        if(vInputDescriptionPostItem.text.isNullOrEmpty())
+            vLayoutDescriptionPostItem.error = vLayoutDescriptionPostItem.helperText
     }
 
     //region FilePickerManagerListener

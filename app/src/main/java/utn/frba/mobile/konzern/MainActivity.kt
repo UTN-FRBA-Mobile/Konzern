@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import utn.frba.mobile.konzern.posts.PostsActivity
+import utn.frba.mobile.konzern.posts.PostActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onGotToPosts(){
-        val intent = Intent(this, PostsActivity::class.java)
+        val intent = Intent(this, PostActivity::class.java)
         this.startActivity(intent)
     }
 }

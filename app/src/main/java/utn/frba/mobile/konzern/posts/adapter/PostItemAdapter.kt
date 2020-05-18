@@ -19,7 +19,7 @@ class ItemPostAdapter(
     override fun getItemCount(): Int = items?.size ?: 0
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ItemPostViewHolder {
-        val view: View = LayoutInflater.from(p0.context).inflate(R.layout.layout_item_posts, p0, false)
+        val view: View = LayoutInflater.from(p0.context).inflate(R.layout.layout_post_item, p0, false)
         return ItemPostViewHolder(
             view,
             p0.context

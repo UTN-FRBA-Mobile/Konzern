@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".posts.PostsActivity">
+    tools:context=".posts.PostActivity">
 
-    <include layout="@layout/content_posts" />
+    <include layout="@layout/content_post" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

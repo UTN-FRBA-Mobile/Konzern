@@ -34,4 +34,19 @@
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="colorOnSurface">@color/colorPrimaryDark</item>
     </style>
+
+    <style name="SliderImageView" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="sliderAnimationDuration">600</item>
+        <item name="sliderIndicatorAnimationDuration">600</item>
+        <item name="sliderIndicatorGravity">center_horizontal|bottom</item>
+        <item name="sliderIndicatorMargin">15dp</item>
+        <item name="sliderIndicatorOrientation">horizontal</item>
+        <item name="sliderIndicatorPadding">3dp</item>
+        <item name="sliderIndicatorRadius">2dp</item>
+        <item name="sliderIndicatorSelectedColor">@color/colorAccent</item>
+        <item name="sliderIndicatorUnselectedColor">#FFFFFF</item>
+        <item name="sliderScrollTimeInSec">1</item>
+    </style>
 </resources>

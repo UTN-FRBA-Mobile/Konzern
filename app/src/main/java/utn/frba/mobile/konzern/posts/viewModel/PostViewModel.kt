@@ -8,7 +8,7 @@ import utn.frba.mobile.konzern.posts.model.Post
 import utn.frba.mobile.konzern.posts.repository.PostRepository
 
 
-class PostsViewModel(application: Application) : AndroidViewModel(application) {
+class PostViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: PostRepository =
         PostRepository(application)
 
