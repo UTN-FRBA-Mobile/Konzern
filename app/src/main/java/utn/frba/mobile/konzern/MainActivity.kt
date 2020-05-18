@@ -7,6 +7,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 import utn.frba.mobile.konzern.posts.PostActivity
 import utn.frba.mobile.konzern.profile.ProfileActivity
+import utn.frba.mobile.konzern.reservations.ReservationsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         btn_home_profile.setOnClickListener{
             onGotToProfile()
         }
+        btn_home_reservations.setOnClickListener{
+            onGotToReservations()
+        }
     }
 
     private fun onGotToPosts(){
@@ -33,6 +37,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun onGotToProfile(){
         val intent = Intent(this, ProfileActivity::class.java)
+        this.startActivity(intent)
+    }
+
+    private fun onGotToReservations(){
+        val intent = Intent(this, ReservationsActivity::class.java)
         this.startActivity(intent)
     }
 }

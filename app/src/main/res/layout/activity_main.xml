@@ -20,4 +20,11 @@
         android:id="@+id/btn_home_profile"
         android:layout_below="@+id/btn_home_posts">
     </Button>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/home_reservations"
+        android:id="@+id/btn_home_reservations">
+    </Button>
 </RelativeLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import utn.frba.mobile.konzern.MainActivity
 import utn.frba.mobile.konzern.R
+import utn.frba.mobile.konzern.login.LoginActivity
 
 class SplashActivity : AppCompatActivity(), SplashFragment.SplashFragmentView {
 
@@ -20,7 +21,7 @@ class SplashActivity : AppCompatActivity(), SplashFragment.SplashFragmentView {
     }
 
     override fun onSplashEnded() {
-        val intent = Intent(applicationContext, MainActivity::class.java)
+        val intent = Intent(applicationContext, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
