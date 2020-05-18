@@ -1,4 +1,4 @@
-package utn.frba.mobile.konzern
+package utn.frba.mobile.konzern.reservations
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -10,9 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.DatePicker
-import android.widget.TimePicker
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.reservations_creation_fragment.*
+import utn.frba.mobile.konzern.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,10 +32,17 @@ class ReservationsCreationFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+/*
         view.findViewById<Button>(R.id.vReservationsFormCreateBtn).setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
+*/
+
+        vReservationsFormCreateBtn.setOnClickListener {
+            requireActivity().onBackPressed()
+            //todo: agregar logica de guardar la reserva
+        }
+
 
         //Calendar
         val c = Calendar.getInstance()

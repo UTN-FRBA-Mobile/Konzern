@@ -1,11 +1,10 @@
-package utn.frba.mobile.konzern
+package utn.frba.mobile.konzern.reservations
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.reservations_activity.*
 
-import kotlinx.android.synthetic.main.reservations_activity.*
+import utn.frba.mobile.konzern.R
 
 class ReservationsActivity : AppCompatActivity() {
 

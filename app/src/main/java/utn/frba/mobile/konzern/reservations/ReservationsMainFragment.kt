@@ -1,4 +1,4 @@
-package utn.frba.mobile.konzern
+package utn.frba.mobile.konzern.reservations
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CalendarView
 import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.reservations_main_fragment.*
+import utn.frba.mobile.konzern.R
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

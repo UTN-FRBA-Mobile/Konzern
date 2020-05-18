@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="utn.frba.mobile.konzern.ReservationsMainFragment"
+        android:name="utn.frba.mobile.konzern.reservations.ReservationsMainFragment"
         tools:layout="@layout/reservations_main_fragment">
 
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="utn.frba.mobile.konzern.ReservationsCreationFragment"
+        android:name="utn.frba.mobile.konzern.reservations.ReservationsCreationFragment"
         tools:layout="@layout/reservations_creation_fragment">
 
         <action
