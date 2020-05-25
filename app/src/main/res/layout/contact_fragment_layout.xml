@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginStart="15dp"
-    android:layout_marginEnd="15dp">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp">
 
         <ImageView
             android:id="@+id/vContactImage"
@@ -34,7 +34,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/vContactImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/vContactImage"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/vContactImage"
             tools:text="CONSORCIO_ABC" />
 
         <TextView
@@ -50,7 +50,7 @@
             app:layout_constraintTop_toBottomOf="@id/vContactImage"/>
 
         <TextView
-            android:id="@+id/vContactTelephone"
+            android:id="@+id/vContactPhone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -69,7 +69,7 @@
             android:text="@string/contact_attention_time"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vContactTelephone"/>
+            app:layout_constraintTop_toBottomOf="@id/vContactPhone"/>
 
         <TextView
             android:id="@+id/vContactAttentionTime"
