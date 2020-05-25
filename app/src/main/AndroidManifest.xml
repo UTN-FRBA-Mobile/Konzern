@@ -23,6 +23,7 @@
         <activity android:name=".profile.ProfileActivity" />
         <activity android:name=".posts.PostActivity" />
         <activity android:name=".reservations.ReservationsActivity"/>
+        <activity android:name=".contact.ContactActivity"/>
     </application>
 
 </manifest>
