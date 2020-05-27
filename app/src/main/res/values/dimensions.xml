@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="expenses_text_padding_left">20dp</dimen>
+    <dimen name="expenses_download_icon_size">30dp</dimen>
+    <dimen name="expenses_month_text_width">350dp</dimen>
+</resources>

@@ -7,108 +7,103 @@
     android:layout_height="match_parent"
     tools:context=".expenses.ExpensesActivity">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/linear_expenses_title_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/home_expenses"
-        android:gravity="center"
-        android:textSize="30sp">
-    </TextView>
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/vLabelLastExpense"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/home_expenses"
+            android:gravity="center"
+            android:textSize="30sp">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_last_expense_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/expenses_last_expense"
-        android:layout_marginTop="50dp"
-        android:textSize="25sp"
-        android:textStyle="bold">
-    </TextView>
+        app:layout_constraintTop_toBottomOf="@+id/linear_expenses_title_layout"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/vDownloadButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/download_icon"
-        app:layout_constraintTop_toBottomOf="@+id/vLabelLastExpense"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/vLabelLastExpense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/expenses_last_expense"
+            android:textSize="25sp"
+            android:textStyle="bold">
+        </TextView>
 
-    <TextView
-        android:id="@+id/vTextLastExpenseMonth"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/vLabelLastExpense"
-        app:layout_constraintStart_toStartOf="parent"
-        android:paddingLeft="20dp"
-        android:textSize="21sp">
-    </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/vTextLastExpenseAmount"
+            <TextView
+                android:id="@+id/vTextLastExpenseMonth"
+                android:layout_width="@dimen/expenses_month_text_width"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/expenses_text_padding_left"
+                android:textSize="21sp">
+            </TextView>
+
+            <Button
+                android:id="@+id/vDownloadButton"
+                android:layout_width="@dimen/expenses_download_icon_size"
+                android:layout_height="@dimen/expenses_download_icon_size"
+                android:background="@drawable/download_icon"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/vTextLastExpenseAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/vLabelLastExpense"
+            android:paddingLeft="@dimen/expenses_text_padding_left"
+            android:text="@string/expense_amount_label"
+            android:textSize="21sp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/vTextLastExpenseExpirationDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/vLabelLastExpense"
+            android:paddingLeft="@dimen/expenses_text_padding_left"
+            android:text="@string/expense_expiration_date_label"
+            android:textSize="21sp">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_previous_expenses_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/vLabelLastExpense"
-        android:layout_marginTop="30dp"
-        android:paddingLeft="20dp"
-        android:text="@string/expense_amount_label"
-        android:textSize="21sp">
-    </TextView>
+        app:layout_constraintTop_toBottomOf="@+id/linear_last_expense_layout"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/vTextLastExpenseExpirationDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/vLabelLastExpense"
-        android:layout_marginTop="60dp"
-        android:paddingLeft="20dp"
-        android:text="@string/expense_expiration_date_label"
-        android:textSize="21sp">
-    </TextView>
+        <TextView
+            android:id="@+id/vLabelPreviousExpenses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/expenses_previous_expenses"
+            android:layout_marginTop="10dp"
+            android:textSize="23sp"
+            android:textStyle="bold">
+        </TextView>
 
-    <TextView
-        android:id="@+id/vLabelPreviousExpenses"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/expenses_previous_expenses"
-        android:layout_marginTop="180dp"
-        android:textSize="23sp"
-        android:textStyle="bold">
-    </TextView>
-
-    <TextView
-        android:id="@+id/vTextPreviousExpensesMonth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/vLabelPreviousExpenses"
-        android:paddingLeft="20dp"
-        android:textSize="20sp">
-    </TextView>
-
-    <TextView
-        android:id="@+id/vTextPreviousExpensesAmount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/vLabelPreviousExpenses"
-        android:layout_marginTop="30dp"
-        android:paddingLeft="20dp"
-        android:text="@string/expense_amount_label"
-        android:textSize="20sp">
-    </TextView>
-
-    <TextView
-        android:id="@+id/vTextPreviousExpensesExpirationDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/vLabelPreviousExpenses"
-        android:layout_marginTop="60dp"
-        android:paddingLeft="20dp"
-        android:text="@string/expense_expiration_date_label"
-        android:textSize="21sp">
-    </TextView>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
