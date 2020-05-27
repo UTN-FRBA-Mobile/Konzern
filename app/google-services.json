@@ -8,43 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:618898356644:android:81a5278d5784bf55c72931",
-        "android_client_info": {
-          "package_name": "utn.frba.mobile.consorcio"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "618898356644-ijncf6j7vkc4b73pup2lufdgm0k9bb2r.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "utn.frba.mobile.consorcio",
-            "certificate_hash": "905f3edf80a6488b9d36c4db03295f1a26b4f45a"
-          }
-        },
-        {
-          "client_id": "618898356644-kpfm96nn7d38lo8i62vujil2r1o4093c.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCAXLRdSVPvwl5rDB2bV6hPdG6-Cx-KWa0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "618898356644-kpfm96nn7d38lo8i62vujil2r1o4093c.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:618898356644:android:0a34e2c7677014b4c72931",
         "android_client_info": {
           "package_name": "utn.frba.mobile.konzern"

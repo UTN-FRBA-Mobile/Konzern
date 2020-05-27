@@ -3,6 +3,7 @@
     package="utn.frba.mobile.konzern">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
@@ -18,10 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".expenses.ExpensesActivity"/>
         <activity android:name=".MainActivity"/>
-
+        <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".profile.ProfileActivity" />
+        <activity android:name=".posts.PostActivity" />
+        <activity android:name=".reservations.ReservationsActivity"/>
+        <activity android:name=".expenses.ExpensesActivity"/>
     </application>
 
 </manifest>

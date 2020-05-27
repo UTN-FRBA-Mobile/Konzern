@@ -1,11 +1,53 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="floatingActionButtonStyle">@style/Widget.App.FloatingActionButton</item>
+        <item name="extendedFloatingActionButtonStyle">@style/Widget.App.ExtendedFloatingActionButton</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="Widget.App.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.FloatingActionButton</item>
+    </style>
+
+    <style name="Widget.App.ExtendedFloatingActionButton" parent="Widget.MaterialComponents.ExtendedFloatingActionButton.Icon">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.FloatingActionButton</item>
+    </style>
+
+    <style name="ThemeOverlay.App.FloatingActionButton" parent="">
+        <item name="colorSecondary">@color/colorPrimary</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorOnSurface">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="SliderImageView" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="sliderAnimationDuration">600</item>
+        <item name="sliderIndicatorAnimationDuration">600</item>
+        <item name="sliderIndicatorGravity">center_horizontal|bottom</item>
+        <item name="sliderIndicatorMargin">15dp</item>
+        <item name="sliderIndicatorOrientation">horizontal</item>
+        <item name="sliderIndicatorPadding">3dp</item>
+        <item name="sliderIndicatorRadius">2dp</item>
+        <item name="sliderIndicatorSelectedColor">@color/colorAccent</item>
+        <item name="sliderIndicatorUnselectedColor">#FFFFFF</item>
+        <item name="sliderScrollTimeInSec">1</item>
     </style>
 
     <!-- Splash Theme -->

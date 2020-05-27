@@ -1,5 +1,40 @@
 <resources>
     <string name="app_name">Konzern</string>
+    <string name="input_required">* requerido</string>
+    <string name="button_save">Guardar</string>
+    <string name="button_cancel">Cancelar</string>
+
+    <!-- Login -->
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_forgot_my_password">Olvidé mi contraseña</string>
+    <string name="login_sign_in_button_text">Iniciar Sesión</string>
+    <string name="login_sign_up_button_text">Registrarme</string>
+
+    <string name="home_reservations">Ver Reservaciones</string>
+    <string name="title_activity_reservations">ReservationsActivity</string>
+    <string name="reservations_title">Reservas realizadas</string>
+    <string name="btn_create_reservation">Crear Reserva</string>
+    <string name="reservation_name">Nombre de reserva</string>
+    <string name="reservation_descr">Reserva Descripción</string>
+    <string name="res_form_1">¿Que querés reservar?</string>
+    <string name="res_form_2">¿Para que fecha?</string>
+    <string name="res_form_1_hint">Lo que quieras!</string>
+    <string name="res_form_3">¿En que horario?</string>
+    <string name="res_form_2_hint">Selecciona un día</string>
+    <string name="res_form_3_hint">Selecciona un horario</string>
+
+    <!-- Publicaciones -->
+    <string name="label_posts_main">Últimas publicaciones</string>
+    <string name="home_posts">Publicaciones</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</string>
+    <string name="post_summary">Resumen</string>
+    <string name="post_description">Descripción</string>
+    <string name="post_required_summary">Resumen*</string>
+    <string name="post_required_description">Descripción*</string>
+    <string name="post_add_image">Agregar imagen</string>
+
+    <!-- Expensas -->
     <string name="home_expenses">Expensas</string>
     <string name="expenses_last_expense">Última Expensa</string>
     <string name="expenses_previous_expenses">Expensas Anteriores</string>

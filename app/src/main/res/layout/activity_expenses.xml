@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".expenses.ExpensesActivity">
+    tools:context=".expenses.ExpensesActivity"
+    android:padding="@dimen/margin_general">
 
     <LinearLayout
         android:id="@+id/linear_expenses_title_layout"
@@ -55,7 +56,7 @@
                 android:textSize="21sp">
             </TextView>
 
-            <Button
+            <ImageButton
                 android:id="@+id/vDownloadButton"
                 android:layout_width="@dimen/expenses_download_icon_size"
                 android:layout_height="@dimen/expenses_download_icon_size"

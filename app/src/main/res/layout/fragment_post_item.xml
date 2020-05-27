@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".posts.ui.PostDetailFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/vLayoutButtonsPostItem"
+        android:layout_marginBottom="0dp"
+        android:foregroundGravity="top"
+        android:padding="@dimen/margin_general">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/vLayoutSummaryPostItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="clear_text"
+                android:hint="@string/post_required_summary"
+                app:counterEnabled="true"
+                app:counterMaxLength="20"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:helperText="@string/input_required"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/vInputSummaryPostItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vLayoutDescriptionPostItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            android:hint="@string/post_required_description"
+            app:counterEnabled="true"
+            app:counterMaxLength="1000"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:helperText="@string/input_required">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vInputDescriptionPostItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="8"
+                android:gravity="start"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/vButtonAddImagePostItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_attach"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_gravity="center"
+                android:text="@string/post_add_image"/>
+
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/vSliderImagePostItem"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:sliderAnimationDuration="600"
+                app:sliderIndicatorAnimationDuration="600"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorMargin="15dp"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="3dp"
+                app:sliderIndicatorRadius="2dp"
+                app:sliderIndicatorSelectedColor="@color/colorAccent"
+                app:sliderIndicatorUnselectedColor="#FFF"
+                app:sliderScrollTimeInSec="1"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/vLayoutButtonsPostItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/margin_general">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/vButtonSavePostItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_save"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/vButtonCancelPostItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:text="@string/button_cancel"/>
+    </LinearLayout>
+</RelativeLayout>
