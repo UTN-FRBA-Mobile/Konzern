@@ -30,4 +30,9 @@ class ReservationsMainFragment : Fragment() {
         }
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        // Actualizar la vista con los datos del view model :)
+    }
 }

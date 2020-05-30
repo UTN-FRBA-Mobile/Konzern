@@ -39,6 +39,7 @@ class ReservationsCreationFragment : Fragment() {
 */
 
         vReservationsFormCreateBtn.setOnClickListener {
+            //modificarViewModel()
             requireActivity().onBackPressed()
             //todo: agregar logica de guardar la reserva
         }
