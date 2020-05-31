@@ -40,5 +40,6 @@
     <string name="contact_email_address">Dirección de mail:</string>
     <string name="contact_address">Dirección:</string>
     <string name="contact_extra_info_title">Información adicional:</string>
+    <string name="contact_error_getting_info">Error al obtener info de la base de datos</string>
 
 </resources>
