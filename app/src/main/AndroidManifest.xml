@@ -21,8 +21,10 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".login.LoginActivity"/>
         <activity android:name=".profile.ProfileActivity" />
-        <activity android:name=".posts.PostActivity" />
-        <activity android:name=".reservations.ReservationsActivity"/>
-    </application>
+        <activity android:name=".posts.PostActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".reservations.ReservationsActivity"
+            android:windowSoftInputMode="adjustPan"/>
+</application>
 
 </manifest>
