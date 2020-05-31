@@ -13,14 +13,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.PdfWriter
 import com.itextpdf.text.pdf.draw.LineSeparator
 import com.itextpdf.text.pdf.draw.VerticalPositionMark
+import kotlinx.android.synthetic.main.activity_expensas_arreglo.*
 import kotlinx.android.synthetic.main.activity_expenses.*
+import kotlinx.android.synthetic.main.custom_expenses_item.view.*
 import org.json.JSONArray
 import org.json.JSONObject
 import utn.frba.mobile.konzern.R
+import utn.frba.mobile.konzern.expenses.adapter.ExpensesAdapter
 import java.io.File
 import java.io.FileOutputStream
 
@@ -29,8 +33,62 @@ class ExpensesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_expenses)
+        setContentView(R.layout.activity_expensas_arreglo)
 
+        val expensesList = arrayListOf(
+            Expenses(
+                "Octubre",
+                "10.123",
+                "01/10/2019"
+            ),
+            Expenses(
+                "Noviembre",
+                "10.123",
+                "01/11/2019"
+            ),
+            Expenses(
+                "Diciembre",
+                "10.123",
+                "01/12/2019"
+            ),
+            Expenses(
+                "Enero",
+                "10.123",
+                "01/01/2020"
+            ),
+            Expenses(
+                "Febrero",
+                "11.123",
+                "01/02/2020"
+            ),
+            Expenses(
+                "Marzo",
+                "12.123",
+                "01/03/2020"
+            ),
+            Expenses(
+                "Abril",
+                "13.123",
+                "01/04/2020"
+            )
+        )
+
+        val viewManager = LinearLayoutManager(this)
+        val adapter = ExpensesAdapter(expensesList)
+
+        vExpensesRecyclerView.apply {
+            this.layoutManager = viewManager
+            this.adapter = adapter
+        }
+
+        vExpensesLastExpenseItem.apply {
+            this.vExpensesItemMonth.text = "Mayo"
+            this.vExpensesItemAmountNumber.text = "15.123"
+            this.vExpensesItemExpireDate.text = "01/05/2020"
+        }
+        //------------------------------------------------------------
+
+/*
         //TODO: Este JSONArray debe ser la respuesta del servicio que traiga de la base las expensas
         var expenses = JSONArray("""[{"amount": "1582.20", "month":"Abril", "exp_date":"12/05/2020", "apartment":"1 C"},
                                 {"amount": "1350.20", "month":"Marzo", "exp_date":"16/04/2020", "apartment":"1 C"},
@@ -94,6 +152,8 @@ class ExpensesActivity : AppCompatActivity() {
             }
             i++
         }
+
+ */
 
     }
 
