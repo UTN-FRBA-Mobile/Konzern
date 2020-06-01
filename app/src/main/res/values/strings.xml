@@ -33,4 +33,8 @@
     <string name="post_required_summary">Resumen*</string>
     <string name="post_required_description">Descripción*</string>
     <string name="post_add_image">Agregar imagen</string>
+
+    <!-- Custom Toolbar -->
+    <string name="custom_toolbar_logo_description">Konzern Logo</string>
+    <string name="custom_toolbar_dots_img">Dots for more</string>
 </resources>
