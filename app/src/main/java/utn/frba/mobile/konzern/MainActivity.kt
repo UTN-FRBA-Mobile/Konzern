@@ -4,17 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import utn.frba.mobile.konzern.customviews.ToolbarMenuInterface
 
 import utn.frba.mobile.konzern.posts.PostActivity
 import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ToolbarMenuInterface {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        vMainActivityToolbar.setTitle(getString(R.string.app_name))
         setButtonsListeners()
     }
 
@@ -44,4 +45,14 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, ReservationsActivity::class.java)
         this.startActivity(intent)
     }
+
+    override fun onMenuMyProfileClicked() {
+        onGotToProfile()
+    }
+
+    override fun onMenuSeeReservationsClicked() {
+        onGotToReservations()
+    }
+
+    override fun onToolbarLogoClicked() {}
 }
