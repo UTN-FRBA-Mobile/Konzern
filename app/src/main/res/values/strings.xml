@@ -39,6 +39,7 @@
     <string name="expenses_last_expense">Última Expensa</string>
     <string name="expenses_previous_expenses">Expensas Anteriores</string>
     <string name="expenses_coin">$</string>
-    <string name="expense_amount_label">Importe: </string>
-    <string name="expense_expiration_date_label">Vencimiento: </string>
+    <string name="expenses_month_label">Mes:</string>
+    <string name="expenses_amount_label">Importe:</string>
+    <string name="expenses_expiration_date_label">Vencimiento:</string>
 </resources>
