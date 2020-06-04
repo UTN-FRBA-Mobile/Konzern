@@ -7,6 +7,7 @@ import android.net.Uri
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.posts.model.Post
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -57,15 +58,20 @@ class PostRepository(var application: Application) {
         return items.find { it.id == id }
     }
 
-    fun save(summary: String, description: String, images: List<Uri>?){
-        val item = Post(
-            items.count() + 1,
-            summary,
-            description,
-            SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("es", "AR")).format(Date()),
-            images
-        )
-        items.add(0, item)
+    fun save(item: Post){
+        if(item.id != null){
+            var oldItem = getItem(item.id!!)
+            oldItem = item
+        } else{
+            item.id = items.count() + 1
+            item.isOwnedByUser = true
+            item.setDateString(LocalDateTime.now())
+            items.add(0, item)
+        }
+    }
+
+    fun delete(id: Int){
+        items.remove(items.find { it.id == id })
     }
 
     private fun getAppString(stringId: Int): String {

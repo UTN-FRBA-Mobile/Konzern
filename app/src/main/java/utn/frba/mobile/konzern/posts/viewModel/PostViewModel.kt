@@ -6,6 +6,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import utn.frba.mobile.konzern.posts.model.Post
 import utn.frba.mobile.konzern.posts.repository.PostRepository
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
@@ -27,13 +30,23 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             selectedItem.value = repository.getItem(id)
     }
 
+    fun deleteItem(id: Int){
+        repository.delete(id)
+    }
+
     private fun selectNewItem(){
         this.selectedItem.postValue(Post())
         this.images.postValue(arrayListOf())
     }
 
-    fun addItem(summary: String, description: String){
-        repository.save(summary, description, images.value)
+    fun saveItem(summary: String, description: String){
+        val item = this.selectedItem.value!!
+
+        item.summary = summary
+        item.text = description
+        item.addImages(images.value)
+
+        repository.save(item)
     }
 
     fun addImage(imageList: List<Uri>){

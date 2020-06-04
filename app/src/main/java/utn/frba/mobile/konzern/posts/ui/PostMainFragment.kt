@@ -38,8 +38,18 @@ class PostMainFragment : PostBaseFragment(), OnItemPostClickListener {
         viewModel.loadItemList()
     }
 
-    override fun onClick(id: Int) {
+    override fun onItemClick(id: Int) {
         viewModel.selectItem(id)
         findNavController().navigate(R.id.action_MainPostsFragment_to_ItemPostFragment)
+    }
+
+    override fun onEditClick(id: Int) {
+        viewModel.selectItem(id)
+        findNavController().navigate(R.id.action_MainPostsFragment_to_NewItemPostFragment)
+    }
+
+    override fun onDeleteClick(id: Int) {
+        viewModel.deleteItem(id)
+        viewModel.loadItemList()
     }
 }
