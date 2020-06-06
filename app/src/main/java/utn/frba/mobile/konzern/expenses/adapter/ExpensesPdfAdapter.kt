@@ -18,18 +18,11 @@ import utn.frba.mobile.konzern.expenses.ExpensesActivity
 import java.io.File
 import java.io.FileOutputStream
 
-object ExpensesPdfAdapter {
-
-    var mContext: Context? = null
-    var mExpensesActivity: ExpensesActivity? = null
+class ExpensesPdfAdapter {
 
     fun permitPDFFile (activity: Activity) {
 
         try {
-            mContext = activity
-            if(activity is ExpensesActivity)
-                mExpensesActivity = activity
-
             //Valido permisos
             val permissionCheck = ContextCompat.checkSelfPermission(
                 activity, Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -49,7 +42,7 @@ object ExpensesPdfAdapter {
         }
     }
 
-    fun createPDFFile (expense: Expenses) {
+    fun createPDFFile (expense: Expenses, context: Context?) {
 
         try {
 
@@ -57,7 +50,7 @@ object ExpensesPdfAdapter {
             val dir = File(
                 Environment.getExternalStorageDirectory().toString()
                     + File.separator
-                    + mContext!!.resources.getString(R.string.app_name)
+                    + context!!.resources.getString(R.string.app_name)
                     + File.separator)
             if(!dir.exists())
                 dir.mkdir()
@@ -77,8 +70,8 @@ object ExpensesPdfAdapter {
             //Configuracion del PDF
             document.pageSize = PageSize.A4
             document.addCreationDate()
-            document.addAuthor(mContext!!.resources.getString(R.string.app_name))
-            document.addCreator(mContext!!.resources.getString(R.string.app_name))
+            document.addAuthor(context!!.resources.getString(R.string.app_name))
+            document.addCreator(context!!.resources.getString(R.string.app_name))
 
             //Estilos
             val titleStyle = Font(Font.FontFamily.HELVETICA, 36.0f, Font.NORMAL, BaseColor.BLACK)
@@ -90,7 +83,7 @@ object ExpensesPdfAdapter {
 
             addLineSeparator(document)
 
-            addNewDetail(document,"Monto",mContext!!.resources.getString(R.string.expenses_coin) + " " +expense.amount, detailStyle)
+            addNewDetail(document,"Monto",context!!.resources.getString(R.string.expenses_coin) + " " +expense.amount, detailStyle)
             addNewDetail(document,"Mes",expense.month, detailStyle)
             addNewDetail(document,"Fecha Vencimiento",expense.expirationDate, detailStyle)
 

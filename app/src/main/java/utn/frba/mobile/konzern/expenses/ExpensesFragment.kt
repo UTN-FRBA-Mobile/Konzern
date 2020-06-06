@@ -1,6 +1,5 @@
 package utn.frba.mobile.konzern.expenses
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,6 +16,7 @@ import utn.frba.mobile.konzern.expenses.adapter.ExpensesPdfAdapter
 
 class ExpensesFragment : Fragment() {
 
+    private var expensesPdfAdapter: ExpensesPdfAdapter? = null
     private var expensesView: ExpensesFragmentView? = null
 
     override fun onAttach(context: Context) {
@@ -42,12 +42,13 @@ class ExpensesFragment : Fragment() {
                                 {"amount": "1350.20", "month":"Marzo", "exp_date":"16/04/2020", "apartment":"1 C"},
                                 {"amount": "1350.20", "month":"Febrero", "exp_date":"15/03/2020", "apartment":"1 C"},
                                 {"amount": "1032.20", "month":"Enero", "exp_date":"10/02/2020", "apartment":"1 C"}]""")
-        val expensesList = ParseExpenseList(expensesJson)
+        val expensesList = parseExpenseList(expensesJson)
 
-        ExpensesPdfAdapter.permitPDFFile(this.requireActivity())
+        expensesPdfAdapter = ExpensesPdfAdapter()
+        expensesPdfAdapter?.permitPDFFile(this.requireActivity())
 
         val viewManager = LinearLayoutManager(this.requireActivity())
-        val adapter = ExpensesAdapter(expensesList.subList(1,expensesList.size))
+        val adapter = ExpensesAdapter(expensesList.subList(1,expensesList.size), expensesView, expensesPdfAdapter, context)
 
         vExpensesRecyclerView.apply {
             this.layoutManager = viewManager
@@ -58,11 +59,11 @@ class ExpensesFragment : Fragment() {
             this.vExpensesItemMonthValue.text = expensesList[0].month
             this.vExpensesItemAmountValue.text = expensesList[0].amount
             this.vExpensesItemExpirationDateValue.text = expensesList[0].expirationDate
-            this.vExpensesItemDownloadButton.setOnClickListener { ExpensesPdfAdapter.createPDFFile (expensesList[0]); expensesView?.downloadPDFSuccess() }
+            this.vExpensesItemDownloadButton.setOnClickListener { expensesPdfAdapter?.createPDFFile (expensesList[0], context); expensesView?.downloadPDFSuccess() }
         }
     }
 
-    fun ParseExpenseList(expensesJson: JSONArray) : List<Expenses> {
+    private fun parseExpenseList(expensesJson: JSONArray) : List<Expenses> {
         val expensesList = mutableListOf<Expenses>()
 
         for (i in 0 until expensesJson.length()) {
