@@ -25,5 +25,4 @@
         <activity android:name=".reservations.ReservationsActivity"/>
         <activity android:name=".contact.ContactActivity"/>
     </application>
-
 </manifest>
