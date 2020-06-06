@@ -45,6 +45,13 @@ class LoginFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
     }
 
+    override fun onStart() {
+        super.onStart()
+        if (firebaseAuth.currentUser != null) {
+            loginView?.successfulSignIn()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
