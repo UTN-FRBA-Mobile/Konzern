@@ -9,6 +9,7 @@ import utn.frba.mobile.konzern.contact.ContactActivity
 import utn.frba.mobile.konzern.posts.PostActivity
 import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
+import utn.frba.mobile.konzern.login.LoginFragment
 
 class MainActivity : AppCompatActivity() {
 
