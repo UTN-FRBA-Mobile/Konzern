@@ -33,7 +33,10 @@ class ContactFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getContactDataFormRepository()
+    }
 
+    private fun getContactDataFormRepository() {
         ContactRepository().getContactData(object : ContactRepository.ContactRepositoryInterface {
             override fun onComplete(consorcioInfo: DocumentSnapshot?) {
                 setInfoFromDatabase(consorcioInfo)
