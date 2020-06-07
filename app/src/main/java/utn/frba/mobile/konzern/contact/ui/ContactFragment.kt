@@ -1,23 +1,20 @@
 package utn.frba.mobile.konzern.contact.ui
 
 import android.content.Context
-import android.opengl.Visibility
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.contact_fragment_layout.*
 import utn.frba.mobile.konzern.R
+import utn.frba.mobile.konzern.contact.repository.ContactRepository
 import java.lang.RuntimeException
 
 class ContactFragment : Fragment() {
 
     private lateinit var contactView : ContactView
-    private lateinit var database: FirebaseFirestore
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -28,11 +25,6 @@ class ContactFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        database = FirebaseFirestore.getInstance()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,19 +33,16 @@ class ContactFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getContactDataFromFirebase(database)
-    }
 
-    private fun getContactDataFromFirebase(database: FirebaseFirestore) {
-        database.collectionGroup("consorcio")
-            .get()
-            .addOnCompleteListener {task ->
-                val consorcioInfo = task.result?.documents?.get(0)
+        ContactRepository().getContactData(object : ContactRepository.ContactRepositoryInterface {
+            override fun onComplete(consorcioInfo: DocumentSnapshot?) {
                 setInfoFromDatabase(consorcioInfo)
             }
-            .addOnFailureListener {
+
+            override fun onFailure() {
                 contactView.errorGettinContactInfo()
             }
+        })
     }
 
     private fun setInfoFromDatabase(consorcioInfo: DocumentSnapshot?) {
