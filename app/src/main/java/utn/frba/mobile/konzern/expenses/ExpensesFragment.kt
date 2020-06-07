@@ -3,8 +3,13 @@ package utn.frba.mobile.konzern.expenses
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
+import android.view.View.*
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import android.widget.TextView.OnEditorActionListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.expenses_fragment_layout.*
@@ -13,6 +18,7 @@ import org.json.JSONArray
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.expenses.adapter.ExpensesAdapter
 import utn.frba.mobile.konzern.expenses.adapter.ExpensesPdfAdapter
+
 
 class ExpensesFragment : Fragment() {
 
@@ -61,6 +67,45 @@ class ExpensesFragment : Fragment() {
             this.vExpensesItemExpirationDateValue.text = expensesList[0].expirationDate
             this.vExpensesItemDownloadButton.setOnClickListener { expensesPdfAdapter?.createPDFFile (expensesList[0], context); expensesView?.downloadPDFSuccess() }
         }
+
+
+        vLabelPreviousExpenses.setOnTouchListener(OnTouchListener { v, event ->
+            if(event.action == MotionEvent.ACTION_DOWN && vLabelPreviousExpenses.compoundDrawables[2] != null && event.rawX >= vLabelPreviousExpenses.right - vLabelPreviousExpenses.compoundDrawables[2].bounds.width()) {
+                vSearchPreviousExpenses.visibility = VISIBLE
+                vLabelPreviousExpenses.setCompoundDrawables(null, null, null, null)
+                true
+            }
+            false
+        })
+
+        vSearchPreviousExpenses.setOnTouchListener(OnTouchListener { v, event ->
+            if(event.action == MotionEvent.ACTION_DOWN && vSearchPreviousExpenses.compoundDrawables[2] != null && event.rawX >= vSearchPreviousExpenses.right - vSearchPreviousExpenses.compoundDrawables[2].bounds.width()) {
+                vSearchPreviousExpenses.text.clear()
+                adapter.filter.filter("")
+                hideFilter()
+                true
+            }
+            false
+        })
+
+        vSearchPreviousExpenses.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                if(vSearchPreviousExpenses.text.isEmpty()) {
+                    hideFilter()
+                }
+                adapter.filter.filter(vSearchPreviousExpenses.text)
+                val imm: InputMethodManager = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(v.windowToken, 0)
+                true
+            }
+            false
+        })
+
+    }
+
+    private fun hideFilter() {
+        vSearchPreviousExpenses.visibility = GONE
+        vLabelPreviousExpenses.setCompoundDrawablesWithIntrinsicBounds(null, null, resources.getDrawable(R.drawable.ic_search), null)
     }
 
     private fun parseExpenseList(expensesJson: JSONArray) : List<Expenses> {

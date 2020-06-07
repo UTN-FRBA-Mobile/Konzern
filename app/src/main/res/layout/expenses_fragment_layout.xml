@@ -50,15 +50,29 @@
         android:text="@string/expenses_previous_expenses"
         android:layout_marginTop="10dp"
         android:textSize="25sp"
-        android:textStyle="bold">
+        android:textStyle="bold"
+        android:drawableRight="@drawable/ic_search">
     </TextView>
+
+    <EditText
+        android:id="@+id/vSearchPreviousExpenses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/vLabelPreviousExpenses"
+        app:layout_constraintStart_toStartOf="parent"
+        android:imeOptions="actionSearch"
+        android:hint="@string/expenses_search_previous_expenses"
+        android:inputType="text"
+        android:visibility="gone"
+        android:drawableRight="@drawable/ic_clear">
+    </EditText>
 
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vLabelPreviousExpenses"
+        app:layout_constraintTop_toBottomOf="@id/vSearchPreviousExpenses"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView

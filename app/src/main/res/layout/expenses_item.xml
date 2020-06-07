@@ -32,7 +32,7 @@
         android:id="@+id/vExpensesItemDownloadButton"
         android:layout_width="@dimen/expenses_download_icon_size"
         android:layout_height="@dimen/expenses_download_icon_size"
-        android:background="@drawable/download_icon"
+        android:background="@drawable/ic_file_download"
         app:layout_constraintTop_toTopOf="@id/vExpensesItemMonthLabel"
         app:layout_constraintBottom_toBottomOf="@id/vExpensesItemExpirationDateLabel"
         app:layout_constraintEnd_toEndOf="parent"/>

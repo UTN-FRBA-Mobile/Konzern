@@ -42,4 +42,5 @@
     <string name="expenses_month_label">Mes:</string>
     <string name="expenses_amount_label">Importe:</string>
     <string name="expenses_expiration_date_label">Vencimiento:</string>
+    <string name="expenses_search_previous_expenses">Buscar...</string>
 </resources>
