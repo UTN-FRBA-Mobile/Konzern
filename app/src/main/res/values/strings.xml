@@ -60,6 +60,7 @@
     <string name="expenses_amount_label">Importe:</string>
     <string name="expenses_expiration_date_label">Vencimiento:</string>
     <string name="expenses_search_previous_expenses">Buscar...</string>
+    <string name="expenses_toolbar_title">Expensas</string>
 
     <!-- Contacto -->
     <string name="contact_telephone_title">Teléfono de contacto:</string>
@@ -68,6 +69,7 @@
     <string name="contact_address">Dirección:</string>
     <string name="contact_extra_info_title">Información adicional:</string>
     <string name="contact_error_getting_info">Error al obtener info de la base de datos</string>
+    <string name="contact_toolbar_title">Contacto</string>
 
     <!-- Forgot Password -->
     <string name="forgot_password_button_text">Recuperar Contraseña</string>
@@ -80,6 +82,5 @@
     <string name="sign_up_invalid_email">Ingrese un Email válido</string>
     <string name="sign_up_password_mismatch">Las contraseñas no coinciden</string>
     <string name="sign_up_password_longitude">La contraseña debe tener más de 6 caracteres</string>
-    <string name="contact_toolbar_title">Contacto</string>
 
 </resources>
