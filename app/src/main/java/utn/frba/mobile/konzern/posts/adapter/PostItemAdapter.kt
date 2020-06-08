@@ -34,14 +34,14 @@ class ItemPostAdapter(
     }
 
     private fun setView(aView: ItemPostViewHolder, item: Post) {
-        aView.tvDate?.text = item.date
+        aView.tvDate?.text = item.getFormattedDate()
         aView.tvSummary?.text = item.summary
-        aView.tvDescription?.text = item.text
+        aView.tvDescription?.text = item.description
         if(item.getMainImage() != null)
             Glide.with(aView.context).load(item.getMainImage()).into(aView.imgMain!!)
         else
             aView.imgMain?.visibility = GONE
-        if(item.isOwnedByUser){
+        if(item.isOwnedByUser()){
             aView.btnEdit?.setOnClickListener{ onClickListener.onEditClick(item.id!!) }
             aView.btnDelete?.setOnClickListener{ onClickListener.onDeleteClick(item.id!!) }
         } else{
@@ -51,9 +51,9 @@ class ItemPostAdapter(
 }
 
 interface OnItemPostClickListener{
-    fun onItemClick(id: Int)
-    fun onEditClick(id: Int)
-    fun onDeleteClick(id: Int)
+    fun onItemClick(id: String)
+    fun onEditClick(id: String)
+    fun onDeleteClick(id: String)
 }
 
 class ItemPostViewHolder(view: View, var context: Context) : RecyclerView.ViewHolder(view) {

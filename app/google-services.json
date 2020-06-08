@@ -15,6 +15,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "618898356644-lm50ql15ftp0ljsvv8eempong3uchgf3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "utn.frba.mobile.konzern",
+            "certificate_hash": "e4acc39459cf80fe619a521ed43d3814240cdcdb"
+          }
+        },
+        {
+          "client_id": "618898356644-cd5hfc2deuuaclpm79kc64h8kjcb4k27.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "utn.frba.mobile.konzern",
+            "certificate_hash": "44360426e7a27cedf3820d5d22c7517b9e71e090"
+          }
+        },
+        {
+          "client_id": "618898356644-ctomb23jmfo0homrjv584utv7ij008i8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "utn.frba.mobile.konzern",
+            "certificate_hash": "cc25662dbc5517f7049341980a786c415bae6940"
+          }
+        },
+        {
           "client_id": "618898356644-9c7khv0qf3s5l6pcvijjkc3l6soc0fa1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

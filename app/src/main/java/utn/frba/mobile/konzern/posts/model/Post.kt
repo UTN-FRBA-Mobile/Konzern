@@ -1,49 +1,49 @@
 package utn.frba.mobile.konzern.posts.model
 
-import android.graphics.drawable.Drawable
 import android.net.Uri
+import androidx.core.net.toUri
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.Exclude
 import java.io.Serializable
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.properties.Delegates
 
-class Post(): Serializable{
-    var id: Int? = null
-    var summary: String = ""
-    var text: String = ""
-    lateinit var date: String
-    var images: List<Uri> = ArrayList()
-    var isOwnedByUser: Boolean = false
+data class Post(
+    @get:Exclude var id: String? = null,
+    var summary: String = "",
+    var description: String = "",
+    var date: Date? = null,
+    var images: List<Image> = ArrayList(),
+    var active: Boolean = true,
+    var userId: String? = null
+): Serializable{
 
-    constructor(id: Int, summary: String, text: String, date: String, images: List<Uri>?) : this() {
-        this.id = id
-        this.summary = summary
-        this.text = text
-        this.date = date
-        addImages(images)
-    }
+    data class Image(
+        var url: String = "",
+        var childPath: String = ""
+    )
 
-    fun setDateString(date: LocalDateTime?){
-        if(date != null)
-            this.date = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("es", "AR")).format(Date())
-    }
-
-    fun addImages(images: List<Uri>?){
-        if(images != null)
-            this.images = images
-    }
-
+    @Exclude
     fun getMainImage(): Uri?{
         return if(this.hasImages())
-            this.images[0]
+            this.images[0].url.toUri()
         else
             null
     }
 
+    @Exclude
     private fun hasImages(): Boolean{
         return this.images.count() > 0
+    }
+
+    @Exclude
+    fun getFormattedDate(): String{
+        return SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("es", "AR")).format(date)
+    }
+
+    @Exclude
+    fun isOwnedByUser(): Boolean{
+        return this.userId == FirebaseAuth.getInstance().currentUser?.uid
     }
 }

@@ -65,7 +65,7 @@ class PostItemFragment : PostBaseFragment(), FilePickerManager.ResultListener {
 
     private fun setView(item: Post){
         vInputSummaryPostItem.setText(item.summary)
-        vInputDescriptionPostItem.setText(item.text)
+        vInputDescriptionPostItem.setText(item.description)
     }
 
     private fun onBtnSave(){

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_post_detail.*
 import utn.frba.mobile.konzern.R
@@ -25,10 +26,10 @@ class PostDetailFragment : PostBaseFragment() {
     }
 
     private fun setView(item: Post){
-        vTextViewDatePostDetail?.text = item.date
+        vTextViewDatePostDetail?.text = item.getFormattedDate()
         vTextSummaryPostDetail?.text = item.summary
-        vTextDescriptionPostDetail.text = item.text
-        setImageSlider(item.images)
+        vTextDescriptionPostDetail.text = item.description
+        setImageSlider(item.images.map { it.url.toUri() })
     }
 
     private fun setImageSlider(images: List<Uri>) {
