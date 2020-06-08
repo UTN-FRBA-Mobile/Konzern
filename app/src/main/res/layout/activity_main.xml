@@ -34,9 +34,16 @@
     </Button>
 
     <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/home_expenses"
+        android:id="@+id/btn_home_expenses">
+    </Button>
+  
+    <Button
         android:id="@+id/btn_home_contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Contacto"/>
-
+        android:text="Contacto">
+    </Button>
 </LinearLayout>

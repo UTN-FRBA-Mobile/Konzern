@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/expenses_item_padding"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/vExpensesItemMonthLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="21sp"
+        android:text="@string/expenses_month_label"
+        android:paddingRight="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/vExpensesItemMonthValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="21sp"
+        android:textStyle="italic"
+        tools:text="Abril"
+        app:layout_constraintTop_toTopOf="@id/vExpensesItemMonthLabel"
+        app:layout_constraintBottom_toBottomOf="@id/vExpensesItemMonthLabel"
+        app:layout_constraintStart_toEndOf="@id/vExpensesItemMonthLabel"/>
+
+    <ImageButton
+        android:id="@+id/vExpensesItemDownloadButton"
+        android:layout_width="@dimen/expenses_download_icon_size"
+        android:layout_height="@dimen/expenses_download_icon_size"
+        android:background="@drawable/ic_file_download"
+        app:layout_constraintTop_toTopOf="@id/vExpensesItemMonthLabel"
+        app:layout_constraintBottom_toBottomOf="@id/vExpensesItemExpirationDateLabel"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/vExpensesItemAmountLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="21sp"
+        android:text="@string/expenses_amount_label"
+        android:paddingRight="10dp"
+        app:layout_constraintTop_toBottomOf="@id/vExpensesItemMonthLabel"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/vExpensesItemAmountCoinLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="21sp"
+        android:text="@string/expenses_coin"
+        android:textStyle="italic"
+        app:layout_constraintTop_toTopOf="@id/vExpensesItemAmountLabel"
+        app:layout_constraintBottom_toBottomOf="@id/vExpensesItemAmountLabel"
+        app:layout_constraintStart_toEndOf="@id/vExpensesItemAmountLabel"/>
+
+    <TextView
+        android:id="@+id/vExpensesItemAmountValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="21sp"
+        android:textStyle="italic"
+        tools:text="1582.20"
+        app:layout_constraintTop_toTopOf="@id/vExpensesItemAmountCoinLabel"
+        app:layout_constraintBottom_toBottomOf="@id/vExpensesItemAmountCoinLabel"
+        app:layout_constraintStart_toEndOf="@id/vExpensesItemAmountCoinLabel"/>
+
+    <TextView
+        android:id="@+id/vExpensesItemExpirationDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="21sp"
+        android:text="@string/expenses_expiration_date_label"
+        android:paddingRight="10dp"
+        app:layout_constraintTop_toBottomOf="@id/vExpensesItemAmountLabel"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/vExpensesItemExpirationDateValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="21sp"
+        android:textStyle="italic"
+        tools:text="12/05/2020"
+        app:layout_constraintTop_toTopOf="@id/vExpensesItemExpirationDateLabel"
+        app:layout_constraintBottom_toBottomOf="@id/vExpensesItemExpirationDateLabel"
+        app:layout_constraintStart_toEndOf="@id/vExpensesItemExpirationDateLabel"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
