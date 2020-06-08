@@ -27,7 +27,6 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".reservations.ReservationsActivity"
             android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".expenses.ExpensesActivity"/>
-</application>
-
+      <activity android:name=".expenses.ExpensesActivity"/>
+      <activity android:name=".contact.ContactActivity"/>
 </manifest>
