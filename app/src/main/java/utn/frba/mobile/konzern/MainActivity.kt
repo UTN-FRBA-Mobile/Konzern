@@ -58,6 +58,10 @@ class MainActivity : AppCompatActivity(), ToolbarMenuInterface {
 
     override fun onToolbarLogoClicked() {}
 
+    override fun onMenuContactInfoClicked() {
+        onGoToContact()
+    }
+
     private fun onGoToContact() {
         val intent = Intent(this, ContactActivity::class.java)
         startActivity(intent)

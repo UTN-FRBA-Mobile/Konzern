@@ -65,8 +65,7 @@ class CustomToolbar(context: Context, attrs: AttributeSet) : ConstraintLayout(co
                 false
             }
             3 -> {
-                //TODO: Info de Contacto
-                Toast.makeText(context, context.getString(R.string.custom_toolbar_contact_info_item), Toast.LENGTH_SHORT).show()
+                menuInterface?.onMenuContactInfoClicked()
                 false
             }
             4 -> {
@@ -99,4 +98,6 @@ interface ToolbarMenuInterface {
     fun onMenuSeeReservationsClicked()
 
     fun onToolbarLogoClicked()
+
+    fun onMenuContactInfoClicked()
 }

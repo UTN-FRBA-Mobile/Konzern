@@ -70,5 +70,6 @@
     <string name="sign_up_invalid_email">Ingrese un Email válido</string>
     <string name="sign_up_password_mismatch">Las contraseñas no coinciden</string>
     <string name="sign_up_password_longitude">La contraseña debe tener más de 6 caracteres</string>
+    <string name="contact_toolbar_title">Contacto</string>
 
 </resources>

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_post.*
 import utn.frba.mobile.konzern.MainActivity
 import utn.frba.mobile.konzern.R
+import utn.frba.mobile.konzern.contact.ContactActivity
 import utn.frba.mobile.konzern.customviews.ToolbarMenuInterface
 import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
@@ -31,6 +32,12 @@ class PostActivity : AppCompatActivity(), ToolbarMenuInterface {
     }
 
     override fun onToolbarLogoClicked() {
+        finish()
+    }
+
+    override fun onMenuContactInfoClicked() {
+        val intent = Intent(this, ContactActivity::class.java)
+        startActivity(intent)
         finish()
     }
 }
