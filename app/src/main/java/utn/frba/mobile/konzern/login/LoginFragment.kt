@@ -7,20 +7,26 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.login_fragment_layout.*
 import utn.frba.mobile.konzern.R
 import java.lang.RuntimeException
 import kotlin.math.log
+import kotlinx.android.synthetic.main.login_fragment_layout.*
+import kotlinx.android.synthetic.main.login_fragment_layout.view.*
+import utn.frba.mobile.konzern.MainActivity
 
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment()  {
 
     private var loginView: LoginFragmenView? = null
     private lateinit var googleSignInClient : GoogleSignInClient
@@ -45,6 +51,13 @@ class LoginFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
     }
 
+    override fun onStart() {
+        super.onStart()
+        if (firebaseAuth.currentUser != null) {
+            loginView?.successfulSignIn()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,10 +66,32 @@ class LoginFragment : Fragment() {
         return inflater.inflate(R.layout.login_fragment_layout, container, false)
     }
 
+    private fun emailLogin() {
+        firebaseAuth.signInWithEmailAndPassword(vLoginEmailInput.text.toString(), vLoginPassword.text.toString())
+            .addOnCompleteListener() { task ->
+                if (task.isSuccessful) {
+                    // val user = auth.currentUser TODO: Usar este user para manejar la persistencia
+                    firebaseAuth.currentUser?.uid
+                    loginView?.successfulSignIn()
+                } else {
+                    loginView?.failedSignUpOrSignIn(task.exception?.message)
+                }
+            }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         vLoginGoogleSignInButton.setOnClickListener { loginView?.onGoogleSignInPressed(googleSignInClient, RC_SIGN_IN) }
         vLoginGoToMain.setOnClickListener { loginView?.onGoToMainButtonClicked() }
+        vLoginForgotMyPassword.setOnClickListener{
+            loginView?.showFragment(ForgotPasswordFragment())
+        }
+        vLoginSignUpButton.setOnClickListener{
+            loginView?.showFragment(SignUpFragment())
+        }
+        vLoginButton.setOnClickListener {
+            emailLogin()
+        }
     }
 
     fun onGoogleSignInResult(requestCode: Int, data: Intent?) {
@@ -91,6 +126,10 @@ class LoginFragment : Fragment() {
                 }
             }
     }
+    override fun onDetach() {
+        super.onDetach()
+        loginView = null
+    }
 
     companion object {
         fun newInstance() = LoginFragment()
@@ -109,5 +148,9 @@ class LoginFragment : Fragment() {
         fun signInWithGoogleFailed()
 
         fun firebaseAuthProcessFailed()
+
+        fun showFragment(fragment: Fragment)
+
+        fun failedSignUpOrSignIn(message: String?)
     }
 }

@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginActivity">
+    tools:context=".login.LoginActivity"
+    android:id="@+id/vFragmentSignUp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/loginFragmentLayout">
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/vLoginLogo"
+            android:id="@+id/vSignUpLogo"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:src="@drawable/konzern"
@@ -20,89 +20,85 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
-            android:id="@+id/vLoginEmailInput"
+            android:id="@+id/vSignUpEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:ems="10"
             android:inputType="textEmailAddress"
             android:hint="@string/login_email_hint"
-            app:layout_constraintTop_toBottomOf="@id/vLoginLogo"
+            app:layout_constraintTop_toBottomOf="@id/vSignUpLogo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
-            android:id="@+id/vLoginPassword"
+            android:id="@+id/vSignUpPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="10dp"
             android:ems="10"
             android:inputType="textPassword"
             android:hint="@string/login_password_hint"
-            app:layout_constraintTop_toBottomOf="@id/vLoginEmailInput"
+            app:layout_constraintTop_toBottomOf="@id/vSignUpEmail"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/vLoginForgotMyPassword"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/vSignUpRepeatPassword"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textSize="16sp"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="@string/login_forgot_my_password"
-            app:layout_constraintTop_toBottomOf="@id/vLoginPassword"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/login_repeat_password_hint"
+            app:layout_constraintTop_toBottomOf="@id/vSignUpPassword"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/vSignUpPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="@string/sign_up_phone_hint"
+            app:layout_constraintTop_toBottomOf="@id/vSignUpRepeatPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/vSignUpInfo"
+            android:layout_width="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="@string/sign_up_info_hint"
+            app:layout_constraintTop_toBottomOf="@id/vSignUpPhone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="80dp"/>
 
         <Button
-            android:id="@+id/vLoginButton"
+            android:id="@+id/vSingUpButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
-            android:text="@string/login_sign_in_button_text"
+            android:text="@string/sign_up_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vLoginForgotMyPassword" />
-
-        <Button
-            android:id="@+id/vLoginSignUpButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:text="@string/login_sign_up_button_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vLoginButton" />
-
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/vLoginGoogleSignInButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vLoginSignUpButton"/>
-
-        <Button
-            android:id="@+id/vLoginGoToMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Go to main"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/vLoginLogo"/>
-
+            app:layout_constraintTop_toBottomOf="@id/vSignUpInfo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
