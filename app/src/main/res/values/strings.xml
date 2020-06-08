@@ -35,6 +35,16 @@
     <string name="post_required_description">Descripción*</string>
     <string name="post_add_image">Agregar imagen</string>
 
+    <!-- Expensas -->
+    <string name="home_expenses">Expensas</string>
+    <string name="expenses_last_expense">Última Expensa</string>
+    <string name="expenses_previous_expenses">Expensas Anteriores</string>
+    <string name="expenses_coin">$</string>
+    <string name="expenses_month_label">Mes:</string>
+    <string name="expenses_amount_label">Importe:</string>
+    <string name="expenses_expiration_date_label">Vencimiento:</string>
+    <string name="expenses_search_previous_expenses">Buscar...</string>
+  
     <!-- Contacto -->
     <string name="contact_telephone_title">Teléfono de contacto:</string>
     <string name="contact_attention_time">Horario de atención:</string>
