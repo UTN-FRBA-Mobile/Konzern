@@ -6,9 +6,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import utn.frba.mobile.konzern.MainActivity
+import androidx.fragment.app.Fragment
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import kotlinx.android.synthetic.main.login_fragment_layout.*
 import utn.frba.mobile.konzern.R
+import utn.frba.mobile.konzern.login.ForgotPasswordFragment
 
-class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmenView {
+class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmenView, ForgotPasswordFragment.OnFragmentInteractionListener, SignUpFragment.SignUpFragmentView {
 
     private lateinit var loginFragment: LoginFragment
 
@@ -26,6 +31,16 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmenView {
 
     override fun showSuccessSignInToast() {
         Toast.makeText(this, "Sign In Successful", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun successfulSignUp() {
+        Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_SHORT).show()
+        successfulSignIn()
+    }
+
+    override fun failedSignUpOrSignIn(message: String?) {
+        Toast.makeText(this, message,
+            Toast.LENGTH_SHORT).show()
     }
 
     override fun successfulSignIn() {
@@ -56,5 +71,20 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmenView {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         loginFragment.onGoogleSignInResult(requestCode, data)
+    }
+
+    override fun showFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.vActivityBaseContent, fragment)
+            .addToBackStack("name")
+            .commit()
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            super.onBackPressed();
+        } else {
+            supportFragmentManager.popBackStack();
+        }
     }
 }

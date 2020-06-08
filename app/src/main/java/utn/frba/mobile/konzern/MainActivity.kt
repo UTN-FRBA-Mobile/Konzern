@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import utn.frba.mobile.konzern.customviews.ToolbarMenuInterface
+import utn.frba.mobile.konzern.contact.ContactActivity
 
 import utn.frba.mobile.konzern.posts.PostActivity
 import utn.frba.mobile.konzern.profile.ProfileActivity
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity(), ToolbarMenuInterface {
         btn_home_reservations.setOnClickListener{
             onGotToReservations()
         }
+        btn_home_contact.setOnClickListener { onGoToContact() }
     }
 
     private fun onGotToPosts(){
@@ -55,4 +57,9 @@ class MainActivity : AppCompatActivity(), ToolbarMenuInterface {
     }
 
     override fun onToolbarLogoClicked() {}
+
+    private fun onGoToContact() {
+        val intent = Intent(this, ContactActivity::class.java)
+        startActivity(intent)
+    }
 }

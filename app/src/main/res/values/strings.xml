@@ -8,6 +8,7 @@
     <string name="login_title">Login or SignUp</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
+    <string name="login_repeat_password_hint">Repetir Password</string>
     <string name="login_forgot_my_password">Olvidé mi contraseña</string>
     <string name="login_sign_in_button_text">Iniciar Sesión</string>
     <string name="login_sign_up_button_text">Registrarme</string>
@@ -49,5 +50,25 @@
     <string name="custom_toolbar_reservations_item">Ver Reservas</string>
     <string name="custom_toolbar_contact_info_item">Info de Contacto</string>
     <string name="custom_toolbar_logout_item">Cerrar Sesión</string>
+
+    <!-- Contacto -->
+    <string name="contact_telephone_title">Teléfono de contacto:</string>
+    <string name="contact_attention_time">Horario de atención:</string>
+    <string name="contact_email_address">Dirección de mail:</string>
+    <string name="contact_address">Dirección:</string>
+    <string name="contact_extra_info_title">Información adicional:</string>
+    <string name="contact_error_getting_info">Error al obtener info de la base de datos</string>
+
+    <!-- Forgot Password -->
+    <string name="forgot_password_button_text">Recuperar Contraseña</string>
+
+    <!-- Sign Up -->
+    <string name="sign_up_phone_hint">Teléfono</string>
+    <string name="sign_up_info_hint">Info</string>
+    <string name="sign_up_button">Registrarme</string>
+    <string name="sign_up_complete_field">Complete este campo</string>
+    <string name="sign_up_invalid_email">Ingrese un Email válido</string>
+    <string name="sign_up_password_mismatch">Las contraseñas no coinciden</string>
+    <string name="sign_up_password_longitude">La contraseña debe tener más de 6 caracteres</string>
 
 </resources>
