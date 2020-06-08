@@ -4,8 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:padding="@dimen/margin_general"
     android:orientation="vertical">
+
+    <utn.frba.mobile.konzern.customviews.CustomToolbar
+        android:id="@+id/vMainActivityToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/custom_toolbar"/>
 
     <Button
         android:layout_width="match_parent"
