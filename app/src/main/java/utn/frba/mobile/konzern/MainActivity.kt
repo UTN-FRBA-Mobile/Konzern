@@ -4,10 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import utn.frba.mobile.konzern.contact.ContactActivity
 
 import utn.frba.mobile.konzern.posts.PostActivity
 import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
+import utn.frba.mobile.konzern.expenses.ExpensesActivity
 import utn.frba.mobile.konzern.login.LoginFragment
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +31,12 @@ class MainActivity : AppCompatActivity() {
         btn_home_reservations.setOnClickListener{
             onGotToReservations()
         }
+
+        btn_home_expenses.setOnClickListener{
+            onGotToExpenses()
+        }
+
+        btn_home_contact.setOnClickListener { onGoToContact() }
     }
 
     private fun onGotToPosts(){
@@ -44,5 +52,15 @@ class MainActivity : AppCompatActivity() {
     private fun onGotToReservations(){
         val intent = Intent(this, ReservationsActivity::class.java)
         this.startActivity(intent)
+    }
+
+    private fun onGotToExpenses(){
+        val intent = Intent(this, ExpensesActivity::class.java)
+        this.startActivity(intent)
+    }
+  
+    private fun onGoToContact() {
+        val intent = Intent(this, ContactActivity::class.java)
+        startActivity(intent)
     }
 }
