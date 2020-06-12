@@ -9,22 +9,10 @@
     android:padding="@dimen/margin_general">
 
     <TextView
-        android:id="@+id/vExpensesTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/home_expenses"
-        android:gravity="center"
-        android:textSize="30sp">
-    </TextView>
-
-    <TextView
         android:id="@+id/vLabelLastExpense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/vExpensesTitle"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:text="@string/expenses_last_expense"
         android:textSize="25sp"

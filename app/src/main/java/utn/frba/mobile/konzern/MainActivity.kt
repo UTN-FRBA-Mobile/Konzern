@@ -59,6 +59,10 @@ class MainActivity : AppCompatActivity(), ToolbarMenuInterface {
         onGotToProfile()
     }
 
+    override fun onMenuExpensesClicked() {
+        onGotToExpenses()
+    }
+
     override fun onMenuSeeReservationsClicked() {
         onGotToReservations()
     }
