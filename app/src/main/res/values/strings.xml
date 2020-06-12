@@ -5,6 +5,7 @@
     <string name="button_cancel">Cancelar</string>
 
     <!-- Login -->
+    <string name="login_title">Login or SignUp</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
     <string name="login_repeat_password_hint">Repetir Password</string>
@@ -12,7 +13,9 @@
     <string name="login_sign_in_button_text">Iniciar Sesión</string>
     <string name="login_sign_up_button_text">Registrarme</string>
 
-    <string name="home_reservations">Ver Reservaciones</string>
+    <!-- Reservas -->
+    <string name="reservations_title_toolbar">Reservas</string>
+    <string name="home_reservations">Ver Reservas</string>
     <string name="title_activity_reservations">ReservationsActivity</string>
     <string name="reservations_title">Reservas realizadas</string>
     <string name="btn_create_reservation">Crear Reserva</string>
@@ -26,6 +29,7 @@
     <string name="res_form_3_hint">Selecciona un horario</string>
 
     <!-- Publicaciones -->
+    <string name="posts_toolbar_title">Publicaciones</string>
     <string name="label_posts_main">Últimas publicaciones</string>
     <string name="home_posts">Publicaciones</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</string>
@@ -34,6 +38,18 @@
     <string name="post_required_summary">Resumen*</string>
     <string name="post_required_description">Descripción*</string>
     <string name="post_add_image">Agregar imagen</string>
+
+    <!-- Perfil -->
+    <string name="profile_toolbar_title">Mi Perfil</string>
+
+    <!-- Custom Toolbar -->
+    <string name="custom_toolbar_logo_description">Konzern Logo</string>
+    <string name="custom_toolbar_dots_img">Dots for more</string>
+    <string name="custom_toolbar_expenses_item">Mis Expensas</string>
+    <string name="custom_toolbar_my_profile_item">Mi Perfil</string>
+    <string name="custom_toolbar_reservations_item">Ver Reservas</string>
+    <string name="custom_toolbar_contact_info_item">Info de Contacto</string>
+    <string name="custom_toolbar_logout_item">Cerrar Sesión</string>
 
     <!-- Expensas -->
     <string name="home_expenses">Expensas</string>
@@ -44,7 +60,8 @@
     <string name="expenses_amount_label">Importe:</string>
     <string name="expenses_expiration_date_label">Vencimiento:</string>
     <string name="expenses_search_previous_expenses">Buscar...</string>
-  
+    <string name="expenses_toolbar_title">Expensas</string>
+
     <!-- Contacto -->
     <string name="contact_telephone_title">Teléfono de contacto:</string>
     <string name="contact_attention_time">Horario de atención:</string>
@@ -52,6 +69,7 @@
     <string name="contact_address">Dirección:</string>
     <string name="contact_extra_info_title">Información adicional:</string>
     <string name="contact_error_getting_info">Error al obtener info de la base de datos</string>
+    <string name="contact_toolbar_title">Contacto</string>
 
     <!-- Forgot Password -->
     <string name="forgot_password_button_text">Recuperar Contraseña</string>
