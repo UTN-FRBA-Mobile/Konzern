@@ -30,7 +30,7 @@ class ExpensesFragment : Fragment() {
         if (context is ExpensesFragmentView) {
             expensesView = context
         } else {
-            throw RuntimeException("$context must be LoginFragmentView")
+            throw RuntimeException("$context must be ExpensesFragmentView")
         }
     }
 
@@ -65,9 +65,8 @@ class ExpensesFragment : Fragment() {
             this.vExpensesItemMonthValue.text = expensesList[0].month
             this.vExpensesItemAmountValue.text = expensesList[0].amount
             this.vExpensesItemExpirationDateValue.text = expensesList[0].expirationDate
-            this.vExpensesItemDownloadButton.setOnClickListener { expensesPdfAdapter?.createPDFFile (expensesList[0], context); expensesView?.downloadPDFSuccess() }
+            this.vExpensesItemDownloadButton.setOnClickListener { val path = expensesPdfAdapter?.createPDFFile (expensesList[0], context); expensesView?.downloadPDFSuccess(path.toString()) }
         }
-
 
         vLabelPreviousExpenses.setOnTouchListener(OnTouchListener { v, event ->
             if(event.action == MotionEvent.ACTION_DOWN && vLabelPreviousExpenses.compoundDrawables[2] != null && event.rawX >= vLabelPreviousExpenses.right - vLabelPreviousExpenses.compoundDrawables[2].bounds.width()) {
@@ -128,7 +127,7 @@ class ExpensesFragment : Fragment() {
     }
 
     interface ExpensesFragmentView {
-        fun downloadPDFSuccess()
+        fun downloadPDFSuccess(path: String)
     }
 
 

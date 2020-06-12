@@ -37,7 +37,7 @@ class ExpensesAdapter(private var expensesList: List<Expenses>,
             month.text = expensesList[position].month
             amount.text = expensesList[position].amount
             expirationDate.text = expensesList[position].expirationDate
-            downloadButton.setOnClickListener { expensesPdfAdapter?.createPDFFile (expensesList[position], context); expensesView?.downloadPDFSuccess() }
+            downloadButton.setOnClickListener { val path = expensesPdfAdapter?.createPDFFile (expensesList[position], context); expensesView?.downloadPDFSuccess(path.toString()) }
         }
     }
 

@@ -27,6 +27,16 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".reservations.ReservationsActivity"
             android:windowSoftInputMode="adjustPan"/>
-      <activity android:name=".expenses.ExpensesActivity"/>
-      <activity android:name=".contact.ContactActivity"/>
+        <activity android:name=".expenses.ExpensesActivity"/>
+        <activity android:name=".contact.ContactActivity"/>
+
+        <provider
+            android:authorities="${applicationId}.provider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+    </application>
 </manifest>

@@ -14,7 +14,6 @@ import com.itextpdf.text.pdf.draw.LineSeparator
 import com.itextpdf.text.pdf.draw.VerticalPositionMark
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.expenses.Expenses
-import utn.frba.mobile.konzern.expenses.ExpensesActivity
 import java.io.File
 import java.io.FileOutputStream
 
@@ -42,7 +41,7 @@ class ExpensesPdfAdapter {
         }
     }
 
-    fun createPDFFile (expense: Expenses, context: Context?) {
+    fun createPDFFile (expense: Expenses, context: Context?) : String {
 
         try {
 
@@ -97,9 +96,13 @@ class ExpensesPdfAdapter {
             //Cierro el documento
             document.close()
 
+            return path
+
         } catch (e:Exception) {
             Log.e("Error", e.message)
         }
+
+        return ""
     }
 
 
