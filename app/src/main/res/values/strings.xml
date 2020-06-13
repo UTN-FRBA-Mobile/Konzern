@@ -61,6 +61,7 @@
     <string name="expenses_expiration_date_label">Vencimiento:</string>
     <string name="expenses_search_previous_expenses">Buscar...</string>
     <string name="expenses_toolbar_title">Expensas</string>
+    <string name="expenses_error_getting_info">Error al obtener expensas de la base de datos</string>
 
     <!-- Contacto -->
     <string name="contact_telephone_title">Teléfono de contacto:</string>

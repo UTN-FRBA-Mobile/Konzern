@@ -11,6 +11,7 @@ import utn.frba.mobile.konzern.R
 import kotlinx.android.synthetic.main.activity_expenses.*
 import utn.frba.mobile.konzern.contact.ContactActivity
 import utn.frba.mobile.konzern.customviews.ToolbarMenuInterface
+import utn.frba.mobile.konzern.expenses.ui.ExpensesFragment
 import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
 import java.io.File
@@ -27,6 +28,10 @@ class ExpensesActivity : AppCompatActivity(), ExpensesFragment.ExpensesFragmentV
         if(savedInstanceState == null) {
             expensesFragment = ExpensesFragment.newInstance()
         }
+    }
+
+    override fun errorGettingExpensesInfo() {
+        Toast.makeText(this, R.string.expenses_error_getting_info, Toast.LENGTH_SHORT).show()
     }
 
     override fun downloadPDFSuccess(path: String) {

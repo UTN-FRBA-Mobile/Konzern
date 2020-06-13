@@ -9,8 +9,8 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.expenses_item.view.*
 import utn.frba.mobile.konzern.R
-import utn.frba.mobile.konzern.expenses.Expenses
-import utn.frba.mobile.konzern.expenses.ExpensesFragment.ExpensesFragmentView
+import utn.frba.mobile.konzern.expenses.model.Expenses
+import utn.frba.mobile.konzern.expenses.ui.ExpensesFragment.ExpensesFragmentView
 
 
 class ExpensesAdapter(private var expensesList: List<Expenses>,
@@ -34,10 +34,12 @@ class ExpensesAdapter(private var expensesList: List<Expenses>,
 
     override fun onBindViewHolder(expense: ExpensesItem, position: Int) {
         expense.run {
-            month.text = expensesList[position].month
+            month.text = expensesList[position].monthLabel
             amount.text = expensesList[position].amount
             expirationDate.text = expensesList[position].expirationDate
-            downloadButton.setOnClickListener { val path = expensesPdfAdapter?.createPDFFile (expensesList[position], context); expensesView?.downloadPDFSuccess(path.toString()) }
+            downloadButton.setOnClickListener {
+                val path = expensesPdfAdapter?.createPDFFile (expensesList[position], context); expensesView?.downloadPDFSuccess(path.toString())
+            }
         }
     }
 
@@ -63,7 +65,7 @@ class ExpensesAdapter(private var expensesList: List<Expenses>,
                 var filterPattern = constraint.toString().toUpperCase().trim()
 
                 for ( i : Expenses in expensesFullList) {
-                    if (i.month.toUpperCase().trim().contains(filterPattern)) {
+                    if (i.monthLabel.toUpperCase().trim().contains(filterPattern)) {
                         expensesFilteredList.add(i)
                     }
                 }

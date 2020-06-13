@@ -13,7 +13,7 @@ import com.itextpdf.text.pdf.PdfWriter
 import com.itextpdf.text.pdf.draw.LineSeparator
 import com.itextpdf.text.pdf.draw.VerticalPositionMark
 import utn.frba.mobile.konzern.R
-import utn.frba.mobile.konzern.expenses.Expenses
+import utn.frba.mobile.konzern.expenses.model.Expenses
 import java.io.File
 import java.io.FileOutputStream
 
@@ -54,7 +54,7 @@ class ExpensesPdfAdapter {
             if(!dir.exists())
                 dir.mkdir()
 
-            val path = dir.path+ File.separator+"expenses"+expense.month+".pdf"
+            val path = dir.path+ File.separator+"expenses"+expense.monthLabel+".pdf"
 
             if(File(path).exists())
                 File(path).delete()
@@ -83,7 +83,7 @@ class ExpensesPdfAdapter {
             addLineSeparator(document)
 
             addNewDetail(document,"Monto",context!!.resources.getString(R.string.expenses_coin) + " " +expense.amount, detailStyle)
-            addNewDetail(document,"Mes",expense.month, detailStyle)
+            addNewDetail(document,"Mes",expense.monthLabel, detailStyle)
             addNewDetail(document,"Fecha Vencimiento",expense.expirationDate, detailStyle)
 
             addLineSeparator(document)

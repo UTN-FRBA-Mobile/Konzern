@@ -18,7 +18,7 @@
         android:id="@+id/vExpensesFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:name="utn.frba.mobile.konzern.expenses.ExpensesFragment"
+        android:name="utn.frba.mobile.konzern.expenses.ui.ExpensesFragment"
         tools:layout="@layout/expenses_fragment_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vActivityExpensesToolbar"
