@@ -34,6 +34,10 @@ class ExpensesActivity : AppCompatActivity(), ExpensesFragment.ExpensesFragmentV
         Toast.makeText(this, R.string.expenses_error_getting_info, Toast.LENGTH_SHORT).show()
     }
 
+    override fun errorGettingConsortiumInfo() {
+        Toast.makeText(this, R.string.contact_error_getting_info, Toast.LENGTH_SHORT).show()
+    }
+
     override fun downloadPDFSuccess(path: String) {
         if(!path.isEmpty()) {
             Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show()

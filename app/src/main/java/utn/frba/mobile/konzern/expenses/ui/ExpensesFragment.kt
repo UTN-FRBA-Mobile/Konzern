@@ -16,6 +16,8 @@ import kotlinx.android.synthetic.main.expenses_fragment_layout.*
 import kotlinx.android.synthetic.main.expenses_item.view.*
 import org.json.JSONArray
 import utn.frba.mobile.konzern.R
+import utn.frba.mobile.konzern.contact.model.Contact
+import utn.frba.mobile.konzern.contact.repository.ContactRepository
 import utn.frba.mobile.konzern.expenses.model.Expenses
 import utn.frba.mobile.konzern.expenses.adapter.ExpensesAdapter
 import utn.frba.mobile.konzern.expenses.adapter.ExpensesPdfAdapter
@@ -46,7 +48,7 @@ class ExpensesFragment : Fragment() {
         getExpensesDataFromRepository()
     }
 
-    private fun renderExpensesData(expensesList: List<Expenses>) {
+    private fun renderExpensesData(expensesList: List<Expenses>, consortium: Contact) {
         expensesPdfAdapter = ExpensesPdfAdapter()
         expensesPdfAdapter?.permitPDFFile(this.requireActivity())
 
@@ -54,13 +56,14 @@ class ExpensesFragment : Fragment() {
 
         vItemLastExpense.apply {
             this.vExpensesItemMonthValue.text = sortedExpensesList[0].monthLabel
+            this.vExpensesItemYearValue.text = sortedExpensesList[0].year
             this.vExpensesItemAmountValue.text = sortedExpensesList[0].amount
             this.vExpensesItemExpirationDateValue.text = sortedExpensesList[0].expirationDate
-            this.vExpensesItemDownloadButton.setOnClickListener { val path = expensesPdfAdapter?.createPDFFile (sortedExpensesList[0], context); expensesView?.downloadPDFSuccess(path.toString()) }
+            this.vExpensesItemDownloadButton.setOnClickListener { val path = expensesPdfAdapter?.createPDFFile (sortedExpensesList[0], consortium, context); expensesView?.downloadPDFSuccess(path.toString()) }
         }
 
         val viewManager = LinearLayoutManager(this.requireActivity())
-        val adapter = ExpensesAdapter(sortedExpensesList.subList(1,sortedExpensesList.size), expensesView, expensesPdfAdapter, context)
+        val adapter = ExpensesAdapter(sortedExpensesList.subList(1,sortedExpensesList.size), expensesView, expensesPdfAdapter, consortium, context)
 
         vExpensesRecyclerView.apply {
             this.layoutManager = viewManager
@@ -106,11 +109,27 @@ class ExpensesFragment : Fragment() {
     private fun getExpensesDataFromRepository() {
         ExpensesRepository().getExpensesData(object : ExpensesRepository.ExpensesRepositoryInterface {
             override fun onComplete(expensesList: List<Expenses>) {
-                renderExpensesData(expensesList)
+                getConsortiumDataFromRepository(expensesList)
             }
 
             override fun onFailure() {
                 expensesView?.errorGettingExpensesInfo()
+            }
+        })
+    }
+
+    private fun getConsortiumDataFromRepository(expensesList: List<Expenses>) {
+        ContactRepository().getContactData(object: ContactRepository.ContactRepositoryInterface {
+            override fun onComplete(consortium: Contact?) {
+                if (consortium != null) {
+                    renderExpensesData(expensesList, consortium)
+                } else {
+                    renderExpensesData(expensesList, Contact())
+                }
+            }
+
+            override fun onFailure() {
+                expensesView?.errorGettingConsortiumInfo()
             }
         })
     }
@@ -127,6 +146,8 @@ class ExpensesFragment : Fragment() {
 
     interface ExpensesFragmentView {
         fun errorGettingExpensesInfo()
+
+        fun errorGettingConsortiumInfo()
 
         fun downloadPDFSuccess(path: String)
     }
