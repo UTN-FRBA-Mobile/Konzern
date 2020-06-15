@@ -28,28 +28,24 @@ class PostMainFragment : PostBaseFragment(), OnItemPostClickListener {
         })
 
         vButtonAddPostMain.setOnClickListener {
-            viewModel.selectItem(null)
+            viewModel.editItem(null)
             findNavController().navigate(R.id.action_MainPostsFragment_to_NewItemPostFragment)
         }
-    }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.loadItemList()
+        viewModel.initItemList()
     }
 
     override fun onItemClick(id: String) {
-        viewModel.selectItem(id)
+        viewModel.showDetailItem(id)
         findNavController().navigate(R.id.action_MainPostsFragment_to_ItemPostFragment)
     }
 
     override fun onEditClick(id: String) {
-        viewModel.selectItem(id)
+        viewModel.editItem(id)
         findNavController().navigate(R.id.action_MainPostsFragment_to_NewItemPostFragment)
     }
 
     override fun onDeleteClick(id: String) {
         viewModel.deleteItem(id)
-        viewModel.loadItemList()
     }
 }

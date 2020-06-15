@@ -1,66 +1,50 @@
 package utn.frba.mobile.konzern.posts.viewModel
 
-import android.app.Application
 import android.net.Uri
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.posts.model.Post
 import utn.frba.mobile.konzern.posts.repository.PostRepository
-import java.text.SimpleDateFormat
-import java.util.*
+import utn.frba.mobile.konzern.utils.BaseViewModel
+import utn.frba.mobile.konzern.utils.serviceManager.SingleLiveEvent
 import kotlin.collections.ArrayList
 
 
-class PostViewModel(application: Application) : AndroidViewModel(application) {
-    private var coRoutinesJob = Job()
-    private val coRoutinesScope = CoroutineScope(Dispatchers.Main + this.coRoutinesJob)
-    private val _failure = SingleLiveEvent<Failure>()
-    val failure: LiveData<Failure> get() = _failure
-
-    protected val showProgress = MutableLiveData<Boolean>()
-    val showProgressIndicator: LiveData<Boolean> get() = showProgress
-
+class PostViewModel : BaseViewModel() {
     private val repository: PostRepository = PostRepository()
 
     val itemList = MutableLiveData<List<Post>>()
-    val selectedItem = MutableLiveData<Post>()
     val images = MutableLiveData<List<Uri>>()
 
-    fun loadItemList(){
-        this.launchControlledInBg(mainOperation = {
-            itemList.postValue(repository.getItemList())
-        })
-    }
+    var selectedItem: Post? = null
+    private val _editEvent =
+        SingleLiveEvent<Any>()
+    val editEvent: LiveData<Any> get() = _editEvent
 
-    fun selectItem(id: String?){
-        if(id == null)
-            selectNewItem()
-        else
-            this.launchControlledInBg(mainOperation = {
-                selectedItem.postValue(repository.getItem(id))
-            })
-    }
+    private val _showDetailEvent =
+        SingleLiveEvent<Any>()
+    val showDetailEvent: LiveData<Any> get() = _showDetailEvent
 
-    fun deleteItem(id: String){
-        this.launchControlledInBg(mainOperation = {
-            repository.delete(id)
+    fun initItemList(){
+        if(itemList.value == null){
             loadItemList()
-        })
+        }
     }
 
-    private fun selectNewItem(){
-        this.selectedItem.postValue(Post())
-        this.images.postValue(arrayListOf())
+    fun editItem(id: String?){
+        selectItem(id) {
+            _editEvent.call()
+        }
+    }
+
+    fun showDetailItem(id: String){
+        selectItem(id) {
+            _showDetailEvent.call()
+        }
     }
 
     fun saveItem(summary: String, description: String){
-        val item = this.selectedItem.value!!
+        val item = this.selectedItem!!
 
         item.summary = summary
         item.description = description
@@ -81,35 +65,34 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         images.postValue(value)
     }
 
-    fun launchControlledInBg(mainOperation: suspend AndroidViewModel.() -> Unit,
-                             continuation: () -> Any = {}) {
-        this.coRoutinesScope.launch {
-            try {
-                mainOperation()
-                continuation()
-            } catch (t: ControlledException) {
-                handleControlledException(t, continuation)
-            } catch (e: Exception) {
-                handleException(e)
-            }
-        }
-    }
-    private fun handleException(e: Exception) {
-        showProgress.value = false
-        val failure = Failure(intStringIdTitle = R.string.error)
-        failure.failureType = FailureType.UNKNOWN
-        this._failure.value = failure
-
-        e.fillInStackTrace()
+    fun deleteItem(id: String){
+        this.launchControlledInBg(
+            mainOperation = {
+                repository.delete(id)
+                loadItemList()
+            },
+            continuation = { hideProgressBar() },
+            customHandlingProgress = true
+        )
     }
 
-    private fun handleControlledException(exception: ControlledException, continuation: () -> Any) {
-        showProgress.value = false
+    private fun loadItemList(){
+        this.launchControlledInBg(mainOperation = {
+            itemList.postValue(repository.getItemList())
+        })
+    }
 
-        val failure = exception.toFailure()
-        if(exception.isWarning()) {
-            failure.failureContinuation = continuation
-        }
-        this._failure.value = failure
+    private fun selectItem(id: String?, continuation: () -> Unit = {}){
+        if(id == null)
+            selectNewItem()
+        else
+            this.launchControlledInBg(mainOperation = {
+                selectedItem = repository.getItem(id)
+            }, continuation = continuation)
+    }
+
+    private fun selectNewItem(){
+        this.selectedItem = Post()
+        this.images.postValue(arrayListOf())
     }
 }
