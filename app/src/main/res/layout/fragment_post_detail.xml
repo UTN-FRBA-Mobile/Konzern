@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".posts.ui.PostDetailFragment"
-    android:padding="@dimen/margin_general">
+    style="@style/PrimaryLayout">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,34 +17,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/margin_general"
-            android:paddingTop="0dp">
+            android:padding="@dimen/margin_general">
 
             <TextView
                 android:id="@+id/vTextViewDatePostDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="16/05/2020 18:52"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
-                android:layout_marginBottom="8dp"/>
+                style="@style/SecondaryText"
+                android:layout_marginBottom="8dp"
+                android:text="16/05/2020 18:52"/>
 
             <TextView
                 android:id="@+id/vTextSummaryPostDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/post_summary"
-                android:textAppearance="?attr/textAppearanceHeadline6"/>
+                style="@style/PrimaryText"
+                android:text="@string/post_summary"/>
 
             <TextView
                 android:id="@+id/vTextDescriptionPostDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem_ipsum"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"/>
-
+                style="@style/SecondaryText"
+                android:text="@string/lorem_ipsum"/>
         </LinearLayout>
+
     </LinearLayout>
 
 </FrameLayout>
