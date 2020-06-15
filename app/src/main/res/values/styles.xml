@@ -13,6 +13,15 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!-- Splash Theme -->
+    <style name="Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <!-- ############## Material Override ############## -->
     <style name="Widget.App.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.FloatingActionButton</item>
     </style>
@@ -27,6 +36,106 @@
         <item name="colorOnSurface">@color/colorPrimaryDark</item>
     </style>
 
+    <!-- ############## General ############## -->
+    <!-- Layouts -->
+    <style name="PrimaryLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/margin_general</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="ParentScrollViewLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ScrollViewLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:foregroundGravity">top</item>
+    </style>
+
+    <!-- Text -->
+    <style name="PrimaryText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline6</item>
+    </style>
+
+    <style name="SecondaryText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
+    <!-- Text Inputs -->
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="errorEnabled">true</item>
+        <item name="endIconMode">clear_text</item>
+    </style>
+
+    <style name="TextRequiredInputLayout" parent="TextInputLayout">
+        <item name="helperText">@string/input_required</item>
+    </style>
+
+    <style name="TextInputEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- Buttons -->
+    <style name="PrimaryButtonsLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:padding">@dimen/margin_general</item>
+    </style>
+
+    <style name="PrimaryButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="SecondaryButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="FloatingButton" parent="ThemeOverlay.App.FloatingActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom|end</item>
+        <item name="android:layout_margin">@dimen/margin_general</item>
+    </style>
+
+    <style name="RecyclerTextButton" parent="TextButton">
+        <item name="android:paddingLeft">@dimen/margin_general</item>
+        <item name="android:paddingRight">@dimen/margin_general</item>
+    </style>
+
+    <style name="RecyclerLeftTextButton" parent="RecyclerTextButton">
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+
+    <style name="RecyclerRightTextButton" parent="RecyclerTextButton">
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+
+    <!-- Image Slider -->
     <style name="SliderImageView" parent="">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">200dp</item>
@@ -40,13 +149,5 @@
         <item name="sliderIndicatorSelectedColor">@color/colorAccent</item>
         <item name="sliderIndicatorUnselectedColor">#FFFFFF</item>
         <item name="sliderScrollTimeInSec">1</item>
-    </style>
-
-    <!-- Splash Theme -->
-    <style name="Splash" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/white</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowDisablePreview">true</item>
     </style>
 </resources>
