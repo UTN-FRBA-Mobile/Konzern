@@ -105,4 +105,13 @@ class PostItemFragment : PostBaseFragment(), FilePickerManager.ResultListener {
         viewModel.addImage(files)
     }
     //endregion
+
+    companion object {
+        @JvmStatic
+        fun newInstance(isClaim: Boolean) = PostItemFragment().apply {
+            arguments = Bundle().apply {
+                putBoolean("isClaim", isClaim)
+            }
+        }
+    }
 }

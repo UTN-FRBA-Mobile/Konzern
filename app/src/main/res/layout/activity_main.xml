@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity"
     android:orientation="vertical">
 
@@ -46,4 +47,13 @@
         android:layout_height="wrap_content"
         android:text="Contacto">
     </Button>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/vButtonAddMain"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:icon="@drawable/ic_add"
+        android:layout_margin="@dimen/margin_general"
+        android:tint="#FFFFFF" />
 </LinearLayout>

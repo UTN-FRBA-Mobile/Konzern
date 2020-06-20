@@ -31,6 +31,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     val itemList = MutableLiveData<List<Post>>()
     val selectedItem = MutableLiveData<Post>()
     val images = MutableLiveData<List<Uri>>()
+    var isClaim: Boolean = false
 
     fun loadItemList(){
         this.launchControlledInBg(mainOperation = {
@@ -66,7 +67,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         item.description = description
 
         this.launchControlledInBg(mainOperation = {
-            repository.save(item, images.value)
+            repository.save(item, images.value, isClaim)
             loadItemList()
         })
     }
