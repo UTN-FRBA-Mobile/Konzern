@@ -44,7 +44,9 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
             selectNewItem()
         else
             this.launchControlledInBg(mainOperation = {
-                selectedItem.postValue(repository.getItem(id))
+                val item = repository.getItem(id)
+                isClaim = item!!.isClaim
+                selectedItem.postValue(item)
             })
     }
 

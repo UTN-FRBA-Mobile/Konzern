@@ -14,30 +14,16 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/layout_post_item"/>
 
-    <TextView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/vTextButtonAddClaim"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        style="@style/FloatingButtonOption"
         android:layout_marginBottom="120dp"
-        android:background="#212121"
-        android:padding="8dp"
-        android:text="Nuevo reclamo"
-        android:textColor="#ffffff"
-        android:visibility="invisible"
-        android:textAlignment="inherit"/>
+        android:text="Nuevo reclamo"/>
 
-    <TextView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/vTextButtonAddPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#212121"
-        android:padding="8dp"
-        android:text="Nueva publicación"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="80dp"
-        android:textColor="#ffffff"
-        android:visibility="invisible" />
+        style="@style/FloatingButtonOption"
+        android:text="Nueva publicación"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/vButtonAddPostMain"

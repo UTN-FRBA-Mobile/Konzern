@@ -42,6 +42,7 @@ class PostMainFragment : PostBaseFragment(), OnItemPostClickListener {
 
         vTextButtonAddPost.setOnClickListener {
             viewModel.selectItem(null)
+            viewModel.isClaim = false
             findNavController().navigate(R.id.action_MainPostsFragment_to_NewItemPostFragment)
         }
     }

@@ -72,7 +72,7 @@ class PostRepository{
         try{
             val item = getItem(id) ?: return
             item.active = false
-            save(item, null)
+            save(item, null, item.isClaim)
         }catch (e : Exception){
             e.printStackTrace()
         }

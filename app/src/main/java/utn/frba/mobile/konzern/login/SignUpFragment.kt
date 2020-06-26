@@ -26,20 +26,7 @@ import java.lang.RuntimeException
 import kotlin.math.sign
 
 
-class SignUpFragment : Fragment() {
-
-    private var signUpView: SignUpFragmentView? = null
-    private lateinit var auth: FirebaseAuth
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is SignUpFragmentView) {
-            signUpView = context
-        } else {
-            throw RuntimeException("$context must be OnFragmentInteractionListener")
-        }
-    }
-
+class SignUpFragment : BaseSignUpFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +49,7 @@ class SignUpFragment : Fragment() {
 
     private fun validateEmail(): Boolean {
         return when {
-            vSignUpEmail.text.isEmpty() -> {
+            vSignUpEmail.text.isNullOrEmpty() -> {
                 vSignUpEmail.error = getString(R.string.sign_up_button)
                 false
             }
@@ -106,7 +93,7 @@ class SignUpFragment : Fragment() {
             auth.createUserWithEmailAndPassword(email, vSignUpPassword.text.toString())
                 .addOnCompleteListener() { task ->
                     if (task.isSuccessful) {
-                        createUserData(email)
+                        createUserData(email, auth.currentUser?.uid, vSignUpPhone, vSignUpInfo)
                         // val user = auth.currentUser TODO: Usar este user para manejar la persistencia
                     } else {
                         signUpView?.failedSignUpOrSignIn(task.exception?.message)
@@ -115,29 +102,6 @@ class SignUpFragment : Fragment() {
         } else {
             // el formulario está mal
         }
-    }
-
-    private fun createUserData(email: String) {
-        val db = FirebaseFirestore.getInstance()
-        val user = hashMapOf(
-            "email" to email,
-            "phone" to vSignUpPhone.text.toString(),
-            "info" to vSignUpInfo.text.toString()
-        )
-
-        db.collection("users_data")
-            .add(user)
-            .addOnSuccessListener {
-                signUpView?.successfulSignUp()
-            }
-            .addOnFailureListener {
-                signUpView?.failedSignUpOrSignIn("Error en la creación del usuario")
-            }
-    }
-
-    interface SignUpFragmentView {
-        fun successfulSignUp()
-        fun failedSignUpOrSignIn(message: String?)
     }
 
     companion object {
