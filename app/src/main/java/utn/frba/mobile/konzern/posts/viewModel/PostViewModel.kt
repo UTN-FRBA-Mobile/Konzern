@@ -16,6 +16,7 @@ class PostViewModel : BaseViewModel() {
 
     val itemList = MutableLiveData<List<Post>>()
     val images = MutableLiveData<List<Uri>>()
+    var isClaim: Boolean = false
 
     var selectedItem: Post? = null
     private val _editEvent =
@@ -52,7 +53,7 @@ class PostViewModel : BaseViewModel() {
         item.description = description
 
         this.launchControlledInBg(mainOperation = {
-            repository.save(item, images.value)
+            repository.save(item, images.value, isClaim)
             loadItemList()
         })
     }
@@ -90,6 +91,7 @@ class PostViewModel : BaseViewModel() {
         else
             this.launchControlledInBg(mainOperation = {
                 selectedItem = repository.getItem(id)
+                isClaim = selectedItem!!.isClaim
             }, continuation = continuation)
     }
 
