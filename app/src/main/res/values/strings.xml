@@ -3,6 +3,9 @@
     <string name="input_required">* requerido</string>
     <string name="button_save">Guardar</string>
     <string name="button_cancel">Cancelar</string>
+    <string name="image_picker_title">¿Desde dónde querés agregar imágenes?</string>
+    <string name="image_picker_camera">Desde la cámara</string>
+    <string name="image_picker_gallery">Desde la galería</string>
 
     <!-- Login -->
     <string name="login_title">Login or SignUp</string>

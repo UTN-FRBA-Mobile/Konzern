@@ -9,7 +9,9 @@ import android.provider.MediaStore
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import utn.frba.mobile.konzern.BuildConfig
+import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.utils.PermissionsManager.Companion.PERMISSION_REQUEST_CODE
 import java.io.File
 import java.io.IOException
@@ -39,36 +41,38 @@ class FilePickerManager(private val resultListener: ResultListener): Permissions
     }
 
     private fun showChooser() {
-        val options = arrayOf<CharSequence>("Take Photo", "Choose from Gallery", "Cancel")
-        val builder: AlertDialog.Builder = AlertDialog.Builder(fragment.requireContext())
-        builder.setTitle("Choose your profile picture")
-        builder.setItems(options) { dialog, item ->
-            when {
-                options[item] == "Take Photo" -> {
-                    val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                    intent.putExtra(
-                        MediaStore.EXTRA_OUTPUT,
-                        FileProvider.getUriForFile(
-                            resultListener.fragment.requireContext(),
-                            BuildConfig.APPLICATION_ID.toString() + ".provider",
-                            createImageFile()!!
-                        )
+        val resources = fragment.resources
+        val items = arrayOf(
+            resources.getString(R.string.image_picker_camera),
+            resources.getString(R.string.image_picker_gallery)
+        )
+
+    val builder = MaterialAlertDialogBuilder(fragment.requireContext())
+        .setTitle(resources.getString(R.string.image_picker_title))
+        .setItems(items) { _, item ->
+            if (item == 0) {
+                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                intent.putExtra(
+                    MediaStore.EXTRA_OUTPUT,
+                    FileProvider.getUriForFile(
+                        fragment.requireContext(),
+                        BuildConfig.APPLICATION_ID + ".provider",
+                        createImageFile()!!
                     )
-                    resultListener.fragment.startActivityForResult(intent, FILE_CAMERA_CAPTURED_REQUEST_CODE)
-                }
-                options[item] == "Choose from Gallery" -> {
-                    val intent = Intent(Intent.ACTION_GET_CONTENT)
-                    intent.type = "image/*"
-                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-                    intent.addCategory(Intent.CATEGORY_OPENABLE)
-                    //val pickPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    resultListener.fragment.startActivityForResult(intent, FILE_PICKED_REQUEST_CODE)
-                }
-                options[item] == "Cancel" -> {
-                    dialog.dismiss()
-                }
+                )
+                fragment.startActivityForResult(intent, FILE_CAMERA_CAPTURED_REQUEST_CODE)
+            } else if (item == 1) {
+                val intent = Intent(Intent.ACTION_GET_CONTENT)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                intent.addCategory(Intent.CATEGORY_OPENABLE)
+                fragment.startActivityForResult(intent, FILE_PICKED_REQUEST_CODE)
             }
         }
+        .setNegativeButton(resources.getString(R.string.button_cancel)) { dialog, _ ->
+            dialog.dismiss()
+        }
+
         builder.show()
     }
 
