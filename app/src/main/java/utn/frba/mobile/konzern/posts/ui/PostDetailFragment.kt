@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import kotlinx.android.synthetic.main.fragment_post_detail.*
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.posts.adapter.ImageSliderAdapter
@@ -20,9 +21,15 @@ class PostDetailFragment : PostBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.selectedItem.observe(viewLifecycleOwner, Observer<Post> {
-            setView(it)
+        cleanView()
+
+        viewModel.showDetailEvent.observe(viewLifecycleOwner, Observer {
+            setView(viewModel.selectedItem!!)
         })
+    }
+
+    private fun cleanView(){
+        setView(Post())
     }
 
     private fun setView(item: Post){

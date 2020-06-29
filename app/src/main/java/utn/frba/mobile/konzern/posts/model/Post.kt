@@ -39,7 +39,10 @@ data class Post(
 
     @Exclude
     fun getFormattedDate(): String{
-        return SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("es", "AR")).format(date)
+        return if(date != null)
+            SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("es", "AR")).format(date!!)
+        else
+            ""
     }
 
     @Exclude

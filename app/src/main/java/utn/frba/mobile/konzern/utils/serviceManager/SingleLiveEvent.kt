@@ -1,4 +1,4 @@
-package utn.frba.mobile.konzern.posts.viewModel
+package utn.frba.mobile.konzern.utils.serviceManager
 
 
 import android.util.Log

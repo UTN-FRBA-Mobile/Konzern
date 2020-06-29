@@ -1,4 +1,4 @@
-package utn.frba.mobile.konzern.posts.viewModel
+package utn.frba.mobile.konzern.utils.serviceManager
 
 open class ControlledException(val failureType: FailureType,
                                val titleStringResource: Int? = null,
@@ -12,10 +12,12 @@ open class ControlledException(val failureType: FailureType,
 }
 
 fun ControlledException.toFailure(): Failure {
-    val failure = Failure(this.messageStringResource,
+    val failure = Failure(
+        this.messageStringResource,
         this.titleStringResource,
         this.titleString,
-        this.messageString)
+        this.messageString
+    )
     failure.failureType = this.failureType
     return failure
 }

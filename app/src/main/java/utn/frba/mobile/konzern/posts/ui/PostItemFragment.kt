@@ -8,13 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_post_item.*
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.posts.adapter.ImageSliderAdapter
 import utn.frba.mobile.konzern.posts.model.Post
-import utn.frba.mobile.konzern.posts.viewModel.PostViewModel
 import utn.frba.mobile.konzern.utils.FilePickerManager
 
 class PostItemFragment : PostBaseFragment(), FilePickerManager.ResultListener {
@@ -23,7 +21,7 @@ class PostItemFragment : PostBaseFragment(), FilePickerManager.ResultListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        filePickerManager = FilePickerManager(this, FilePickerManager.FILE_PICKED_REQUEST_CODE)
+        filePickerManager = FilePickerManager(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,6 +30,8 @@ class PostItemFragment : PostBaseFragment(), FilePickerManager.ResultListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        cleanView()
 
         vButtonSavePostItem.setOnClickListener {
             this.onBtnSave()
@@ -45,13 +45,18 @@ class PostItemFragment : PostBaseFragment(), FilePickerManager.ResultListener {
             filePickerManager.showFilePicker()
         }
 
-        viewModel.selectedItem.observe(viewLifecycleOwner, Observer<Post> {
-            setView(it)
+        viewModel.editEvent.observe(viewLifecycleOwner, Observer {
+            setView(viewModel.selectedItem!!)
         })
 
         viewModel.images.observe(viewLifecycleOwner, Observer<List<Uri>> {
             setImageSlider(it)
         })
+    }
+
+    private fun cleanView(){
+        setView(Post())
+        setImageSlider(arrayListOf())
     }
 
     private fun setImageSlider(images: List<Uri>) {
