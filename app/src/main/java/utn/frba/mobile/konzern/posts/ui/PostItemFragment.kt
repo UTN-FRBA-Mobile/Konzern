@@ -21,7 +21,7 @@ class PostItemFragment : PostBaseFragment(), FilePickerManager.ResultListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        filePickerManager = FilePickerManager(this, FilePickerManager.FILE_PICKED_REQUEST_CODE)
+        filePickerManager = FilePickerManager(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
