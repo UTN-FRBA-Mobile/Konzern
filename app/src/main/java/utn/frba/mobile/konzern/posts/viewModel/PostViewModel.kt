@@ -1,6 +1,7 @@
 package utn.frba.mobile.konzern.posts.viewModel
 
 import android.net.Uri
+import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import utn.frba.mobile.konzern.posts.model.Post
@@ -33,6 +34,7 @@ class PostViewModel : BaseViewModel() {
 
     fun editItem(id: String?){
         selectItem(id) {
+            this.images.postValue(selectedItem?.images?.map { it.url.toUri() })
             _editEvent.call()
         }
     }

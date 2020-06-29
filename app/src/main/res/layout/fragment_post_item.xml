@@ -47,6 +47,7 @@
 
             <com.smarteist.autoimageslider.SliderView
                 android:id="@+id/vSliderImagePostItem"
+                android:layout_height="200dp"
                 style="@style/SliderImageView"/>
         </LinearLayout>
     </ScrollView>
