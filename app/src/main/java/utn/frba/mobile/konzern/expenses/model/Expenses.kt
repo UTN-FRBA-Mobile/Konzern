@@ -6,5 +6,6 @@ data class Expenses (
     val monthLabel: String = "",
     val amount: String = "",
     val expirationDate: String = "",
-    val apartment: String = ""
+    val apartment: String = "",
+    val userId: String = ""
 )

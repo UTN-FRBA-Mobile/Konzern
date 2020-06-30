@@ -62,6 +62,8 @@
     <string name="expenses_search_previous_expenses">Buscar...</string>
     <string name="expenses_toolbar_title">Expensas</string>
     <string name="expenses_error_getting_info">Error al obtener expensas de la base de datos</string>
+    <string name="expenses_no_expenses_found">No se encontraron expensas para el usuario</string>
+    <string name="expenses_no_previous_expenses_found">No se encontraron expensas anteriores</string>
     <string name="expenses_pdf_title">MIS EXPENSAS</string>
     <string name="expenses_pdf_subtitle_month">Liquidación de mes:</string>
     <string name="expenses_pdf_consortium_label">CONSORCIO</string>

@@ -65,6 +65,18 @@
         android:drawableRight="@drawable/ic_clear">
     </EditText>
 
+    <TextView
+        android:id="@+id/vLabelNoPreviousExpensesFound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/vLabelPreviousExpenses"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingLeft="@dimen/expenses_item_padding"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:visibility="gone">
+    </TextView>
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
