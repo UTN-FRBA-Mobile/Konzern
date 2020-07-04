@@ -14,6 +14,17 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/layout_post_item"/>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/vTextButtonAddClaim"
+        style="@style/FloatingButtonOption"
+        android:layout_marginBottom="120dp"
+        android:text="Nuevo reclamo"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/vTextButtonAddPost"
+        style="@style/FloatingButtonOption"
+        android:text="Nueva publicación"/>
+
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/vButtonAddPostMain"
         style="@style/FloatingButton"

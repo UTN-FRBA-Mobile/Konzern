@@ -134,11 +134,22 @@
         <item name="android:layout_alignParentRight">true</item>
     </style>
 
+    <style name="FloatingButtonOption">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">#212121</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:layout_gravity">bottom|end</item>
+        <item name="android:layout_marginBottom">80dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:visibility">invisible</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
 
     <!-- Image Slider -->
     <style name="SliderImageView" parent="">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_height">300dp</item>
         <item name="sliderAnimationDuration">600</item>
         <item name="sliderIndicatorAnimationDuration">600</item>
         <item name="sliderIndicatorGravity">center_horizontal|bottom</item>

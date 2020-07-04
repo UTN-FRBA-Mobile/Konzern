@@ -17,7 +17,6 @@ import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
-
 class PostRepository{
     var db: FirebaseFirestore = FirebaseFirestore.getInstance()
     var dbCollectionName = "posts"
@@ -40,7 +39,6 @@ class PostRepository{
         }catch (e : Exception){
             e.printStackTrace()
         }
-
         return items
     }
 
@@ -74,18 +72,19 @@ class PostRepository{
         try{
             val item = getItem(id) ?: return
             item.active = false
-            save(item, null)
+            save(item, null, item.isClaim)
         }catch (e : Exception){
             e.printStackTrace()
         }
     }
 
-    suspend fun save(item: Post, images: List<Uri>?){
+    suspend fun save(item: Post, images: List<Uri>?, isClaim: Boolean){
         if(item.id == null){
             item.userId = FirebaseAuth.getInstance().currentUser?.uid
             item.date = Date()
         }
 
+        item.isClaim = isClaim
         item.images = saveImages(images)
 
         if(item.id == null)

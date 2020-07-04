@@ -2,40 +2,46 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".posts.ui.PostDetailFragment"
-    style="@style/PrimaryLayout">
+    style="@style/PrimaryLayout"
+    android:padding="0dp">
 
-    <LinearLayout
+    <ScrollView
+        style="@style/ScrollViewLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <com.smarteist.autoimageslider.SliderView
-            android:id="@+id/vSliderImagePostDetail"
-            style="@style/SliderImageView"/>
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_general">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/vTextViewDatePostDetail"
-                style="@style/SecondaryText"
-                android:layout_marginBottom="8dp"
-                android:text="16/05/2020 18:52"/>
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/vSliderImagePostDetail"
+                style="@style/SliderImageView"/>
 
-            <TextView
-                android:id="@+id/vTextSummaryPostDetail"
-                style="@style/PrimaryText"
-                android:text="@string/post_summary"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_general">
 
-            <TextView
-                android:id="@+id/vTextDescriptionPostDetail"
-                style="@style/SecondaryText"
-                android:text="@string/lorem_ipsum"/>
+                <TextView
+                    android:id="@+id/vTextViewDatePostDetail"
+                    style="@style/SecondaryText"
+                    android:layout_marginBottom="8dp"
+                    android:text="16/05/2020 18:52"/>
+
+                <TextView
+                    android:id="@+id/vTextSummaryPostDetail"
+                    style="@style/PrimaryText"
+                    android:text="@string/post_summary"/>
+
+                <TextView
+                    android:id="@+id/vTextDescriptionPostDetail"
+                    style="@style/SecondaryText"
+                    android:text="@string/lorem_ipsum"/>
+            </LinearLayout>
+
         </LinearLayout>
-
-    </LinearLayout>
-
+    </ScrollView>
 </FrameLayout>

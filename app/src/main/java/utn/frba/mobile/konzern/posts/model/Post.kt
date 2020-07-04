@@ -8,7 +8,6 @@ import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-
 data class Post(
     @get:Exclude var id: String? = null,
     var summary: String = "",
@@ -16,7 +15,8 @@ data class Post(
     var date: Date? = null,
     var images: List<Image> = ArrayList(),
     var active: Boolean = true,
-    var userId: String? = null
+    var userId: String? = null,
+    var isClaim: Boolean = false
 ): Serializable{
 
     data class Image(
@@ -39,7 +39,10 @@ data class Post(
 
     @Exclude
     fun getFormattedDate(): String{
-        return SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("es", "AR")).format(date)
+        return if(date != null)
+            SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("es", "AR")).format(date!!)
+        else
+            ""
     }
 
     @Exclude
