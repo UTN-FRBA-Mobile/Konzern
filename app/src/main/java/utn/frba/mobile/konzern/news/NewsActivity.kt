@@ -9,7 +9,9 @@ import utn.frba.mobile.konzern.posts.BaseActivity
 import utn.frba.mobile.konzern.utils.BaseViewModel
 
 class NewsActivity: BaseActivity() {
-    override val title: String? = "Novedades"
+    override fun getViewTitle(): String? {
+        return getString(R.string.title_news)
+    }
 
     override fun getCustomViewModel(): BaseViewModel {
         val vm: NewsViewModel by viewModels()

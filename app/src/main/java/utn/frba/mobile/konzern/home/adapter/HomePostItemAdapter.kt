@@ -13,7 +13,8 @@ import utn.frba.mobile.konzern.posts.model.Post
 
 class HomePostItemAdapter(
     private var items: List<Post>?,
-    private val onClickListener: OnHomeItemPostClickListener
+    private val onClickListener: OnHomeItemPostClickListener,
+    private val tag: String
 ) : RecyclerView.Adapter<HomePostItemAdapter.HomeItemPostViewHolder>() {
     override fun getItemCount(): Int = items?.size ?: 0
 
@@ -28,7 +29,7 @@ class HomePostItemAdapter(
     override fun onBindViewHolder(aView: HomeItemPostViewHolder, position: Int) {
         val item = items?.get(position)
         setView(aView, item!!)
-        aView.itemView.setOnClickListener { onClickListener.onItemClick(item.id!!) }
+        aView.itemView.setOnClickListener { onClickListener.onItemClick(item.id!!, tag) }
     }
 
     private fun setView(aView: HomeItemPostViewHolder, item: Post) {
@@ -42,7 +43,7 @@ class HomePostItemAdapter(
     }
 
     interface OnHomeItemPostClickListener{
-        fun onItemClick(id: String)
+        fun onItemClick(id: String, tag: String)
     }
 
     class HomeItemPostViewHolder(view: View, var context: Context) : RecyclerView.ViewHolder(view) {

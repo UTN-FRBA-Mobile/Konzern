@@ -8,7 +8,9 @@ import utn.frba.mobile.konzern.posts.viewModel.PostViewModel
 import utn.frba.mobile.konzern.utils.BaseViewModel
 
 class PostActivity : BaseActivity() {
-    override val title: String? = "Publicaciones"
+    override fun getViewTitle(): String? {
+        return getString(R.string.title_posts)
+    }
 
     override fun getCustomViewModel(): BaseViewModel {
         val vm: PostViewModel by viewModels()

@@ -25,6 +25,9 @@ class HomeFragment : Fragment(), HomePostItemAdapter.OnHomeItemPostClickListener
     private val postViewModel: PostViewModel by activityViewModels()
     private val newsViewModel: NewsViewModel by activityViewModels()
 
+    private val RECYCLER_POSTS_TAG = "posts"
+    private val RECYCLER_NEWS_TAG = "news"
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -64,13 +67,8 @@ class HomeFragment : Fragment(), HomePostItemAdapter.OnHomeItemPostClickListener
         newsViewModel.initItemList()
     }
 
-    override fun onItemClick(id: String) {
-        postViewModel.showDetailItem(id)
-        findNavController().navigate(R.id.action_HomeFragment_to_ItemPostFragment)
-    }
-
-    private fun setRecycler(items: List<Post>, recyclerView: RecyclerView){
-        recyclerView.adapter = HomePostItemAdapter(items, this)
+    private fun setRecycler(items: List<Post>, recyclerView: RecyclerView, tag: String){
+        recyclerView.adapter = HomePostItemAdapter(items, this, tag)
         recyclerView.layoutManager = ScaleLayoutManager(requireActivity(), RecyclerView.HORIZONTAL, false, 0.15f, 0.85f)
 
         val snapHelperCardsRecycler = androidx.recyclerview.widget.PagerSnapHelper()
@@ -79,7 +77,7 @@ class HomeFragment : Fragment(), HomePostItemAdapter.OnHomeItemPostClickListener
     }
 
     private fun setPostRecycler(items: List<Post>){
-        setRecycler(items, vRecyclerViewPostHome)
+        setRecycler(items, vRecyclerViewPostHome, RECYCLER_POSTS_TAG)
 
         vButtonPostMain.setOnClickListener{
             val intent = Intent(requireContext(), PostActivity::class.java)
@@ -88,11 +86,21 @@ class HomeFragment : Fragment(), HomePostItemAdapter.OnHomeItemPostClickListener
     }
 
     private fun setNewsRecycler(items: List<Post>){
-        setRecycler(items, vRecyclerViewNewsHome)
+        setRecycler(items, vRecyclerViewNewsHome, RECYCLER_NEWS_TAG)
 
         vButtonNewsMain.setOnClickListener{
             val intent = Intent(requireContext(), NewsActivity::class.java)
             this.startActivity(intent)
+        }
+    }
+
+    override fun onItemClick(id: String, tag: String) {
+        if(tag == RECYCLER_POSTS_TAG) {
+            postViewModel.showDetailItem(id)
+            findNavController().navigate(R.id.action_HomeFragment_to_ItemPostFragment)
+        } else if(tag == RECYCLER_NEWS_TAG){
+            newsViewModel.showDetailItem(id)
+            findNavController().navigate(R.id.action_HomeFragment_to_NewsDetailFragment)
         }
     }
 }
