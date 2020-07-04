@@ -90,4 +90,6 @@
     <string name="sign_up_password_mismatch">Las contraseñas no coinciden</string>
     <string name="sign_up_password_longitude">La contraseña debe tener más de 6 caracteres</string>
 
+    <!-- Home -->
+    <string name="home_show_all">Ver todas</string>
 </resources>
