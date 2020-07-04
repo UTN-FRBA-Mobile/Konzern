@@ -7,7 +7,7 @@ import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.posts.viewModel.PostViewModel
 import utn.frba.mobile.konzern.utils.BaseViewModel
 
-class PostActivity : BaseActivity() {
+class PostActivity : BasePostActivity() {
     override fun getViewTitle(): String? {
         return getString(R.string.title_posts)
     }
@@ -18,16 +18,6 @@ class PostActivity : BaseActivity() {
     }
 
     override fun getContentLayout(): Int {
-        return R.layout.activity_post
-    }
-
-    override fun showProgress(){
-        vActivityContentPost.visibility = View.GONE
-        vPostProgressBarLayout.visibility = View.VISIBLE
-    }
-
-    override fun hideProgress(){
-        vPostProgressBarLayout.visibility = View.GONE
-        vActivityContentPost.visibility = View.VISIBLE
+        return R.layout.content_post
     }
 }

@@ -1,14 +1,11 @@
 package utn.frba.mobile.konzern.news
 
-import android.view.View
 import androidx.activity.viewModels
-import kotlinx.android.synthetic.main.activity_news.*
-import kotlinx.android.synthetic.main.activity_post.*
 import utn.frba.mobile.konzern.R
-import utn.frba.mobile.konzern.posts.BaseActivity
+import utn.frba.mobile.konzern.posts.BasePostActivity
 import utn.frba.mobile.konzern.utils.BaseViewModel
 
-class NewsActivity: BaseActivity() {
+class NewsActivity: BasePostActivity() {
     override fun getViewTitle(): String? {
         return getString(R.string.title_news)
     }
@@ -19,16 +16,6 @@ class NewsActivity: BaseActivity() {
     }
 
     override fun getContentLayout(): Int {
-        return R.layout.activity_news
-    }
-
-    override fun showProgress(){
-        vActivityContentNews.visibility = View.GONE
-        vNewsProgressBarLayout.visibility = View.VISIBLE
-    }
-
-    override fun hideProgress(){
-        vNewsProgressBarLayout.visibility = View.GONE
-        vActivityContentNews.visibility = View.VISIBLE
+        return R.layout.content_news
     }
 }
