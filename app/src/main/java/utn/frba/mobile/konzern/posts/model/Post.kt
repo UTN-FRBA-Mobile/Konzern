@@ -1,37 +1,49 @@
 package utn.frba.mobile.konzern.posts.model
 
-import android.graphics.drawable.Drawable
 import android.net.Uri
+import androidx.core.net.toUri
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.Exclude
 import java.io.Serializable
-import kotlin.properties.Delegates
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
-class Post(): Serializable{
-    var id by Delegates.notNull<Int>()
-    lateinit var summary: String
-    lateinit var text: String
-    lateinit var date: String
-    var images: List<Uri> = ArrayList()
+data class Post(
+    @get:Exclude var id: String? = null,
+    var summary: String = "",
+    var description: String = "",
+    var date: Date? = null,
+    var images: List<Image> = ArrayList(),
+    var active: Boolean = true,
+    var userId: String? = null
+): Serializable{
 
-    constructor(id: Int, summary: String, text: String, date: String, images: List<Uri>?) : this() {
-        this.id = id
-        this.summary = summary
-        this.text = text
-        this.date = date
-        if(images != null)
-            this.images = images
-    }
+    data class Image(
+        var url: String = "",
+        var childPath: String = ""
+    )
 
-    constructor(id: Int, summary: String, text: String, date: String, image: Uri) :
-            this(id, summary, text, date, arrayListOf(image))
-
+    @Exclude
     fun getMainImage(): Uri?{
         return if(this.hasImages())
-            this.images[0]
+            this.images[0].url.toUri()
         else
             null
     }
 
-    fun hasImages(): Boolean{
+    @Exclude
+    private fun hasImages(): Boolean{
         return this.images.count() > 0
+    }
+
+    @Exclude
+    fun getFormattedDate(): String{
+        return SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("es", "AR")).format(date)
+    }
+
+    @Exclude
+    fun isOwnedByUser(): Boolean{
+        return this.userId == FirebaseAuth.getInstance().currentUser?.uid
     }
 }

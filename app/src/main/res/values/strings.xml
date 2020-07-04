@@ -38,6 +38,9 @@
     <string name="post_required_summary">Resumen*</string>
     <string name="post_required_description">Descripción*</string>
     <string name="post_add_image">Agregar imagen</string>
+    <string name="post_item_edit">Editar</string>
+    <string name="post_item_remove">Eliminar</string>
+    <string name="error">Error</string>
 
     <!-- Perfil -->
     <string name="profile_toolbar_title">Mi Perfil</string>
@@ -60,6 +63,7 @@
     <string name="expenses_amount_label">Importe:</string>
     <string name="expenses_expiration_date_label">Vencimiento:</string>
     <string name="expenses_search_previous_expenses">Buscar...</string>
+
     <string name="expenses_toolbar_title">Expensas</string>
 
     <!-- Contacto -->

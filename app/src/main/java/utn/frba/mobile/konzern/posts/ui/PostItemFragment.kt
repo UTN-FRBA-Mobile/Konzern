@@ -64,12 +64,14 @@ class PostItemFragment : PostBaseFragment(), FilePickerManager.ResultListener {
     }
 
     private fun setView(item: Post){
+        vInputSummaryPostItem.setText(item.summary)
+        vInputDescriptionPostItem.setText(item.description)
     }
 
     private fun onBtnSave(){
         validateFields()
         if(vLayoutSummaryPostItem.error == null && vLayoutDescriptionPostItem.error == null) {
-            viewModel.addItem(vInputSummaryPostItem.text.toString(), vInputDescriptionPostItem.text.toString())
+            viewModel.saveItem(vInputSummaryPostItem.text.toString(), vInputDescriptionPostItem.text.toString())
             findNavController().navigateUp()
         }
     }
