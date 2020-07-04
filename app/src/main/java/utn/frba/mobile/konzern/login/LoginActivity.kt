@@ -2,6 +2,7 @@ package utn.frba.mobile.konzern.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.login_fragment_layout.*
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.login.ForgotPasswordFragment
 
-class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmenView, ForgotPasswordFragment.OnFragmentInteractionListener, SignUpFragment.SignUpFragmentView {
+class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmenView, ForgotPasswordFragment.OnFragmentInteractionListener, BaseSignUpFragment.SignUpFragmentView {
 
     private lateinit var loginFragment: LoginFragment
 
@@ -86,5 +87,9 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmenView, Forgo
         } else {
             supportFragmentManager.popBackStack();
         }
+    }
+
+    override fun completeSignUp() {
+        showFragment(CompleteSignUpFragment())
     }
 }

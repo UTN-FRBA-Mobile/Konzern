@@ -1,91 +1,126 @@
 package utn.frba.mobile.konzern.posts.repository
 
-import android.app.Application
-import android.content.ContentResolver
-import android.graphics.drawable.Drawable
 import android.net.Uri
-import utn.frba.mobile.konzern.R
+import androidx.core.net.toUri
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
+import kotlinx.coroutines.tasks.await
 import utn.frba.mobile.konzern.posts.model.Post
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
-class PostRepository(var application: Application) {
-    var items: ArrayList<Post> = arrayListOf(
-        Post(
-            1,
-            "Resumen 1",
-            "Descripción 1",
-            "09/05/2020 18:10",
-            getMockImages(1)
-        ),
-        Post(
-            2,
-            "Resumen 2",
-            getAppString(R.string.lorem_ipsum),
-            "09/05/2020 20:12",
-            null
-        ),
-        Post(
-            3,
-            "Resumen 3",
-            "Descripción 1",
-            "09/05/2020 21:17",
-            getMockImages(2)
-        ),
-        Post(
-            4,
-            "Resumen 4",
-            getAppString(R.string.lorem_ipsum),
-            "10/05/2020 03:09",
-            getMockImages(1)
-        ),
-        Post(
-            5,
-            "Resumen 5",
-            "Es una prueba 5",
-            "10/05/2020 14:55",
-            null
-        )
-    )
+class PostRepository{
+    var db: FirebaseFirestore = FirebaseFirestore.getInstance()
+    var dbCollectionName = "posts"
 
-    fun getItemList(): List<Post>{
+    suspend fun getItemList(): List<Post>{
+        val items: ArrayList<Post> = ArrayList()
+
+        try{
+            val data =
+                db.collection(dbCollectionName)
+                .orderBy("date", Query.Direction.DESCENDING)
+                .get()
+                .await()
+
+            for (document in data.documents) {
+                val item = retrieveItem(document)
+                if(item != null && item.active)
+                    items.add(item)
+            }
+        }catch (e : Exception){
+            e.printStackTrace()
+        }
         return items
     }
 
-    fun getItem(id: Int): Post?{
-        return items.find { it.id == id }
+    private fun retrieveItem(document: DocumentSnapshot): Post?{
+        val item = document.toObject(Post::class.java)
+        if(item != null) {
+            item.id = document.id
+        }
+        return item
     }
 
-    fun save(summary: String, description: String, images: List<Uri>?){
-        val item = Post(
-            items.count() + 1,
-            summary,
-            description,
-            SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("es", "AR")).format(Date()),
-            images
-        )
-        items.add(0, item)
+    suspend fun getItem(id: String): Post?{
+        var item: Post? = null
+
+        try{
+            val data =
+                db.collection(dbCollectionName)
+                    .document(id)
+                    .get()
+                    .await()
+
+            item = retrieveItem(data)
+        }catch (e : Exception){
+            e.printStackTrace()
+        }
+
+        return item
     }
 
-    private fun getAppString(stringId: Int): String {
-        return application.resources.getString(stringId)
+    suspend fun delete(id: String){
+        try{
+            val item = getItem(id) ?: return
+            item.active = false
+            save(item, null, item.isClaim)
+        }catch (e : Exception){
+            e.printStackTrace()
+        }
     }
 
-    private fun getMockImages(count: Int): ArrayList<Uri> {
-        val result = arrayListOf(getImageUri(R.drawable.mock_post_1))
-        if(count > 1)
-            result.add(getImageUri(R.drawable.mock_post_2))
+    suspend fun save(item: Post, images: List<Uri>?, isClaim: Boolean){
+        if(item.id == null){
+            item.userId = FirebaseAuth.getInstance().currentUser?.uid
+            item.date = Date()
+        }
 
-        return result
+        item.isClaim = isClaim
+        item.images = saveImages(images)
+
+        if(item.id == null)
+            db.collection(dbCollectionName).document().set(item)
+        else
+            db.collection(dbCollectionName).document(item.id!!).set(item)
     }
 
-    private fun getImageUri(resourceId: Int): Uri{
-        return (Uri.Builder())
-                .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
-            .authority(application.resources.getResourcePackageName(resourceId))
-            .appendPath(application.resources.getResourceTypeName(resourceId))
-            .appendPath(application.resources.getResourceEntryName(resourceId))
-            .build()
+    suspend fun saveImages(images: List<Uri>?): List<Post.Image>{
+        val imageStoreList = ArrayList<Post.Image>()
+
+        val ref = FirebaseStorage.getInstance().reference
+
+        images?.forEach {
+            val childPath = System.currentTimeMillis().toString() + ".jpg"
+            val data = ref
+                .child(childPath)
+                .putFile(it)
+                .await()
+
+            val downloadUrl: Uri? = data.metadata?.reference?.downloadUrl?.await()
+            if(downloadUrl != null)
+                imageStoreList.add(Post.Image(downloadUrl.toString(), childPath))
+        }
+
+        return imageStoreList
+    }
+
+    suspend fun removeImages(images: List<Post.Image>){
+        val ref = FirebaseStorage.getInstance().reference
+
+        images.forEach {
+            ref
+            .child(it.childPath)
+            .delete()
+            .await()
+        }
     }
 }

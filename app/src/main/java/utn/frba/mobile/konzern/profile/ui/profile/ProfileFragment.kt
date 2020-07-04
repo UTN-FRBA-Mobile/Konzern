@@ -5,13 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import utn.frba.mobile.konzern.R
+import utn.frba.mobile.konzern.contact.repository.ContactRepository
+import utn.frba.mobile.konzern.profile.Profile
+import utn.frba.mobile.konzern.profile.ProfileRepository
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var viewModel: ProfileViewModel
+    private val repository = ProfileRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,11 +31,16 @@ class ProfileFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = activity?.run { ViewModelProvider(this).get(ProfileViewModel::class.java) } ?: throw Exception("Invalid Activity")
-        viewModel.getProfile().run {
-            vProfileUsername.text = username
-            vProfilePhone.text = phone
-            vProfileInfo.text = info
-        }
+        getProfileFromRepository()
+    }
+
+    private fun getProfileFromRepository() {
+        repository.getProfile(object : ProfileRepository.ProfileRepositoryInterface {
+            override fun onComplete(profile: Profile?) {
+                vProfileUsername.text = profile?.email
+                vProfilePhone.text = profile?.phone
+                vProfileInfo.text = profile?.info
+            }
+        })
     }
 }
