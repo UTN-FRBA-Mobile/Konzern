@@ -40,9 +40,7 @@
                 android:id="@+id/vButtonPostMain"
                 style="@style/TextButton"
                 android:text="@string/home_show_all"
-                android:layout_width="match_parent"
-                android:layout_margin="0dp"
-                android:padding="0dp"/>
+                android:layout_width="match_parent"/>
         </LinearLayout>
 
 
@@ -67,6 +65,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vRecyclerViewNewsHome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -79,6 +78,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/vButtonNewsMain"
                 style="@style/TextButton"
                 android:text="@string/home_show_all"
                 android:layout_width="match_parent"/>

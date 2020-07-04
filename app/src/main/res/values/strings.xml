@@ -92,4 +92,8 @@
 
     <!-- Home -->
     <string name="home_show_all">Ver todas</string>
+
+    <!-- Novedades -->
+    <string name="news_toolbar_title">Novedades</string>
+
 </resources>

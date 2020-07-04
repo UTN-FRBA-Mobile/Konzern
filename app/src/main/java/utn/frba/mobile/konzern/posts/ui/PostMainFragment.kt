@@ -3,7 +3,9 @@ package utn.frba.mobile.konzern.posts.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_post_main.*
@@ -11,13 +13,20 @@ import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.posts.adapter.ItemPostAdapter
 import utn.frba.mobile.konzern.posts.adapter.OnItemPostClickListener
 import utn.frba.mobile.konzern.posts.model.Post
+import utn.frba.mobile.konzern.posts.viewModel.BasePostViewModel
+import utn.frba.mobile.konzern.posts.viewModel.PostViewModel
 
-class PostMainFragment : PostBaseFragment(), OnItemPostClickListener {
+open class PostMainFragment : PostBaseFragment(), OnItemPostClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_post_main, container, false)
+    }
+
+    override fun getCustomViewModel(): BasePostViewModel {
+        val vm: PostViewModel by activityViewModels()
+        return vm
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,25 +36,41 @@ class PostMainFragment : PostBaseFragment(), OnItemPostClickListener {
             vRecyclerViewPostMain.adapter = ItemPostAdapter(it, this)
         })
 
-        vButtonAddPostMain.setOnClickListener {
-            viewModel.editItem(null)
-            findNavController().navigate(R.id.action_MainPostsFragment_to_NewItemPostFragment)
-        }
-
         viewModel.initItemList()
+
+        if(!viewModel.canEdit) {
+            vButtonAddPostMain.visibility = GONE
+        } else{
+            vButtonAddPostMain.setOnClickListener {
+                viewModel.editItem(null)
+                findNavController().navigate(getNewItemNavId())
+            }
+        }
     }
 
     override fun onItemClick(id: String) {
         viewModel.showDetailItem(id)
-        findNavController().navigate(R.id.action_MainPostsFragment_to_ItemPostFragment)
+        findNavController().navigate(getItemNavId())
     }
 
     override fun onEditClick(id: String) {
         viewModel.editItem(id)
-        findNavController().navigate(R.id.action_MainPostsFragment_to_NewItemPostFragment)
+        findNavController().navigate(getEditItemNavId())
     }
 
     override fun onDeleteClick(id: String) {
         viewModel.deleteItem(id)
+    }
+
+    protected open fun getItemNavId(): Int{
+        return R.id.action_MainPostsFragment_to_ItemPostFragment
+    }
+
+    private fun getEditItemNavId(): Int{
+        return R.id.action_MainPostsFragment_to_NewItemPostFragment
+    }
+
+    private fun getNewItemNavId(): Int{
+        return R.id.action_MainPostsFragment_to_NewItemPostFragment
     }
 }
