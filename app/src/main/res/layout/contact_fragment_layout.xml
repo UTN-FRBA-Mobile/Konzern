@@ -27,12 +27,12 @@
             android:id="@+id/vContactImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/mock_post_1"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/vContactName"
-            app:layout_constraintBottom_toTopOf="@id/vContactTelephoneTitle"/>
+            app:layout_constraintBottom_toTopOf="@id/vContactTelephoneTitle"
+            tools:src="@drawable/profile_placeholder"/>
 
         <TextView
             android:id="@+id/vContactName"
