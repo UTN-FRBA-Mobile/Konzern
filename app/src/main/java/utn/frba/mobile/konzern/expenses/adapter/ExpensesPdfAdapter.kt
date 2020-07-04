@@ -13,10 +13,11 @@ import com.itextpdf.text.pdf.PdfWriter
 import com.itextpdf.text.pdf.draw.LineSeparator
 import com.itextpdf.text.pdf.draw.VerticalPositionMark
 import utn.frba.mobile.konzern.R
-import utn.frba.mobile.konzern.expenses.Expenses
-import utn.frba.mobile.konzern.expenses.ExpensesActivity
+import utn.frba.mobile.konzern.contact.model.Contact
+import utn.frba.mobile.konzern.expenses.model.Expenses
 import java.io.File
 import java.io.FileOutputStream
+import kotlin.math.roundToLong
 
 class ExpensesPdfAdapter {
 
@@ -42,7 +43,7 @@ class ExpensesPdfAdapter {
         }
     }
 
-    fun createPDFFile (expense: Expenses, context: Context?) {
+    fun createPDFFile (expense: Expenses, consortium: Contact, context: Context?) : String {
 
         try {
 
@@ -55,7 +56,7 @@ class ExpensesPdfAdapter {
             if(!dir.exists())
                 dir.mkdir()
 
-            val path = dir.path+ File.separator+"expenses"+expense.month+".pdf"
+            val path = dir.path+ File.separator+"expenses"+expense.monthLabel+".pdf"
 
             if(File(path).exists())
                 File(path).delete()
@@ -70,36 +71,59 @@ class ExpensesPdfAdapter {
             //Configuracion del PDF
             document.pageSize = PageSize.A4
             document.addCreationDate()
-            document.addAuthor(context!!.resources.getString(R.string.app_name))
-            document.addCreator(context!!.resources.getString(R.string.app_name))
+            document.addAuthor(context.resources.getString(R.string.app_name))
+            document.addCreator(context.resources.getString(R.string.app_name))
 
             //Estilos
-            val titleStyle = Font(Font.FontFamily.HELVETICA, 36.0f, Font.NORMAL, BaseColor.BLACK)
-            val subtitleStyle = Font(Font.FontFamily.HELVETICA, 26.0f, Font.NORMAL, BaseColor.LIGHT_GRAY)
-            val detailStyle = Font(Font.FontFamily.HELVETICA, 30.0f, Font.NORMAL, BaseColor.GRAY)
+            val titleStyle = Font(Font.FontFamily.HELVETICA, 28.0f, Font.NORMAL, BaseColor.BLACK)
+            val subtitleStyle = Font(Font.FontFamily.HELVETICA, 20.0f, Font.NORMAL, BaseColor.LIGHT_GRAY)
+            val detailStyle = Font(Font.FontFamily.HELVETICA, 22.0f, Font.NORMAL, BaseColor.GRAY)
+            val subDetailStyle = Font(Font.FontFamily.HELVETICA, 16.0f, Font.NORMAL, BaseColor.LIGHT_GRAY)
 
             //Contenido del PDF
-            addNewTitle(document, "Expensas", Element.ALIGN_CENTER, titleStyle)
+            addNewTitle(document, context.resources.getString(R.string.expenses_pdf_title), Element.ALIGN_CENTER, titleStyle)
+            addNewTitle(document, context.resources.getString(R.string.expenses_pdf_subtitle_month) + " " + expense.monthLabel + " " + expense.year, Element.ALIGN_CENTER, titleStyle)
+
+            addLineSeparator(document)
+            addLineSeparator(document)
+
+            addNewTitle(document,context.resources.getString(R.string.expenses_pdf_consortium_label),Element.ALIGN_CENTER, subtitleStyle)
+            addNewDetail(document,context.resources.getString(R.string.expenses_pdf_consortium_name),consortium.name, detailStyle)
+            addNewDetail(document,context.resources.getString(R.string.expenses_pdf_consortium_address),consortium.address, detailStyle)
+            addNewDetail(document,context.resources.getString(R.string.expenses_pdf_consortium_mail),consortium.email, detailStyle)
+            addNewDetail(document,context.resources.getString(R.string.expenses_pdf_consortium_phone),consortium.phone, detailStyle)
+
+            addLineSeparator(document)
+            addLineSeparator(document)
+
+            addNewTitle(document,context.resources.getString(R.string.expenses_pdf_account_state),Element.ALIGN_CENTER, subtitleStyle)
+            addNewDetail(document,context.resources.getString(R.string.expenses_pdf_apartment_label),expense.apartment, detailStyle)
+
+            addLineSpace(document)
+
+            addNewTitle(document,context.resources.getString(R.string.expenses_pdf_concepts_to_pay),Element.ALIGN_CENTER, subtitleStyle)
+            addNewDetail(document,context.resources.getString(R.string.expenses_pdf_expenses_type_a),context.resources.getString(R.string.expenses_coin) + " " +(expense.amount.toBigDecimal().multiply(0.8.toBigDecimal()).setScale(2)), detailStyle)
+            addNewDetail(document,context.resources.getString(R.string.expenses_pdf_expenses_type_b),context.resources.getString(R.string.expenses_coin) + " " +(expense.amount.toBigDecimal().multiply(0.2.toBigDecimal()).setScale(2)), detailStyle)
+            addNewDetail(document,context.resources.getString(R.string.expenses_pdf_total_amount),context.resources.getString(R.string.expenses_coin) + " " +(expense.amount.toBigDecimal().setScale(2)), detailStyle)
+            addNewDetail(document,context.resources.getString(R.string.expenses_pdf_expiration_date),expense.expirationDate, detailStyle)
 
             addLineSeparator(document)
 
-            addNewDetail(document,"Monto",context!!.resources.getString(R.string.expenses_coin) + " " +expense.amount, detailStyle)
-            addNewDetail(document,"Mes",expense.month, detailStyle)
-            addNewDetail(document,"Fecha Vencimiento",expense.expirationDate, detailStyle)
+            addNewTitle(document,context.resources.getString(R.string.expenses_pdf_extra_info),Element.ALIGN_LEFT, subtitleStyle)
+            addNewTitle(document,context.resources.getString(R.string.expenses_pdf_extra_info_detail),Element.ALIGN_LEFT, subDetailStyle)
 
             addLineSeparator(document)
-
-            addNewTitle(document, "Detalle", Element.ALIGN_LEFT, titleStyle)
-            addNewTitle(document, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
-                    "Integer vitae augue quis odio efficitur efficitur. Maecenas at ipsum sapien. " +
-                    "Praesent id libero cursus justo vulputate tempus. Suspendisse vitae arcu ut.", Element.ALIGN_LEFT, subtitleStyle)
 
             //Cierro el documento
             document.close()
 
+            return path
+
         } catch (e:Exception) {
             Log.e("Error", e.message)
         }
+
+        return ""
     }
 
 

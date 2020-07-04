@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,11 +38,16 @@ class ProfileFragment : Fragment() {
     }
 
     private fun getProfileFromRepository() {
+        val lastSignIn = GoogleSignIn.getLastSignedInAccount(requireContext())
         repository.getProfile(object : ProfileRepository.ProfileRepositoryInterface {
             override fun onComplete(profile: Profile?) {
                 vProfileUsername.text = profile?.email
                 vProfilePhone.text = profile?.phone
                 vProfileInfo.text = profile?.info
+                Glide.with(requireContext())
+                    .load(lastSignIn?.photoUrl)
+                    .error(R.drawable.profile_placeholder)
+                    .into(vProfilePicture)
             }
         })
     }

@@ -9,13 +9,15 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.expenses_item.view.*
 import utn.frba.mobile.konzern.R
-import utn.frba.mobile.konzern.expenses.Expenses
-import utn.frba.mobile.konzern.expenses.ExpensesFragment.ExpensesFragmentView
+import utn.frba.mobile.konzern.contact.model.Contact
+import utn.frba.mobile.konzern.expenses.model.Expenses
+import utn.frba.mobile.konzern.expenses.ui.ExpensesFragment.ExpensesFragmentView
 
 
 class ExpensesAdapter(private var expensesList: List<Expenses>,
                       private val expensesView: ExpensesFragmentView?,
                       private val expensesPdfAdapter: ExpensesPdfAdapter?,
+                      private val consortium: Contact,
                       private val context: Context?
                     ) : RecyclerView.Adapter<ExpensesAdapter.ExpensesItem>(), Filterable {
 
@@ -34,15 +36,19 @@ class ExpensesAdapter(private var expensesList: List<Expenses>,
 
     override fun onBindViewHolder(expense: ExpensesItem, position: Int) {
         expense.run {
-            month.text = expensesList[position].month
+            month.text = expensesList[position].monthLabel
+            year.text = expensesList[position].year
             amount.text = expensesList[position].amount
             expirationDate.text = expensesList[position].expirationDate
-            downloadButton.setOnClickListener { expensesPdfAdapter?.createPDFFile (expensesList[position], context); expensesView?.downloadPDFSuccess() }
+            downloadButton.setOnClickListener {
+                val path = expensesPdfAdapter?.createPDFFile (expensesList[position], consortium, context); expensesView?.downloadPDFSuccess(path.toString())
+            }
         }
     }
 
     class ExpensesItem(view: View) : RecyclerView.ViewHolder(view) {
         var month = view.vExpensesItemMonthValue
+        var year = view.vExpensesItemYearValue
         var amount = view.vExpensesItemAmountValue
         var expirationDate = view.vExpensesItemExpirationDateValue
         var downloadButton = view.vExpensesItemDownloadButton
@@ -63,7 +69,7 @@ class ExpensesAdapter(private var expensesList: List<Expenses>,
                 var filterPattern = constraint.toString().toUpperCase().trim()
 
                 for ( i : Expenses in expensesFullList) {
-                    if (i.month.toUpperCase().trim().contains(filterPattern)) {
+                    if (i.monthLabel.toUpperCase().trim().contains(filterPattern)) {
                         expensesFilteredList.add(i)
                     }
                 }
