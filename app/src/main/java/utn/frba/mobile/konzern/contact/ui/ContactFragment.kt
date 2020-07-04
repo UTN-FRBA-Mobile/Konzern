@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.contact_fragment_layout.*
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.contact.model.Contact
@@ -52,6 +53,7 @@ class ContactFragment : Fragment() {
         vContactProgressBar.visibility = View.GONE
         consorcioInfo?.let {
             vContactName.text = it.name
+            Glide.with(this).load(it.imageUrl).error(R.drawable.consorcio_placeholder).into(vContactImage)
             vContactPhone.text = it.phone
             vContactAttentionTime.text = it.attentionTime
             vContactEmail.text = it.email

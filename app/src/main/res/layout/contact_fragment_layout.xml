@@ -32,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/vContactName"
             app:layout_constraintBottom_toTopOf="@id/vContactTelephoneTitle"
-            tools:src="@drawable/profile_placeholder"/>
+            tools:src="@drawable/consorcio_placeholder"/>
 
         <TextView
             android:id="@+id/vContactName"
