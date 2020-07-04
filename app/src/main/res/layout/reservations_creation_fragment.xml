@@ -17,13 +17,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/vReservationsForm1"
+    <Spinner
+        android:id="@+id/vReservationsSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/res_form_1_hint"
-        android:inputType="text"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vReservationsFormTitle1" />
@@ -37,10 +38,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vReservationsForm1" />
+        app:layout_constraintTop_toBottomOf="@+id/vReservationsSelect" />
 
     <EditText
-        android:id="@+id/vReservationsFormDate"
+        android:id="@+id/vReservationsDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -60,7 +61,7 @@
         android:layout_marginTop="28dp"
         android:background="@android:color/white"
         android:src="@drawable/calendar"
-        app:layout_constraintStart_toEndOf="@+id/vReservationsFormDate"
+        app:layout_constraintStart_toEndOf="@+id/vReservationsDay"
         app:layout_constraintTop_toBottomOf="@+id/vReservationsFormTitle2" />
 
     <TextView
@@ -72,10 +73,10 @@
         android:text="@string/res_form_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vReservationsFormDate" />
+        app:layout_constraintTop_toBottomOf="@+id/vReservationsDay" />
 
     <EditText
-        android:id="@+id/vReservationsFormTime1"
+        android:id="@+id/vReservationsHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -94,7 +95,7 @@
         android:layout_marginTop="28dp"
         android:background="@android:color/white"
         android:src="@drawable/clock"
-        app:layout_constraintStart_toEndOf="@+id/vReservationsFormTime1"
+        app:layout_constraintStart_toEndOf="@+id/vReservationsHour"
         app:layout_constraintTop_toBottomOf="@+id/vReservationsFormTitle3" />
 
     <Button
