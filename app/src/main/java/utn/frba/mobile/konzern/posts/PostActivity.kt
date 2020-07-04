@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_post.*
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.contact.ContactActivity
 import utn.frba.mobile.konzern.customviews.ToolbarMenuInterface
+import utn.frba.mobile.konzern.expenses.ExpensesActivity
 import utn.frba.mobile.konzern.posts.viewModel.PostViewModel
 import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
@@ -45,6 +46,12 @@ class PostActivity : AppCompatActivity(), ToolbarMenuInterface {
 
     override fun onMenuMyProfileClicked() {
         val intent = Intent(this, ProfileActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    override fun onMenuExpensesClicked() {
+        val intent = Intent(this, ExpensesActivity::class.java)
         startActivity(intent)
         finish()
     }

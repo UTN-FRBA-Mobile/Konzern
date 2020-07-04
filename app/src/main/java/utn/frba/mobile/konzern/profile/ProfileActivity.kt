@@ -7,6 +7,7 @@ import kotlinx.android.synthetic.main.activity_profile.*
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.contact.ContactActivity
 import utn.frba.mobile.konzern.customviews.ToolbarMenuInterface
+import utn.frba.mobile.konzern.expenses.ExpensesActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
 
 class ProfileActivity : AppCompatActivity(), ToolbarMenuInterface {
@@ -18,6 +19,12 @@ class ProfileActivity : AppCompatActivity(), ToolbarMenuInterface {
     }
 
     override fun onMenuMyProfileClicked() {}
+
+    override fun onMenuExpensesClicked() {
+        val intent = Intent(this, ExpensesActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 
     override fun onMenuSeeReservationsClicked() {
         val intent = Intent(this, ReservationsActivity::class.java)

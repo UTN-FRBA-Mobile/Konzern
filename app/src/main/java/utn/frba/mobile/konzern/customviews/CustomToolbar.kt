@@ -56,8 +56,7 @@ class CustomToolbar(context: Context, attrs: AttributeSet) : ConstraintLayout(co
                 false
             }
             1 -> {
-                //TODO: Mis expensas
-                Toast.makeText(context, context.getString(R.string.custom_toolbar_expenses_item), Toast.LENGTH_SHORT).show()
+                menuInterface?.onMenuExpensesClicked()
                 false
             }
             2 -> {
@@ -94,6 +93,8 @@ class CustomToolbar(context: Context, attrs: AttributeSet) : ConstraintLayout(co
 
 interface ToolbarMenuInterface {
     fun onMenuMyProfileClicked()
+
+    fun onMenuExpensesClicked()
 
     fun onMenuSeeReservationsClicked()
 
