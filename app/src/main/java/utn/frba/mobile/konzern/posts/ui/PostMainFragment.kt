@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -41,10 +42,7 @@ open class PostMainFragment : PostBaseFragment(), OnItemPostClickListener {
         if(!viewModel.canEdit) {
             vButtonAddPostMain.visibility = GONE
         } else{
-            vButtonAddPostMain.setOnClickListener {
-                viewModel.editItem(null)
-                findNavController().navigate(getNewItemNavId())
-            }
+            setAddItemButton();
         }
     }
 
@@ -72,5 +70,24 @@ open class PostMainFragment : PostBaseFragment(), OnItemPostClickListener {
 
     private fun getNewItemNavId(): Int{
         return R.id.action_MainPostsFragment_to_NewItemPostFragment
+    }
+
+    private fun setAddItemButton(){
+        vButtonAddPostMain.setOnClickListener {
+            vTextButtonAddPost.apply { isVisible = !isVisible }
+            vTextButtonAddClaim.apply { isVisible = !isVisible }
+        }
+
+        vTextButtonAddClaim.setOnClickListener {
+            viewModel.editItem(null)
+            viewModel.isClaim = true
+            findNavController().navigate(getNewItemNavId())
+        }
+
+        vTextButtonAddPost.setOnClickListener {
+            viewModel.editItem(null)
+            viewModel.isClaim = false
+            findNavController().navigate(getNewItemNavId())
+        }
     }
 }

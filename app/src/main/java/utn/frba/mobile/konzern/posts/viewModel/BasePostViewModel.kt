@@ -20,13 +20,13 @@ abstract class BasePostViewModel : BaseViewModel() {
     val images = MutableLiveData<List<Uri>>()
 
     var selectedItem: Post? = null
-    private val _editEvent =
-        SingleLiveEvent<Any>()
+    private val _editEvent = SingleLiveEvent<Any>()
     val editEvent: LiveData<Any> get() = _editEvent
 
-    private val _showDetailEvent =
-        SingleLiveEvent<Any>()
+    private val _showDetailEvent = SingleLiveEvent<Any>()
     val showDetailEvent: LiveData<Any> get() = _showDetailEvent
+
+    var isClaim: Boolean = false
 
     fun initItemList(){
         if(itemList.value == null){
@@ -54,7 +54,7 @@ abstract class BasePostViewModel : BaseViewModel() {
         item.description = description
 
         this.launchControlledInBg(mainOperation = {
-            repository.save(item, images.value)
+            repository.save(item, images.value, isClaim)
             loadItemList()
         })
     }
@@ -92,6 +92,7 @@ abstract class BasePostViewModel : BaseViewModel() {
         else
             this.launchControlledInBg(mainOperation = {
                 selectedItem = repository.getItem(id)
+                isClaim = selectedItem!!.isClaim
             }, continuation = continuation)
     }
 
