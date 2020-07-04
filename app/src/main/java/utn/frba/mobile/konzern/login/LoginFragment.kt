@@ -25,12 +25,15 @@ import kotlin.math.log
 import kotlinx.android.synthetic.main.login_fragment_layout.*
 import kotlinx.android.synthetic.main.login_fragment_layout.view.*
 import utn.frba.mobile.konzern.MainActivity
+import utn.frba.mobile.konzern.profile.Profile
+import utn.frba.mobile.konzern.profile.ProfileRepository
 
 class LoginFragment : Fragment()  {
 
     private var loginView: LoginFragmenView? = null
     private lateinit var googleSignInClient : GoogleSignInClient
     private lateinit var firebaseAuth: FirebaseAuth
+    private val profileRepository = ProfileRepository()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -54,8 +57,9 @@ class LoginFragment : Fragment()  {
     override fun onStart() {
         super.onStart()
         if (firebaseAuth.currentUser != null) {
-            loginView?.successfulSignIn()
+            return goToLoginOrCompleteSignUp()
         }
+        vLoginProgressBar.visibility = View.GONE
     }
 
     override fun onCreateView(
@@ -67,7 +71,11 @@ class LoginFragment : Fragment()  {
     }
 
     private fun emailLogin() {
-        firebaseAuth.signInWithEmailAndPassword(vLoginEmailInput.text.toString(), vLoginPassword.text.toString())
+        val email = vLoginEmailInput.text.toString()
+        val pass = vLoginPassword.text.toString()
+        if (email.isEmpty() || pass.isEmpty())
+            return
+        firebaseAuth.signInWithEmailAndPassword(email, pass)
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
                     // val user = auth.currentUser TODO: Usar este user para manejar la persistencia
@@ -119,12 +127,23 @@ class LoginFragment : Fragment()  {
             .addOnCompleteListener(requireActivity()){ task ->
                 if (task.isSuccessful) {
                     Log.d("SignIn", "Success Firebase Register")
-                    loginView?.successfulSignIn()
+                    goToLoginOrCompleteSignUp()
                 } else {
                     Log.d("SignIn", "Failed Firebase Register")
                     loginView?.firebaseAuthProcessFailed()
                 }
             }
+    }
+
+    private fun goToLoginOrCompleteSignUp(){
+        profileRepository.getProfile(object : ProfileRepository.ProfileRepositoryInterface {
+            override fun onComplete(profile: Profile?) {
+                if (profile?.email.isNullOrEmpty())
+                    loginView?.completeSignUp()
+                else
+                    loginView?.successfulSignIn()
+            }
+        })
     }
     override fun onDetach() {
         super.onDetach()
@@ -152,5 +171,7 @@ class LoginFragment : Fragment()  {
         fun showFragment(fragment: Fragment)
 
         fun failedSignUpOrSignIn(message: String?)
+
+        fun completeSignUp()
     }
 }

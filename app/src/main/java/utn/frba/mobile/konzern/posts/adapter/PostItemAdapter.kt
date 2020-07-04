@@ -4,12 +4,20 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.VisibleForTesting
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.TooltipCompat
+import androidx.core.view.isVisible
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
+import kotlinx.android.synthetic.main.layout_post_item.view.*
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.posts.model.Post
 
@@ -47,6 +55,12 @@ class ItemPostAdapter(
         } else{
             aView.layoutButtons?.visibility = GONE
         }
+        if(item.isClaim) {
+            aView.isClaimIcon.visibility = VISIBLE
+            aView.isClaimIcon.setOnClickListener {
+                aView.tooltip.apply { isVisible = !isVisible }
+            }
+        }
     }
 }
 
@@ -64,4 +78,6 @@ class ItemPostViewHolder(view: View, var context: Context) : RecyclerView.ViewHo
     val layoutButtons: ViewGroup? = view.findViewById(R.id.layout_buttons)
     val btnEdit: Button? = view.findViewById(R.id.btn_edit)
     val btnDelete: Button? = view.findViewById(R.id.btn_delete)
+    val isClaimIcon: AppCompatImageButton = view.findViewById(R.id.post_item_claim)
+    val tooltip: TextView = view.findViewById(R.id.post_item_tooltip)
 }

@@ -67,6 +67,26 @@
     <string name="expenses_search_previous_expenses">Buscar...</string>
 
     <string name="expenses_toolbar_title">Expensas</string>
+    <string name="expenses_error_getting_info">Error al obtener expensas de la base de datos</string>
+    <string name="expenses_no_expenses_found">No se encontraron expensas para el usuario</string>
+    <string name="expenses_no_previous_expenses_found">No se encontraron expensas anteriores</string>
+    <string name="expenses_pdf_title">MIS EXPENSAS</string>
+    <string name="expenses_pdf_subtitle_month">Liquidación de mes:</string>
+    <string name="expenses_pdf_consortium_label">CONSORCIO</string>
+    <string name="expenses_pdf_consortium_name">Nombre:</string>
+    <string name="expenses_pdf_consortium_address">Domicilio:</string>
+    <string name="expenses_pdf_consortium_mail">Mail:</string>
+    <string name="expenses_pdf_consortium_phone">Teléfono:</string>
+    <string name="expenses_pdf_account_state">ESTADO DE CUENTAS</string>
+    <string name="expenses_pdf_apartment_label">Unidad Funcional:</string>
+    <string name="expenses_pdf_concepts_to_pay">Conceptos a pagar</string>
+    <string name="expenses_pdf_expenses_type_a">Expensa A:</string>
+    <string name="expenses_pdf_expenses_type_b">Expensa B:</string>
+    <string name="expenses_pdf_total_amount">TOTAL A PAGAR:</string>
+    <string name="expenses_pdf_expiration_date">Fecha Vencimiento:</string>
+    <string name="expenses_pdf_extra_info">FORMA DE PAGO</string>
+    <string name="expenses_pdf_extra_info_detail">INFORMAMOS A UD. QUE PUEDE REALIZAR EL PAGO DE LAS EXPENSAS DE LA SIGUIENTE MANERA:
+            1 - CHEQUE DEL TITULAR. 2 - DEPÓSITO EN CUENTA CORRIENTE. 3 - TRANSFERENCIA BANCARIA DESDE SU CUENTA CORRIENTE O CAJA DE AHORRO.</string>
 
     <!-- Contacto -->
     <string name="contact_telephone_title">Teléfono de contacto:</string>
@@ -87,6 +107,7 @@
     <string name="sign_up_complete_field">Complete este campo</string>
     <string name="sign_up_invalid_email">Ingrese un Email válido</string>
     <string name="sign_up_password_mismatch">Las contraseñas no coinciden</string>
+    <string name="sign_up_building_code_hint">Código de edificio</string>
     <string name="sign_up_password_longitude">La contraseña debe tener más de 6 caracteres</string>
 
     <!-- Home -->

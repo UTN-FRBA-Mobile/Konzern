@@ -2,7 +2,9 @@ package utn.frba.mobile.konzern
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import utn.frba.mobile.konzern.customviews.ToolbarMenuInterface
 import utn.frba.mobile.konzern.contact.ContactActivity
@@ -20,6 +22,10 @@ class MainActivity : AppCompatActivity(), ToolbarMenuInterface {
 
     override fun onMenuMyProfileClicked() {
         onGotToProfile()
+    }
+
+    override fun onMenuExpensesClicked() {
+        onGotToExpenses()
     }
 
     override fun onMenuSeeReservationsClicked() {
