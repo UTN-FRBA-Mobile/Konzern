@@ -3,46 +3,68 @@ package utn.frba.mobile.konzern.reservations
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.reservations_creation_fragment.*
 import utn.frba.mobile.konzern.R
+import utn.frba.mobile.konzern.reservations.model.Amenity
+import utn.frba.mobile.konzern.reservations.repository.AmenityRepository
 import java.text.SimpleDateFormat
 import java.util.*
+import android.R as rAndroid;
+import androidx.lifecycle.Observer
+import com.google.firebase.auth.FirebaseAuth
+import utn.frba.mobile.konzern.login.BaseSignUpFragment
+import utn.frba.mobile.konzern.reservations.repository.ReservationRepository
+import java.lang.RuntimeException
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class ReservationsCreationFragment : Fragment() {
+
+    private val viewModel: ReservationViewModel = ReservationViewModel()
+    val reservationRepository = ReservationRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.reservations_creation_fragment, container, false)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-/*
-        view.findViewById<Button>(R.id.vReservationsFormCreateBtn).setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-        }
-*/
-
         vReservationsFormCreateBtn.setOnClickListener {
-            requireActivity().onBackPressed()
-            //todo: agregar logica de guardar la reserva
+            createReservation()
         }
 
+        viewModel.amenities.observe(viewLifecycleOwner, Observer<List<Amenity>> { it ->
+            val adapter = ArrayAdapter(this.requireContext(), android.R.layout.simple_spinner_item, it.map { it.name})
+            vReservationsSelect.adapter = adapter
+        })
+
+        viewModel.saveEvent.observe(viewLifecycleOwner, Observer {
+            if (viewModel.amenityReserved) {
+                Toast.makeText(this.requireActivity(), "El amenity ya está reservado", Toast.LENGTH_SHORT).show()
+            } else {
+                viewModel.saveReservation(
+                    vReservationsSelect.selectedItem.toString(),
+                    vReservationsDay.text.toString(),
+                    vReservationsHour.text.toString()
+                )
+                findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            }
+        })
+
+        viewModel.initAmenities()
 
         //Calendar
         val c = Calendar.getInstance()
@@ -53,7 +75,7 @@ class ReservationsCreationFragment : Fragment() {
         //Button to show DatePicker
         vReservationsForm2Bton.setOnClickListener {
             val dpd = DatePickerDialog(requireContext() , DatePickerDialog.OnDateSetListener { view: DatePicker, mYear: Int, mMonth: Int, mDay: Int ->
-                vReservationsFormDate.setText("$mDay/$mMonth/$mYear")
+                vReservationsDay.setText("$mDay/$mMonth/$mYear")
             }, year, month, day)
 
             dpd.show()
@@ -64,13 +86,30 @@ class ReservationsCreationFragment : Fragment() {
             val cal = Calendar.getInstance()
             val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hour)
-                cal.set(Calendar.MINUTE, minute)
+                cal.set(Calendar.MINUTE, 0)
 
                 //set Text
-                vReservationsFormTime1.setText(SimpleDateFormat("HH:mm").format(cal.time))
+                vReservationsHour.setText(SimpleDateFormat("HH").format(cal.time))
             }
 
             TimePickerDialog(requireContext(), timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
         }
     }
+
+    private fun createReservation() {
+        if (validateForm()) {
+             viewModel.amenityReserved(
+                vReservationsSelect.selectedItem.toString(),
+                vReservationsDay.text.toString(),
+                vReservationsHour.text.toString()
+            )
+        }
+        else
+            Toast.makeText(this.requireActivity(), "Complete todos los campos", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun validateForm(): Boolean {
+        return (!(vReservationsDay.text.isNullOrEmpty() || vReservationsHour.text.isNullOrEmpty()))
+    }
+
 }
