@@ -39,6 +39,10 @@ abstract class BaseActivity: AppCompatActivity() {
         setSupportActionBar(vTopAppBar)
         vNavigation.setNavigationItemSelectedListener { menuItem ->
             when(menuItem.itemId) {
+                R.id.nav_home -> {
+                    goToHome()
+                    false
+                }
                 R.id.nav_profile -> {
                     goToProfile()
                     false
@@ -92,13 +96,15 @@ abstract class BaseActivity: AppCompatActivity() {
         vActivityBaseContent.visibility = View.VISIBLE
     }
 
-    fun changeModule(intent: Intent){
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START)
-        }
-        startActivity(intent)
-        if(startsNewFlow)
-            finish()
+    fun changeModule(intent: Intent?){
+        if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START)
+        if(intent?.component?.className == this.javaClass.name) return
+        if(intent != null) startActivity(intent)
+        if(startsNewFlow) finish()
+    }
+
+    fun goToHome() {
+        changeModule(null)
     }
 
     fun goToProfile() {
