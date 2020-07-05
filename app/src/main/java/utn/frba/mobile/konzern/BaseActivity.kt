@@ -7,9 +7,11 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_base.*
 import utn.frba.mobile.konzern.contact.ContactActivity
 import utn.frba.mobile.konzern.expenses.ExpensesActivity
+import utn.frba.mobile.konzern.login.LoginActivity
 import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
 
@@ -60,7 +62,7 @@ abstract class BaseActivity: AppCompatActivity() {
                     false
                 }
                 R.id.nav_logout -> {
-                    Toast.makeText(this, getString(R.string.custom_toolbar_logout_item), Toast.LENGTH_SHORT).show()
+                    logout()
                     false
                 }
                 else -> false
@@ -121,5 +123,10 @@ abstract class BaseActivity: AppCompatActivity() {
 
     fun goToExpenses() {
         changeModule(Intent(this, ExpensesActivity::class.java))
+    }
+
+    fun logout() {
+        FirebaseAuth.getInstance().signOut()
+        changeModule((Intent(this, LoginActivity::class.java)))
     }
 }
