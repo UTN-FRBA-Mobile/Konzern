@@ -28,7 +28,7 @@ class CustomToolbar(context: Context, attrs: AttributeSet) : ConstraintLayout(co
         if (context is ToolbarMenuInterface) {
             menuInterface = context
         } else {
-            throw RuntimeException("$context must be ToolbarMenuInterface")
+            throw RuntimeException("$context must be ToolbarMenuInterface") as Throwable
         }
 
         vCustomToolbarDotsMore.setOnClickListener { showPopup(this) }

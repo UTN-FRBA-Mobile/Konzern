@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_news"
+    app:startDestination="@id/newsMainFragment">
+    <fragment
+        android:id="@+id/newsMainFragment"
+        android:name="utn.frba.mobile.konzern.news.NewsMainFragment"
+        android:label="NewsMainFragment" >
+        <action
+            android:id="@+id/action_newsMainFragment_to_newsDetailFragment"
+            app:destination="@id/NewsDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/NewsDetailFragment"
+        android:name="utn.frba.mobile.konzern.news.NewsDetailFragment"
+        android:label="NewsDetailFragment" />
+</navigation>

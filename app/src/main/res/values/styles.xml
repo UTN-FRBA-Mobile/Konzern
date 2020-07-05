@@ -161,4 +161,10 @@
         <item name="sliderIndicatorUnselectedColor">#FFFFFF</item>
         <item name="sliderScrollTimeInSec">1</item>
     </style>
+
+    <style name="SeparatorView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:height">1dp</item>
+        <item name="color">@color/black</item>
+    </style>
 </resources>
