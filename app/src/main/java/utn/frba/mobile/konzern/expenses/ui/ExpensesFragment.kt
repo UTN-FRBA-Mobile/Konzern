@@ -54,7 +54,7 @@ class ExpensesFragment : Fragment() {
         expensesPdfAdapter = ExpensesPdfAdapter()
         expensesPdfAdapter?.permitPDFFile(this.requireActivity())
 
-        val filteredExpensesList = expensesList.filter { it.userId == FirebaseAuth.getInstance().currentUser?.uid }
+        val filteredExpensesList = expensesList.filter { it.userId == "eOJisFO0ICciSVyhZnjrVMMe1Mi2" }// FirebaseAuth.getInstance().currentUser?.uid }
         val sortedExpensesList = filteredExpensesList.sortedWith(compareByDescending<Expenses> { it.year.toInt() }.thenByDescending{ it.month.toInt() })
 
         if(sortedExpensesList.isEmpty()) {
@@ -126,7 +126,7 @@ class ExpensesFragment : Fragment() {
 
         }
 
-        vExpensesProgressBar.visibility = GONE
+        expensesView?.hideProgress()
 
     }
 
@@ -174,6 +174,10 @@ class ExpensesFragment : Fragment() {
         fun errorGettingConsortiumInfo()
 
         fun downloadPDFSuccess(path: String)
+
+        fun showProgress()
+
+        fun hideProgress()
     }
 
 

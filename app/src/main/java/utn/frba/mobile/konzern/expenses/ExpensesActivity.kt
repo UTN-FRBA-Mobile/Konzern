@@ -3,6 +3,7 @@ package utn.frba.mobile.konzern.expenses
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -25,6 +26,7 @@ class ExpensesActivity : AppCompatActivity(), ExpensesFragment.ExpensesFragmentV
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expenses)
         vActivityExpensesToolbar.setTitle(getString(R.string.home_expenses))
+        showProgress()
         if(savedInstanceState == null) {
             expensesFragment = ExpensesFragment.newInstance()
         }
@@ -76,6 +78,16 @@ class ExpensesActivity : AppCompatActivity(), ExpensesFragment.ExpensesFragmentV
         val intent = Intent(this, ContactActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    override fun showProgress(){
+        vActivityContentExpenses.visibility = View.GONE
+        vExpensesProgressBarLayout.visibility = View.VISIBLE
+    }
+
+    override fun hideProgress(){
+        vExpensesProgressBarLayout.visibility = View.GONE
+        vActivityContentExpenses.visibility = View.VISIBLE
     }
 
 
