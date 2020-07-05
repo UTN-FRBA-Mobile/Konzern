@@ -4,11 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_base_with_toolbar.*
+import utn.frba.mobile.konzern.MainActivity
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.contact.ui.ContactFragment
 import utn.frba.mobile.konzern.customviews.ToolbarMenuInterface
 import utn.frba.mobile.konzern.expenses.ExpensesActivity
+import utn.frba.mobile.konzern.login.LoginActivity
 import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
 
@@ -53,4 +56,11 @@ class ContactActivity : AppCompatActivity() , ContactFragment.ContactView, Toolb
     }
 
     override fun onMenuContactInfoClicked() {}
+
+    override fun onMenuLogoutClicked() {
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

@@ -68,8 +68,7 @@ class CustomToolbar(context: Context, attrs: AttributeSet) : ConstraintLayout(co
                 false
             }
             4 -> {
-                //TODO: Cerrar Sesión
-                Toast.makeText(context, context.getString(R.string.custom_toolbar_logout_item), Toast.LENGTH_SHORT).show()
+                menuInterface?.onMenuLogoutClicked()
                 false
             }
             else -> false
@@ -82,7 +81,7 @@ class CustomToolbar(context: Context, attrs: AttributeSet) : ConstraintLayout(co
             this.add(GROUP_ID, 1, 1, context.getString(R.string.custom_toolbar_expenses_item))
             this.add(GROUP_ID, 2, 2, context.getString(R.string.custom_toolbar_reservations_item))
             this.add(GROUP_ID, 3, 3, context.getString(R.string.custom_toolbar_contact_info_item))
-            this.add(GROUP_ID, 3, 4, context.getString(R.string.custom_toolbar_logout_item))
+            this.add(GROUP_ID, 4, 4, context.getString(R.string.custom_toolbar_logout_item))
         }
     }
 
@@ -101,4 +100,6 @@ interface ToolbarMenuInterface {
     fun onToolbarLogoClicked()
 
     fun onMenuContactInfoClicked()
+
+    fun onMenuLogoutClicked()
 }

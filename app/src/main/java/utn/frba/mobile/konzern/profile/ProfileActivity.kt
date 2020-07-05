@@ -3,11 +3,14 @@ package utn.frba.mobile.konzern.profile
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_profile.*
+import utn.frba.mobile.konzern.MainActivity
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.contact.ContactActivity
 import utn.frba.mobile.konzern.customviews.ToolbarMenuInterface
 import utn.frba.mobile.konzern.expenses.ExpensesActivity
+import utn.frba.mobile.konzern.login.LoginActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
 
 class ProfileActivity : AppCompatActivity(), ToolbarMenuInterface {
@@ -42,4 +45,10 @@ class ProfileActivity : AppCompatActivity(), ToolbarMenuInterface {
         finish()
     }
 
+    override fun onMenuLogoutClicked() {
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

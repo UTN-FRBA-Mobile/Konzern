@@ -6,12 +6,15 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import com.google.firebase.auth.FirebaseAuth
 import utn.frba.mobile.konzern.BuildConfig
 import utn.frba.mobile.konzern.R
 import kotlinx.android.synthetic.main.activity_expenses.*
+import utn.frba.mobile.konzern.MainActivity
 import utn.frba.mobile.konzern.contact.ContactActivity
 import utn.frba.mobile.konzern.customviews.ToolbarMenuInterface
 import utn.frba.mobile.konzern.expenses.ui.ExpensesFragment
+import utn.frba.mobile.konzern.login.LoginActivity
 import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
 import java.io.File
@@ -78,5 +81,11 @@ class ExpensesActivity : AppCompatActivity(), ExpensesFragment.ExpensesFragmentV
         finish()
     }
 
+    override fun onMenuLogoutClicked() {
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 
 }

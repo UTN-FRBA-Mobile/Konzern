@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import utn.frba.mobile.konzern.customviews.ToolbarMenuInterface
 import utn.frba.mobile.konzern.contact.ContactActivity
 import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
 import utn.frba.mobile.konzern.expenses.ExpensesActivity
+import utn.frba.mobile.konzern.login.LoginActivity
 
 
 class MainActivity : AppCompatActivity(), ToolbarMenuInterface {
@@ -36,6 +38,13 @@ class MainActivity : AppCompatActivity(), ToolbarMenuInterface {
 
     override fun onMenuContactInfoClicked() {
         onGoToContact()
+    }
+
+    override fun onMenuLogoutClicked() {
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun onGotToExpenses(){

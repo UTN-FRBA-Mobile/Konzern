@@ -4,10 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_post.vActivityPostToolbar
+import utn.frba.mobile.konzern.MainActivity
 import utn.frba.mobile.konzern.contact.ContactActivity
 import utn.frba.mobile.konzern.customviews.ToolbarMenuInterface
 import utn.frba.mobile.konzern.expenses.ExpensesActivity
+import utn.frba.mobile.konzern.login.LoginActivity
 import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
 import utn.frba.mobile.konzern.utils.BaseViewModel
@@ -62,6 +65,13 @@ abstract class BaseActivity : AppCompatActivity(), ToolbarMenuInterface {
 
     override fun onMenuExpensesClicked() {
         val intent = Intent(this, ExpensesActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    override fun onMenuLogoutClicked() {
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
