@@ -1,13 +1,9 @@
 package utn.frba.mobile.konzern
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -17,14 +13,27 @@ import utn.frba.mobile.konzern.expenses.ExpensesActivity
 import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
 
+
 abstract class BaseActivity: AppCompatActivity() {
     abstract fun getContentLayout(): Int
     protected abstract fun getViewTitle(): String?
+    protected open val startsNewFlow: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
+        setActionBar()
+    }
 
+    private fun setModuleContentView(){
+        val vi = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val v: View = vi.inflate(getContentLayout(), null)
+        v.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        vActivityBaseContent.removeAllViews()
+        vActivityBaseContent.addView(v)
+    }
+
+    private fun setActionBar(){
         setModuleContentView()
         vTopAppBar.title = getViewTitle()
         setSupportActionBar(vTopAppBar)
@@ -35,7 +44,7 @@ abstract class BaseActivity: AppCompatActivity() {
                     false
                 }
                 R.id.nav_expenses -> {
-                    goToExpensesClicked()
+                    goToExpenses()
                     false
                 }
                 R.id.nav_booking -> {
@@ -43,7 +52,7 @@ abstract class BaseActivity: AppCompatActivity() {
                     false
                 }
                 R.id.nav_contact -> {
-                    ogoToContactInfo()
+                    goToContactInfo()
                     false
                 }
                 R.id.nav_logout -> {
@@ -53,15 +62,6 @@ abstract class BaseActivity: AppCompatActivity() {
                 else -> false
             }
         }
-    }
-
-    @SuppressLint("InflateParams")
-    fun setModuleContentView(){
-        val vi = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val v: View = vi.inflate(getContentLayout(), null)
-        v.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        vActivityBaseContent.removeAllViews()
-        vActivityBaseContent.addView(v)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -92,27 +92,28 @@ abstract class BaseActivity: AppCompatActivity() {
         vActivityBaseContent.visibility = View.VISIBLE
     }
 
-    fun goToProfile() {
-        val intent = Intent(this, ProfileActivity::class.java)
+    fun changeModule(intent: Intent){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START)
+        }
         startActivity(intent)
-        finish()
+        if(startsNewFlow)
+            finish()
+    }
+
+    fun goToProfile() {
+        changeModule(Intent(this, ProfileActivity::class.java))
     }
 
     fun goToBooking() {
-        val intent = Intent(this, ReservationsActivity::class.java)
-        startActivity(intent)
-        finish()
+        changeModule(Intent(this, ReservationsActivity::class.java))
     }
 
-    fun ogoToContactInfo() {
-        val intent = Intent(this, ContactActivity::class.java)
-        startActivity(intent)
-        finish()
+    fun goToContactInfo() {
+        changeModule(Intent(this, ContactActivity::class.java))
     }
 
-    fun goToExpensesClicked() {
-        val intent = Intent(this, ExpensesActivity::class.java)
-        startActivity(intent)
-        finish()
+    fun goToExpenses() {
+        changeModule(Intent(this, ExpensesActivity::class.java))
     }
 }

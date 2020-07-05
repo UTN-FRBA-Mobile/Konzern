@@ -20,12 +20,7 @@
     <fragment
         android:id="@+id/ItemPostFragment"
         android:name="utn.frba.mobile.konzern.posts.ui.PostDetailFragment"
-        tools:layout="@layout/fragment_post_detail">
-
-        <argument
-            android:name="itemPostFragmentArgs"
-            app:argType="utn.frba.mobile.konzern.posts.model.Post" />
-    </fragment>
+        tools:layout="@layout/fragment_post_detail"/>
 
     <fragment
         android:id="@+id/NewItemPostFragment"
