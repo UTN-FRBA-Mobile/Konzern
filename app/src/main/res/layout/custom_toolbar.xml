@@ -28,11 +28,11 @@
         tools:text="Konzern"/>
 
     <ImageView
-        android:id="@+id/vCustomToolbarDotsMore"
+        android:id="@+id/vCustomToolbarMenuMore"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:src="@drawable/dots_more"
-        android:contentDescription="@string/custom_toolbar_dots_img"
+        android:src="@drawable/ic_menu_black_24dp"
+        android:contentDescription="@string/custom_toolbar_menu_img"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         app:layout_constraintTop_toTopOf="@id/vCustomToolbarLogo"
