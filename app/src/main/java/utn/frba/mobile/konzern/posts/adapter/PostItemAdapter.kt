@@ -57,9 +57,7 @@ class ItemPostAdapter(
         }
         if(item.isClaim) {
             aView.isClaimIcon.visibility = VISIBLE
-            aView.isClaimIcon.setOnClickListener {
-                aView.tooltip.apply { isVisible = !isVisible }
-            }
+            aView.claimText.visibility = VISIBLE
         }
     }
 }
@@ -79,5 +77,5 @@ class ItemPostViewHolder(view: View, var context: Context) : RecyclerView.ViewHo
     val btnEdit: Button? = view.findViewById(R.id.btn_edit)
     val btnDelete: Button? = view.findViewById(R.id.btn_delete)
     val isClaimIcon: AppCompatImageButton = view.findViewById(R.id.post_item_claim)
-    val tooltip: TextView = view.findViewById(R.id.post_item_tooltip)
+    val claimText: TextView = view.findViewById(R.id.post_item_claim_text)
 }

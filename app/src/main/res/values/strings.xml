@@ -43,6 +43,8 @@
     <string name="post_item_edit">Editar</string>
     <string name="post_item_remove">Eliminar</string>
     <string name="error">Error</string>
+    <string name="reclamo">Reclamo</string>
+
 
     <!-- Perfil -->
     <string name="profile_toolbar_title">Mi Perfil</string>
