@@ -7,16 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_post_item.*
 import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.posts.adapter.ImageSliderAdapter
 import utn.frba.mobile.konzern.posts.model.Post
+import utn.frba.mobile.konzern.posts.viewModel.BasePostViewModel
+import utn.frba.mobile.konzern.posts.viewModel.PostViewModel
 import utn.frba.mobile.konzern.utils.FilePickerManager
 
 class PostItemFragment : PostBaseFragment(), FilePickerManager.ResultListener {
     private lateinit var filePickerManager: FilePickerManager
+
+    override fun getCustomViewModel(): BasePostViewModel {
+        val vm: PostViewModel by activityViewModels()
+        return vm
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -24,9 +24,21 @@
         android:textSize="21sp"
         android:textStyle="italic"
         tools:text="Abril"
+        android:paddingRight="10dp"
         app:layout_constraintTop_toTopOf="@id/vExpensesItemMonthLabel"
         app:layout_constraintBottom_toBottomOf="@id/vExpensesItemMonthLabel"
         app:layout_constraintStart_toEndOf="@id/vExpensesItemMonthLabel"/>
+
+    <TextView
+        android:id="@+id/vExpensesItemYearValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="21sp"
+        android:textStyle="italic"
+        tools:text="2020"
+        app:layout_constraintTop_toTopOf="@id/vExpensesItemMonthLabel"
+        app:layout_constraintBottom_toBottomOf="@id/vExpensesItemMonthLabel"
+        app:layout_constraintStart_toEndOf="@id/vExpensesItemMonthValue"/>
 
     <ImageButton
         android:id="@+id/vExpensesItemDownloadButton"
