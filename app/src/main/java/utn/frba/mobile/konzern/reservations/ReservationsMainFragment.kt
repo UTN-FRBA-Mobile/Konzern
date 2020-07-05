@@ -1,5 +1,6 @@
 package utn.frba.mobile.konzern.reservations
 
+import android.hardware.TriggerEventListener
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import utn.frba.mobile.konzern.posts.model.Post
 import utn.frba.mobile.konzern.reservations.model.Reservation
 import androidx.lifecycle.Observer
 import utn.frba.mobile.konzern.reservations.adapter.ReservationAdapter
+import java.util.*
 
 class ReservationsMainFragment : Fragment() {
 
@@ -40,6 +42,15 @@ class ReservationsMainFragment : Fragment() {
         view.findViewById<Button>(R.id.vReservationsMainToCreation).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+        initDayReservations()
+    }
+
+    private fun initDayReservations(){
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        fetchDayReservations(year, month, day)
     }
 
     private fun fetchDayReservations(year: Int, month: Int, day: Int) {

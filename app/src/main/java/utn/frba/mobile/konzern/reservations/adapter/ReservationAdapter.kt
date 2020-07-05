@@ -34,10 +34,11 @@ class ReservationAdapter(
     }
 
     private fun setView(aView: ReservationViewHolder, item: Reservation) {
-        //aView.tvDate?.text = item.getFormattedDate()
-        val date = item.date
+        var date: Array<String> = item.date.split('/').toTypedArray()
+        date[1] = (date[1].toInt() + 1).toString() // No sabemos por qué, pero el calendario resta un mes. Así que hacemos este feo fix :(
+        var forrmatedDate = date.joinToString("/")
         val hour = item.hour.toString() + ":00"
-        aView.dateMain?.text = "$date $hour"
+        aView.dateMain?.text = "$forrmatedDate $hour"
         aView.amenityMain?.text = viewModel.getById(item.amenityId).name
 
     }
