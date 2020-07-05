@@ -2,10 +2,10 @@ package utn.frba.mobile.konzern.home
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -15,10 +15,12 @@ import utn.frba.mobile.konzern.R
 import utn.frba.mobile.konzern.home.adapter.HomePostItemAdapter
 import utn.frba.mobile.konzern.home.adapter.LoadingItemAdapter
 import utn.frba.mobile.konzern.news.NewsActivity
+import utn.frba.mobile.konzern.news.NewsViewModel
+import utn.frba.mobile.konzern.posts.BasePostActivity
 import utn.frba.mobile.konzern.posts.PostActivity
 import utn.frba.mobile.konzern.posts.model.Post
-import utn.frba.mobile.konzern.news.NewsViewModel
 import utn.frba.mobile.konzern.posts.viewModel.PostViewModel
+import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.utils.ScaleLayoutManager
 
 class HomeFragment : Fragment(), HomePostItemAdapter.OnHomeItemPostClickListener {
@@ -50,7 +52,7 @@ class HomeFragment : Fragment(), HomePostItemAdapter.OnHomeItemPostClickListener
             }
         })
 
-        postViewModel.initItemList()
+        postViewModel.initItemList(true)
     }
 
     private fun setNewsModuleView(){
@@ -64,7 +66,7 @@ class HomeFragment : Fragment(), HomePostItemAdapter.OnHomeItemPostClickListener
             }
         })
 
-        newsViewModel.initItemList()
+        newsViewModel.initItemList(true)
     }
 
     private fun setRecycler(items: List<Post>, recyclerView: RecyclerView, tag: String){
@@ -96,11 +98,14 @@ class HomeFragment : Fragment(), HomePostItemAdapter.OnHomeItemPostClickListener
 
     override fun onItemClick(id: String, tag: String) {
         if(tag == RECYCLER_POSTS_TAG) {
-            postViewModel.showDetailItem(id)
-            findNavController().navigate(R.id.action_HomeFragment_to_ItemPostFragment)
+            val intent = Intent(requireContext(), PostActivity::class.java)
+            intent.putExtra(BasePostActivity.NAV_POST_ITEM_ID, id)
+            startActivity(intent)
         } else if(tag == RECYCLER_NEWS_TAG){
-            newsViewModel.showDetailItem(id)
-            findNavController().navigate(R.id.action_HomeFragment_to_NewsDetailFragment)
+            val intent = Intent(requireContext(), NewsActivity::class.java)
+            intent.putExtra(BasePostActivity.NAV_POST_ITEM_ID, id)
+            startActivity(intent)
         }
     }
+
 }

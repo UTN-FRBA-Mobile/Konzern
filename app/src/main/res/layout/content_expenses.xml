@@ -6,23 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".expenses.ExpensesActivity">
 
-    <utn.frba.mobile.konzern.customviews.CustomToolbar
-        android:id="@+id/vActivityExpensesToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/vExpensesFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:name="utn.frba.mobile.konzern.expenses.ui.ExpensesFragment"
         tools:layout="@layout/expenses_fragment_layout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vActivityExpensesToolbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

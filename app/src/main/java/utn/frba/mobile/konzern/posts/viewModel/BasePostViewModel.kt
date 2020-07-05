@@ -28,8 +28,8 @@ abstract class BasePostViewModel : BaseViewModel() {
 
     var isClaim: Boolean = false
 
-    fun initItemList(){
-        if(itemList.value == null){
+    fun initItemList(forceUpdate: Boolean = false){
+        if(itemList.value == null || forceUpdate){
             loadItemList()
         }
     }
@@ -80,7 +80,7 @@ abstract class BasePostViewModel : BaseViewModel() {
         )
     }
 
-    private fun loadItemList(){
+    fun loadItemList(){
         this.launchControlledInBg(mainOperation = {
             itemList.postValue(repository.getItemList())
         })
