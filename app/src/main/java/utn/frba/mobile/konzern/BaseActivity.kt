@@ -128,5 +128,6 @@ abstract class BaseActivity: AppCompatActivity() {
     fun logout() {
         FirebaseAuth.getInstance().signOut()
         changeModule((Intent(this, LoginActivity::class.java)))
+        finish()
     }
 }
