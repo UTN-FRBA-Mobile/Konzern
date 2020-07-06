@@ -20,6 +20,7 @@ abstract class BaseActivity: AppCompatActivity() {
     abstract fun getContentLayout(): Int
     protected abstract fun getViewTitle(): String?
     protected open val startsNewFlow: Boolean = true
+    open fun refreshData(){ }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,6 +108,7 @@ abstract class BaseActivity: AppCompatActivity() {
 
     fun goToHome() {
         changeModule(null)
+        refreshData()
     }
 
     fun goToProfile() {
