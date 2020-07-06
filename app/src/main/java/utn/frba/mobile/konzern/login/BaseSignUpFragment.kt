@@ -38,8 +38,8 @@ abstract class BaseSignUpFragment : Fragment() {
         val db = FirebaseFirestore.getInstance()
         val user = hashMapOf(
             "email" to email,
-            "phone" to info.text.toString(),
-            "info" to phone.text.toString(),
+            "phone" to phone.text.toString(),
+            "info" to info.text.toString(),
             "uid" to uid
         )
         db.collection("users_data")
