@@ -38,3 +38,15 @@ No más discusiones con los vecinos para reservar los espacios comunes. Konzern 
 
 
 No dejes de probar Konzern y acercarte a esta nueva experiencia para gestionar tu consorcio.
+
+
+![Splash](https://github.com/UTN-FRBA-Mobile/Konzern/blob/master/img/1_splash_image.jpg)
+![Principal](https://github.com/UTN-FRBA-Mobile/Konzern/blob/master/img/2_principal_layout.jpg)
+![Novedades](https://github.com/UTN-FRBA-Mobile/Konzern/blob/master/img/3_novedades_layout.jpg)
+![Publicaciones](https://github.com/UTN-FRBA-Mobile/Konzern/blob/master/img/4_publicaciones_layout.jpg)
+![NuevaPublicacion](https://github.com/UTN-FRBA-Mobile/Konzern/blob/master/img/5_nueva_publicacion_layout.jpg)
+![Reservas](https://github.com/UTN-FRBA-Mobile/Konzern/blob/master/img/6_reservas_layout.jpg)
+![NuevaReserva](https://github.com/UTN-FRBA-Mobile/Konzern/blob/master/img/7_nueva_reserva_layout.jpg)
+![Expensas](https://github.com/UTN-FRBA-Mobile/Konzern/blob/master/img/8_expensas_layout.jpg)
+![Perfil](https://github.com/UTN-FRBA-Mobile/Konzern/blob/master/img/9_perfil_layout.jpg)
+![Contacto](https://github.com/UTN-FRBA-Mobile/Konzern/blob/master/img/10_contacto_layout.jpg)
