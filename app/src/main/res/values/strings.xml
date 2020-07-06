@@ -115,5 +115,6 @@
     <string name="home_show_all">Ver todas</string>
     <string name="title_posts">Publicaciones</string>
     <string name="title_news">Novedades</string>
+    <string name="title_reservations">Reservas</string>
 
 </resources>

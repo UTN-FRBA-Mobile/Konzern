@@ -4,19 +4,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
 import utn.frba.mobile.konzern.R
-import utn.frba.mobile.konzern.posts.model.Post
 import utn.frba.mobile.konzern.reservations.ReservationViewModel
 import utn.frba.mobile.konzern.reservations.model.Reservation
 
 class ReservationAdapter(
     private var items: List<Reservation>?,
-    private var viewModel: ReservationViewModel
+    private var viewModel: ReservationViewModel,
+    private val onClickListener: OnReservationClickListener
 ) : RecyclerView.Adapter<ReservationViewHolder>() {
     override fun getItemCount(): Int = items?.size ?: 0
 
@@ -34,16 +32,28 @@ class ReservationAdapter(
     }
 
     private fun setView(aView: ReservationViewHolder, item: Reservation) {
-        //aView.tvDate?.text = item.getFormattedDate()
-        val date = item.date
+        var date: Array<String> = item.date.split('/').toTypedArray()
+        date[1] = (date[1].toInt() + 1).toString() // No sabemos por qué, pero el calendario resta un mes. Así que hacemos este feo fix :(
+        var forrmatedDate = date.joinToString("/")
         val hour = item.hour.toString() + ":00"
-        aView.dateMain?.text = "$date $hour"
+        aView.dateMain?.text = "$forrmatedDate $hour"
         aView.amenityMain?.text = viewModel.getById(item.amenityId).name
 
+        if (item.isOwnedByUser() && !item.id.isNullOrEmpty()){
+            aView.deleteBtn?.apply {
+                visibility = View.VISIBLE
+                setOnClickListener { onClickListener.onDeleteClick(item.id!!, item.date) }
+            }
+        }
     }
+}
+
+interface OnReservationClickListener{
+    fun onDeleteClick(id: String, date: String)
 }
 
 class ReservationViewHolder(view: View, var context: Context) : RecyclerView.ViewHolder(view) {
     val dateMain: TextView? = view.findViewById(R.id.card_res_date)
     val amenityMain: TextView? = view.findViewById(R.id.reservation_amenity)
+    val deleteBtn: ImageView? = view.findViewById(R.id.reservation_delete)
 }
