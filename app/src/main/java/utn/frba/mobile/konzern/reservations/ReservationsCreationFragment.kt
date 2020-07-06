@@ -73,12 +73,17 @@ class ReservationsCreationFragment : Fragment() {
         val day = c.get(Calendar.DAY_OF_MONTH)
 
         //Button to show DatePicker
-        vReservationsForm2Bton.setOnClickListener {
+        vReservationsDay.keyListener = null
+        vReservationsDay.setOnClickListener {
             val dpd = DatePickerDialog(requireContext() , DatePickerDialog.OnDateSetListener { view: DatePicker, mYear: Int, mMonth: Int, mDay: Int ->
                 vReservationsDay.setText("$mDay/$mMonth/$mYear")
             }, year, month, day)
 
             dpd.show()
+        }
+
+        vReservationsFormCancelBtn.setOnClickListener {
+            findNavController().navigateUp()
         }
 
         //Button to show TimePicker
