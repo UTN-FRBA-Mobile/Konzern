@@ -31,11 +31,11 @@ class LoginActivity : AppCompatActivity(), LoginFragment.LoginFragmenView, Forgo
     }
 
     override fun showSuccessSignInToast() {
-        Toast.makeText(this, "Sign In Successful", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
     }
 
     override fun successfulSignUp() {
-        Toast.makeText(this, "Sign Up Successful", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
         successfulSignIn()
     }
 

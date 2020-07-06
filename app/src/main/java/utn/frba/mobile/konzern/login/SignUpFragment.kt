@@ -1,30 +1,16 @@
 package utn.frba.mobile.konzern.login
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up.view.*
 import kotlinx.android.synthetic.main.fragment_sign_up.view.vSignUpEmail
-import kotlinx.android.synthetic.main.login_fragment_layout.*
-import utn.frba.mobile.konzern.MainActivity
-
 import utn.frba.mobile.konzern.R
-import utn.frba.mobile.konzern.profile.Profile
-import java.lang.RuntimeException
-import kotlin.math.sign
-
 
 class SignUpFragment : BaseSignUpFragment() {
 
@@ -48,36 +34,37 @@ class SignUpFragment : BaseSignUpFragment() {
 
 
     private fun validateEmail(): Boolean {
+        vLayoutSignUpMail.error = null
         return when {
             vSignUpEmail.text.isNullOrEmpty() -> {
-                vSignUpEmail.error = getString(R.string.sign_up_button)
+                vLayoutSignUpMail.error = getString(R.string.sign_up_complete_field)
                 false
             }
-            !Patterns.EMAIL_ADDRESS.matcher(vSignUpEmail.text).matches() -> {
-                vSignUpEmail.error = getString(R.string.sign_up_invalid_email)
+            !Patterns.EMAIL_ADDRESS.matcher(vSignUpEmail.text.toString()).matches() -> {
+                vLayoutSignUpMail.error = getString(R.string.sign_up_invalid_email)
                 false
             }
             else -> {
-                vSignUpEmail.error = null
                 true
             }
         }
     }
 
     private fun validatePasswords(): Boolean {
+        vLayoutSignUpPassword.error = null
+        vLayoutSignUpRepeatPassword.error = null
+
         return when {
-            vSignUpPassword.text.toString() != vSignUpRepeatPassword.text.toString() -> {
-                vSignUpPassword.error = getString(R.string.sign_up_password_mismatch)
-                vSignUpRepeatPassword.error = getString(R.string.sign_up_password_mismatch)
+            vSignUpPassword.text.toString().length < 6 -> {
+                vLayoutSignUpPassword.error = getString(R.string.sign_up_password_longitude)
                 false
             }
-            vSignUpPassword.text.toString().length < 6 -> {
-                vSignUpPassword.error = getString(R.string.sign_up_password_longitude)
+            vSignUpPassword.text.toString() != vSignUpRepeatPassword.text.toString() -> {
+                vLayoutSignUpRepeatPassword.error = getString(R.string.sign_up_password_mismatch)
                 false
             }
             else -> {
-                vSignUpPassword.error = null
-                vSignUpRepeatPassword.error = null
+
                 true
             }
         }
@@ -90,6 +77,7 @@ class SignUpFragment : BaseSignUpFragment() {
     private fun createAccount() {
         var email = vSignUpEmail.text.toString()
         if (validateForm()) {
+            showProgress(true)
             auth.createUserWithEmailAndPassword(email, vSignUpPassword.text.toString())
                 .addOnCompleteListener() { task ->
                     if (task.isSuccessful) {
@@ -97,6 +85,7 @@ class SignUpFragment : BaseSignUpFragment() {
                         // val user = auth.currentUser TODO: Usar este user para manejar la persistencia
                     } else {
                         signUpView?.failedSignUpOrSignIn(task.exception?.message)
+                        showProgress(false)
                     }
                 }
         } else {

@@ -11,7 +11,7 @@
     <string name="login_title">Login or SignUp</string>
     <string name="login_email_hint">E-Mail</string>
     <string name="login_password_hint">Contraseña</string>
-    <string name="login_repeat_password_hint">Repetir Password</string>
+    <string name="login_repeat_password_hint">Repetir contraseña</string>
     <string name="login_forgot_my_password">Olvidé mi contraseña</string>
     <string name="login_sign_in_button_text">Iniciar Sesión</string>
     <string name="login_sign_up_button_text">Registrarme</string>

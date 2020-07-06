@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_complete_sign_up.*
@@ -28,10 +30,10 @@ class CompleteSignUpFragment : BaseSignUpFragment() {
         var user = auth.currentUser
         val email: String = user?.email as String
         view.vCompleteSingUpButton.setOnClickListener {
+            showProgress(true)
             createUserData(email, user?.uid, vCompleteSignUpPhone, vCompleteSignUpInfo)
         }
     }
-
 
     companion object {
         @JvmStatic
