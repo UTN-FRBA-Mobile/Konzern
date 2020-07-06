@@ -67,7 +67,13 @@ class ReservationRepository {
 
     private fun retrieveItem(document: DocumentSnapshot): Reservation?{
         var item = document.toObject(Reservation::class.java)
-        //item!!.id = document.id
+        if(item != null) {
+            item.id = document.id
+        }
         return item
+    }
+
+    fun deleteReservation(id: String) {
+        db.collection(dbCollectionName).document(id).delete()
     }
 }
