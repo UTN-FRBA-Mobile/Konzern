@@ -3,6 +3,7 @@ package utn.frba.mobile.konzern.expenses
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import utn.frba.mobile.konzern.BaseActivity
@@ -13,7 +14,6 @@ import java.io.File
 
 
 class ExpensesActivity : BaseActivity(), ExpensesFragment.ExpensesFragmentView{
-    private lateinit var expensesFragment: ExpensesFragment
 
     override fun getContentLayout(): Int {
         return R.layout.content_expenses
@@ -25,10 +25,7 @@ class ExpensesActivity : BaseActivity(), ExpensesFragment.ExpensesFragmentView{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        if(savedInstanceState == null) {
-            expensesFragment = ExpensesFragment.newInstance()
-        }
+        showProgress()
     }
 
     override fun errorGettingExpensesInfo() {
@@ -54,4 +51,5 @@ class ExpensesActivity : BaseActivity(), ExpensesFragment.ExpensesFragmentView{
             }
         }
     }
+
 }

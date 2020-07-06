@@ -30,7 +30,6 @@ import java.lang.RuntimeException
 class ReservationsCreationFragment : Fragment() {
 
     private val viewModel: ReservationViewModel = ReservationViewModel()
-    val reservationRepository = ReservationRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,13 +57,14 @@ class ReservationsCreationFragment : Fragment() {
                 viewModel.saveReservation(
                     vReservationsSelect.selectedItem.toString(),
                     vReservationsDay.text.toString(),
-                    vReservationsHour.text.toString()
+                    vReservationsHour.selectedItem.toString()
                 )
-                findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+                findNavController().navigateUp()
             }
         })
 
         viewModel.initAmenities()
+        initTimeOptions()
 
         //Calendar
         val c = Calendar.getInstance()
@@ -82,18 +82,6 @@ class ReservationsCreationFragment : Fragment() {
         }
 
         //Button to show TimePicker
-        vReservationsForm3Bton.setOnClickListener {
-            val cal = Calendar.getInstance()
-            val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-                cal.set(Calendar.HOUR_OF_DAY, hour)
-                cal.set(Calendar.MINUTE, 0)
-
-                //set Text
-                vReservationsHour.setText(SimpleDateFormat("HH").format(cal.time))
-            }
-
-            TimePickerDialog(requireContext(), timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
-        }
     }
 
     private fun createReservation() {
@@ -101,7 +89,7 @@ class ReservationsCreationFragment : Fragment() {
              viewModel.amenityReserved(
                 vReservationsSelect.selectedItem.toString(),
                 vReservationsDay.text.toString(),
-                vReservationsHour.text.toString()
+                vReservationsHour.selectedItem.toString()
             )
         }
         else
@@ -109,7 +97,16 @@ class ReservationsCreationFragment : Fragment() {
     }
 
     private fun validateForm(): Boolean {
-        return (!(vReservationsDay.text.isNullOrEmpty() || vReservationsHour.text.isNullOrEmpty()))
+        return (!(vReservationsDay.text.isNullOrEmpty()))
+    }
+
+    private fun initTimeOptions(){
+        val times = ArrayList<String>()
+        repeat(24) {
+            times.add(it.toString())
+        }
+        val adapter = ArrayAdapter(this.requireContext(), android.R.layout.simple_spinner_item, times)
+        vReservationsHour.adapter = adapter
     }
 
 }

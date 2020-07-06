@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.login_fragment_layout.view.*
 import utn.frba.mobile.konzern.MainActivity
 import utn.frba.mobile.konzern.profile.Profile
 import utn.frba.mobile.konzern.profile.ProfileRepository
+import utn.frba.mobile.konzern.reservations.ReservationViewModel
 
 class LoginFragment : Fragment()  {
 
@@ -37,6 +38,7 @@ class LoginFragment : Fragment()  {
     private lateinit var googleSignInClient : GoogleSignInClient
     private lateinit var firebaseAuth: FirebaseAuth
     private val profileRepository = ProfileRepository()
+    private val reservationsViewModel = ReservationViewModel()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -70,6 +72,7 @@ class LoginFragment : Fragment()  {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.login_fragment_layout, container, false)
+        reservationsViewModel.initAmenities()
     }
 
     private fun emailLogin() {
@@ -80,7 +83,6 @@ class LoginFragment : Fragment()  {
         firebaseAuth.signInWithEmailAndPassword(email, pass)
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
-                    // val user = auth.currentUser TODO: Usar este user para manejar la persistencia
                     firebaseAuth.currentUser?.uid
                     loginView?.successfulSignIn()
                 } else {

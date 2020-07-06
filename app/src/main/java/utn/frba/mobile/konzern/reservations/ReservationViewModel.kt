@@ -1,22 +1,13 @@
 package utn.frba.mobile.konzern.reservations
 
-import android.R
-import android.widget.ArrayAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import kotlinx.android.synthetic.main.reservations_creation_fragment.*
-import utn.frba.mobile.konzern.posts.model.Post
-import utn.frba.mobile.konzern.posts.repository.PostRepository
 import utn.frba.mobile.konzern.reservations.model.Amenity
 import utn.frba.mobile.konzern.reservations.model.Reservation
 import utn.frba.mobile.konzern.reservations.repository.AmenityRepository
 import utn.frba.mobile.konzern.reservations.repository.ReservationRepository
 import utn.frba.mobile.konzern.utils.BaseViewModel
 import utn.frba.mobile.konzern.utils.serviceManager.SingleLiveEvent
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 
 class ReservationViewModel : BaseViewModel() {
     private val amenityRepository: AmenityRepository = AmenityRepository()
@@ -37,8 +28,8 @@ class ReservationViewModel : BaseViewModel() {
         }
     }
 
-    fun initDayReservations(date: String){
-        loadDayReservations(date)
+    fun initDayReservations(date: String): Boolean{
+        return loadDayReservations(date)
     }
 
     fun amenityReserved(amenity: String, day: String, hour: String) {
@@ -70,6 +61,13 @@ class ReservationViewModel : BaseViewModel() {
         })
     }
 
+    fun deleteReservation(id: String, date: String) {
+        this.launchControlledInBg( {
+            reservationRepository.deleteReservation(id)
+            loadDayReservations(date)
+        })
+    }
+
     fun getByName(name: String): Amenity {
         for (amenity in amenitiesList) {
             if (amenity.name == name)
@@ -96,11 +94,12 @@ class ReservationViewModel : BaseViewModel() {
         })
     }
 
-    private fun loadDayReservations(date: String){
+    private fun loadDayReservations(date: String) : Boolean{
         this.launchControlledInBg(mainOperation = {
             val response = reservationRepository.fetchByDate(date)
             dayReservations.postValue(response)
             //amenitiesList = response
         })
+        return true
     }
 }

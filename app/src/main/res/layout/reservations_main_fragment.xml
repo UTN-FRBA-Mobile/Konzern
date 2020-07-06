@@ -39,13 +39,13 @@
         app:layout_constraintTop_toBottomOf="@+id/vReservationsText1"
         tools:listitem="@layout/reservations_card_item" />
 
-    <Button
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/vReservationsMainToCreation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="@string/btn_create_reservation"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="15dp"
+        app:icon="@drawable/ic_add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/rvReservationsCards" />
 </androidx.constraintlayout.widget.ConstraintLayout>
