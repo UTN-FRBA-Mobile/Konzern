@@ -47,6 +47,10 @@ open class PostDetailFragment : PostBaseFragment() {
         vTextSummaryPostDetail?.text = item.summary
         vTextDescriptionPostDetail.text = item.description
         setImageSlider(item.images.map { it.url.toUri() })
+        if(item.isClaim) {
+            vClaimPostDetail.visibility = View.VISIBLE
+            vTextClaimPostDetail.visibility = View.VISIBLE
+        }
     }
 
     private fun setImageSlider(images: List<Uri>) {

@@ -40,21 +40,22 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="end"
-                android:src="@drawable/ic_warning_black_24dp"
+                android:src="@drawable/ic_warning_red"
                 android:background="@color/white"
                 android:visibility="invisible"
-                android:layout_marginTop="-30dp"
+                android:layout_marginTop="-35dp"
+                android:layout_marginRight="60dp"
                 />
 
             <TextView
-                android:id="@+id/post_item_tooltip"
-                android:layout_width="200dp"
+                android:id="@+id/post_item_claim_text"
+                android:layout_width="60dp"
                 android:layout_height="20dp"
                 android:layout_gravity="end"
-                android:background="@color/colorPrimary"
-                android:text="Esta publicación es un reclamo"
+                android:textColor="@color/red"
+                android:text="@string/reclamo"
                 android:visibility="invisible"
-                android:layout_marginBottom="-10dp"/>
+                android:layout_marginTop="-30dp"/>
 
             <TextView
                 android:id="@+id/tv_summary"

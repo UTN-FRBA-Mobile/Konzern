@@ -28,8 +28,8 @@ class ReservationViewModel : BaseViewModel() {
         }
     }
 
-    fun initDayReservations(date: String){
-        loadDayReservations(date)
+    fun initDayReservations(date: String): Boolean{
+        return loadDayReservations(date)
     }
 
     fun amenityReserved(amenity: String, day: String, hour: String) {
@@ -94,11 +94,12 @@ class ReservationViewModel : BaseViewModel() {
         })
     }
 
-    private fun loadDayReservations(date: String){
+    private fun loadDayReservations(date: String) : Boolean{
         this.launchControlledInBg(mainOperation = {
             val response = reservationRepository.fetchByDate(date)
             dayReservations.postValue(response)
             //amenitiesList = response
         })
+        return true
     }
 }
