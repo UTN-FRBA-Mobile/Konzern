@@ -20,7 +20,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/vInputSummaryPostItem"
-                    style="@style/TextInputEditText"/>
+                    style="@style/TextInputEditText" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

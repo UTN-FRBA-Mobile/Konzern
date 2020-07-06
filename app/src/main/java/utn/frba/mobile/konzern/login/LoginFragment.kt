@@ -6,8 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -61,7 +64,6 @@ class LoginFragment : Fragment()  {
         if (firebaseAuth.currentUser != null) {
             return goToLoginOrCompleteSignUp()
         }
-        vLoginProgressBar.visibility = View.GONE
     }
 
     override fun onCreateView(
@@ -91,16 +93,29 @@ class LoginFragment : Fragment()  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        vLoginGoogleSignInButton.setOnClickListener { loginView?.onGoogleSignInPressed(googleSignInClient, RC_SIGN_IN) }
-        vLoginGoToMain.setOnClickListener { loginView?.onGoToMainButtonClicked() }
-        vLoginForgotMyPassword.setOnClickListener{
-            loginView?.showFragment(ForgotPasswordFragment())
+
+        vLoginGoogleSignInButton.setOnClickListener {
+            showProgress(true)
+            loginView?.onGoogleSignInPressed(googleSignInClient, RC_SIGN_IN)
         }
+        /*vLoginForgotMyPassword.setOnClickListener{
+            loginView?.showFragment(ForgotPasswordFragment())
+        }*/
         vLoginSignUpButton.setOnClickListener{
             loginView?.showFragment(SignUpFragment())
         }
         vLoginButton.setOnClickListener {
             emailLogin()
+        }
+    }
+
+    fun showProgress(show: Boolean){
+        if(show){
+            vProgressBarLayout.visibility = VISIBLE
+            loginFragmentLayout.visibility = GONE
+        } else{
+            vProgressBarLayout.visibility = GONE
+            loginFragmentLayout.visibility = VISIBLE
         }
     }
 
@@ -116,6 +131,7 @@ class LoginFragment : Fragment()  {
             } catch (e: ApiException) {
                 Log.d("SignIn", "Sign in with google Failed")
                 loginView?.signInWithGoogleFailed()
+                showProgress(false)
             }
         } else {
             Log.d("SignIn", "RequestCode for SignIn: $requestCode")
@@ -133,11 +149,13 @@ class LoginFragment : Fragment()  {
                 } else {
                     Log.d("SignIn", "Failed Firebase Register")
                     loginView?.firebaseAuthProcessFailed()
+                    showProgress(false)
                 }
             }
     }
 
     private fun goToLoginOrCompleteSignUp(){
+        showProgress(true)
         profileRepository.getProfile(object : ProfileRepository.ProfileRepositoryInterface {
             override fun onComplete(profile: Profile?) {
                 if (profile?.email.isNullOrEmpty())

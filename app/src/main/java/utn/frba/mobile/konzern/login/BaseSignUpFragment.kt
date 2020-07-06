@@ -11,7 +11,10 @@ import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_complete_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up.*
+import kotlinx.android.synthetic.main.fragment_sign_up.vFragmentSignUp
+import kotlinx.android.synthetic.main.fragment_sign_up.vProgressBarLayout
 import utn.frba.mobile.konzern.R
 import java.lang.RuntimeException
 
@@ -35,8 +38,8 @@ abstract class BaseSignUpFragment : Fragment() {
         val db = FirebaseFirestore.getInstance()
         val user = hashMapOf(
             "email" to email,
-            "phone" to info.text.toString(),
-            "info" to phone.text.toString(),
+            "phone" to phone.text.toString(),
+            "info" to info.text.toString(),
             "uid" to uid
         )
         db.collection("users_data")
@@ -45,8 +48,19 @@ abstract class BaseSignUpFragment : Fragment() {
                 signUpView?.successfulSignUp()
             }
             .addOnFailureListener {
+                showProgress(false)
                 signUpView?.failedSignUpOrSignIn("Error en la creación del usuario")
             }
+    }
+
+    fun showProgress(show: Boolean){
+        if(show){
+            vProgressBarLayout.visibility = View.VISIBLE
+            vFragmentSignUp.visibility = View.GONE
+        } else{
+            vProgressBarLayout.visibility = View.GONE
+            vFragmentSignUp.visibility = View.VISIBLE
+        }
     }
 
     interface SignUpFragmentView {
