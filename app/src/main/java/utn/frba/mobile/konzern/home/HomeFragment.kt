@@ -24,12 +24,13 @@ import utn.frba.mobile.konzern.posts.viewModel.PostViewModel
 import utn.frba.mobile.konzern.profile.ProfileActivity
 import utn.frba.mobile.konzern.reservations.ReservationViewModel
 import utn.frba.mobile.konzern.reservations.ReservationsActivity
+import utn.frba.mobile.konzern.reservations.adapter.OnReservationClickListener
 import utn.frba.mobile.konzern.reservations.adapter.ReservationAdapter
 import utn.frba.mobile.konzern.reservations.model.Reservation
 import utn.frba.mobile.konzern.utils.ScaleLayoutManager
 import java.util.*
 
-class HomeFragment : Fragment(), HomePostItemAdapter.OnHomeItemPostClickListener {
+class HomeFragment : Fragment(), HomePostItemAdapter.OnHomeItemPostClickListener, OnReservationClickListener {
     private val postViewModel: PostViewModel by activityViewModels()
     private val newsViewModel: NewsViewModel by activityViewModels()
     private val reservationsViewModel: ReservationViewModel by activityViewModels()
@@ -125,7 +126,7 @@ class HomeFragment : Fragment(), HomePostItemAdapter.OnHomeItemPostClickListener
 
     private fun setReservationRecycler(){
         reservationsViewModel.dayReservations.observe(viewLifecycleOwner, Observer<List<Reservation>> {
-            vRecyclerViewReservationsHome.adapter = ReservationAdapter(it, reservationsViewModel)
+            vRecyclerViewReservationsHome.adapter = ReservationAdapter(it, reservationsViewModel, this)
         })
 
         vButtonReservationMain.setOnClickListener{
@@ -145,6 +146,10 @@ class HomeFragment : Fragment(), HomePostItemAdapter.OnHomeItemPostClickListener
             intent.putExtra(BasePostActivity.NAV_POST_ITEM_ID, id)
             startActivity(intent)
         }
+    }
+
+    override fun onDeleteClick(id: String, date: String) {
+        reservationsViewModel.deleteReservation(id, date)
     }
 
 }
