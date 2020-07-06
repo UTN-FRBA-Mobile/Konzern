@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.LoginActivity"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/vProgressBarLayout"
+        layout="@layout/layout_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <ScrollView
+        android:id="@+id/vFragmentSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_general">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/vCompleteSignUpLogo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/konzern"
+            android:layout_gravity="center_horizontal"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vLayoutLoginPhone"
+            style="@style/TextInputLayout"
+            android:hint="@string/sign_up_phone_hint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vCompleteSignUpPhone"
+                android:inputType="phone"
+                style="@style/TextInputEditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vLayoutLoginBuildingCode"
+            style="@style/TextInputLayout"
+            android:hint="@string/sign_up_building_code_hint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vCompleteSignUpBuildingCode"
+                android:inputType="phone"
+                style="@style/TextInputEditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vLayoutLoginInfo"
+            style="@style/TextInputLayout"
+            android:hint="@string/sign_up_info_hint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vCompleteSignUpInfo"
+                android:inputType="text"
+                style="@style/TextInputEditText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/vCompleteSingUpButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up_button"/>
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

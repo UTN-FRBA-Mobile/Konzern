@@ -1,3 +1,121 @@
 <resources>
     <string name="app_name">Konzern</string>
+    <string name="input_required">* requerido</string>
+    <string name="button_save">Guardar</string>
+    <string name="button_cancel">Cancelar</string>
+    <string name="image_picker_title">¿Desde dónde querés agregar imágenes?</string>
+    <string name="image_picker_camera">Desde la cámara</string>
+    <string name="image_picker_gallery">Desde la galería</string>
+
+    <!-- Login -->
+    <string name="login_title">Login or SignUp</string>
+    <string name="login_email_hint">E-Mail</string>
+    <string name="login_password_hint">Contraseña</string>
+    <string name="login_repeat_password_hint">Repetir contraseña</string>
+    <string name="login_forgot_my_password">Olvidé mi contraseña</string>
+    <string name="login_sign_in_button_text">Iniciar Sesión</string>
+    <string name="login_sign_up_button_text">Registrarme</string>
+
+    <!-- Reservas -->
+    <string name="reservations_title_toolbar">Reservas</string>
+    <string name="home_reservations">Ver Reservas</string>
+    <string name="title_activity_reservations">ReservationsActivity</string>
+    <string name="reservations_title">Reservas realizadas</string>
+    <string name="btn_create_reservation">Crear Reserva</string>
+    <string name="reservation_name">Nombre de reserva</string>
+    <string name="reservation_descr">Reserva Descripción</string>
+    <string name="res_form_1">¿Que querés reservar?</string>
+    <string name="res_form_2">¿Para que fecha?</string>
+    <string name="res_form_1_hint">Lo que quieras!</string>
+    <string name="res_form_3">¿En que horario?</string>
+    <string name="res_form_2_hint">Selecciona un día</string>
+    <string name="res_form_3_hint">Selecciona un horario</string>
+
+    <!-- Publicaciones -->
+    <string name="label_posts_main">Últimas publicaciones</string>
+    <string name="home_posts">Publicaciones</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</string>
+    <string name="post_summary">Resumen</string>
+    <string name="post_description">Descripción</string>
+    <string name="post_required_summary">Resumen*</string>
+    <string name="post_required_description">Descripción*</string>
+    <string name="post_add_image">Agregar imagen</string>
+    <string name="post_item_edit">Editar</string>
+    <string name="post_item_remove">Eliminar</string>
+    <string name="error">Error</string>
+    <string name="reclamo">Reclamo</string>
+
+
+    <!-- Perfil -->
+    <string name="profile_toolbar_title">Mi Perfil</string>
+
+    <!-- Custom Toolbar -->
+    <string name="custom_toolbar_logo_description">Konzern Logo</string>
+    <string name="custom_toolbar_home">Inicio</string>
+    <string name="custom_toolbar_expenses_item">Mis Expensas</string>
+    <string name="custom_toolbar_my_profile_item">Mi Perfil</string>
+    <string name="custom_toolbar_reservations_item">Ver Reservas</string>
+    <string name="custom_toolbar_contact_info_item">Info de Contacto</string>
+    <string name="custom_toolbar_logout_item">Cerrar Sesión</string>
+
+    <!-- Expensas -->
+    <string name="home_expenses">Expensas</string>
+    <string name="expenses_last_expense">Última Expensa</string>
+    <string name="expenses_previous_expenses">Expensas Anteriores</string>
+    <string name="expenses_coin">$</string>
+    <string name="expenses_month_label">Mes:</string>
+    <string name="expenses_amount_label">Importe:</string>
+    <string name="expenses_expiration_date_label">Vencimiento:</string>
+    <string name="expenses_search_previous_expenses">Buscar...</string>
+
+    <string name="expenses_toolbar_title">Expensas</string>
+    <string name="expenses_error_getting_info">Error al obtener expensas de la base de datos</string>
+    <string name="expenses_no_expenses_found">No se encontraron expensas para el usuario</string>
+    <string name="expenses_no_previous_expenses_found">No se encontraron expensas anteriores</string>
+    <string name="expenses_pdf_title">MIS EXPENSAS</string>
+    <string name="expenses_pdf_subtitle_month">Liquidación de mes:</string>
+    <string name="expenses_pdf_consortium_label">CONSORCIO</string>
+    <string name="expenses_pdf_consortium_name">Nombre:</string>
+    <string name="expenses_pdf_consortium_address">Domicilio:</string>
+    <string name="expenses_pdf_consortium_mail">Mail:</string>
+    <string name="expenses_pdf_consortium_phone">Teléfono:</string>
+    <string name="expenses_pdf_account_state">ESTADO DE CUENTAS</string>
+    <string name="expenses_pdf_apartment_label">Unidad Funcional:</string>
+    <string name="expenses_pdf_concepts_to_pay">Conceptos a pagar</string>
+    <string name="expenses_pdf_expenses_type_a">Expensa A:</string>
+    <string name="expenses_pdf_expenses_type_b">Expensa B:</string>
+    <string name="expenses_pdf_total_amount">TOTAL A PAGAR:</string>
+    <string name="expenses_pdf_expiration_date">Fecha Vencimiento:</string>
+    <string name="expenses_pdf_extra_info">FORMA DE PAGO</string>
+    <string name="expenses_pdf_extra_info_detail">INFORMAMOS A UD. QUE PUEDE REALIZAR EL PAGO DE LAS EXPENSAS DE LA SIGUIENTE MANERA:
+            1 - CHEQUE DEL TITULAR. 2 - DEPÓSITO EN CUENTA CORRIENTE. 3 - TRANSFERENCIA BANCARIA DESDE SU CUENTA CORRIENTE O CAJA DE AHORRO.</string>
+
+    <!-- Contacto -->
+    <string name="contact_telephone_title">Teléfono de contacto:</string>
+    <string name="contact_attention_time">Horario de atención:</string>
+    <string name="contact_email_address">Dirección de mail:</string>
+    <string name="contact_address">Dirección:</string>
+    <string name="contact_extra_info_title">Información adicional:</string>
+    <string name="contact_error_getting_info">Error al obtener info de la base de datos</string>
+    <string name="contact_toolbar_title">Contacto</string>
+
+    <!-- Forgot Password -->
+    <string name="forgot_password_button_text">Recuperar Contraseña</string>
+
+    <!-- Sign Up -->
+    <string name="sign_up_phone_hint">Teléfono</string>
+    <string name="sign_up_info_hint">Info</string>
+    <string name="sign_up_button">Registrarme</string>
+    <string name="sign_up_complete_field">Complete este campo</string>
+    <string name="sign_up_invalid_email">Ingrese un Email válido</string>
+    <string name="sign_up_password_mismatch">Las contraseñas no coinciden</string>
+    <string name="sign_up_building_code_hint">Código de edificio</string>
+    <string name="sign_up_password_longitude">La contraseña debe tener más de 6 caracteres</string>
+
+    <!-- Home -->
+    <string name="home_show_all">Ver todas</string>
+    <string name="title_posts">Publicaciones</string>
+    <string name="title_news">Novedades</string>
+    <string name="title_reservations">Reservas</string>
+
 </resources>

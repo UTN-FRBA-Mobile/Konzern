@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="2dp"
+    app:cardCornerRadius="5dp"
+    card_view:cardUseCompatPadding="false"
+    android:focusable="true"
+    android:background="@color/white"
+    android:layout_margin="@dimen/expenses_item_padding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_general">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/vExpensesItemMonthLabel"
+                    style="@style/SecondaryText"
+                    android:text="@string/expenses_month_label"
+                    android:paddingRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/vExpensesItemMonthValue"
+                    style="@style/SecondaryText"
+                    android:paddingRight="5dp"
+                    android:textStyle="italic"/>
+
+                <TextView
+                    android:id="@+id/vExpensesItemYearValue"
+                    style="@style/SecondaryText"
+                    android:textStyle="italic"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/vExpensesItemAmountLabel"
+                    style="@style/SecondaryText"
+                    android:text="@string/expenses_amount_label"
+                    android:paddingRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/vExpensesItemAmountCoinLabel"
+                    style="@style/SecondaryText"
+                    android:text="@string/expenses_coin"
+                    android:textStyle="italic"/>
+
+                <TextView
+                    android:id="@+id/vExpensesItemAmountValue"
+                    style="@style/SecondaryText"
+                    android:textStyle="italic"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/vExpensesItemExpirationDateLabel"
+                    style="@style/SecondaryText"
+                    android:text="@string/expenses_expiration_date_label"
+                    android:paddingRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/vExpensesItemExpirationDateValue"
+                    style="@style/SecondaryText"
+                    android:textStyle="italic"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/expenses_download_icon_size_container"
+        android:layout_height="@dimen/expenses_download_icon_size_container"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/vExpensesItemDownloadButton"
+            android:layout_width="@dimen/expenses_download_icon_size"
+            android:layout_height="@dimen/expenses_download_icon_size"
+            android:background="@drawable/ic_file_download_grey"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

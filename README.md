@@ -1,3 +1,40 @@
 # Konzern
 
-Aplicación para Administrar los consorcios de los Edificios.
+¡#Konzern, la mejor App para gestionar tu consorcio!
+
+Descubrí la mejor forma de acceder a todas las actualizaciones e información sobre tu consorcio. Conocé las opiniones de tus vecinos y publicá las tuyas. Accedé a los datos de contacto de la administración. Obtené los recibos de expensas al instante. Todo esto y más en una sola App para mejorar tu experiencia seas inquilino o dueño de un departamento.
+
+
+CONTACTO
+
+¿Perdiste el número del administrador? No te preocupes, encontramos una manera práctica y fácil de que esto no siga siendo un inconveniente:
+  * Accedé a la pantalla de contacto del consorcio para obtener todos sus datos actualizados y en un solo lugar.
+
+NOVEDADES
+
+Enterate de las últimas novedades y no quedes nunca más fuera de las actualizaciones de los temas del consorcio:
+  * Ingresá a la App y verás las novedades más recientes.
+  * Visualizá la lista de novedades anteriores para recordarlas.
+
+PUBLICACIONES
+
+Ya sea que quieras comunicar algo a tus vecinos, conocer su opinión, realizar un reclamo o tengas algo para compartir, Konzern es ideal para vos:
+  * Encontrá en la sección de publicaciones las opiniones y quejas de tus vecinos.
+  * Agregá una nueva publicación o un nuevo reclamo de forma sencilla.
+  * Visualizá tu publicación junto con las de tus vecinos.
+
+EXPENSAS
+
+Visualizá tus expensas al instante y de forma amigable con el ambiente:
+  * Obtené de forma automática las últimas expensas vigentes.
+  * Descargá el PDF directamente desde la App.
+
+RESERVAS
+
+No más discusiones con los vecinos para reservar los espacios comunes. Konzern te lo resuelve de manera muy simple y accesible:
+  * Seleccioná el espacio que querés reservar.
+  * Elegí el día y horario de reserva.
+  * Listo! ya tenes tu reserva realizada y todos tus vecinos pueden verlo en la App.
+
+
+No dejes de probar Konzern y acercarte a esta nueva experiencia para gestionar tu consorcio.

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp">
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/vContactProgressBar"
+            style="@style/SpinKitView.CubeGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:SpinKit_Color="@color/colorPrimary"/>
+
+        <ImageView
+            android:id="@+id/vContactImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/vContactName"
+            app:layout_constraintBottom_toTopOf="@id/vContactTelephoneTitle"
+            tools:src="@drawable/consorcio_placeholder"/>
+
+        <TextView
+            android:id="@+id/vContactName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/vContactImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/vContactImage"
+            app:layout_constraintTop_toTopOf="@id/vContactImage"
+            tools:text="CONSORCIO_ABC" />
+
+        <TextView
+            android:id="@+id/vContactTelephoneTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="16sp"
+            android:text="@string/contact_telephone_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vContactImage"/>
+
+        <TextView
+            android:id="@+id/vContactPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/vContactTelephoneTitle"
+            app:layout_constraintEnd_toEndOf="@id/vContactTelephoneTitle"
+            app:layout_constraintTop_toBottomOf="@id/vContactTelephoneTitle"
+            tools:text="11-2345-6789"/>
+
+        <TextView
+            android:id="@+id/vContactAttentionTimeTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="16sp"
+            android:text="@string/contact_attention_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vContactPhone"/>
+
+        <TextView
+            android:id="@+id/vContactAttentionTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/vContactAttentionTimeTitle"
+            app:layout_constraintEnd_toEndOf="@id/vContactAttentionTimeTitle"
+            app:layout_constraintTop_toBottomOf="@id/vContactAttentionTimeTitle"
+            tools:text="L a V de 8:00 a 17:00"/>
+
+        <TextView
+            android:id="@+id/vContactEmailTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="16sp"
+            android:text="@string/contact_email_address"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vContactAttentionTime"/>
+
+        <TextView
+            android:id="@+id/vContactEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vContactEmailTitle"
+            tools:text="consorcio_abc@gmail.com"/>
+
+        <TextView
+            android:id="@+id/vContactAddressTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="16sp"
+            android:text="@string/contact_address"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vContactEmail"/>
+
+        <TextView
+            android:id="@+id/vContactAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vContactAddressTitle"
+            tools:text="Av. Siempreviva 742"/>
+
+        <TextView
+            android:id="@+id/vContactExtraInfoTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="16sp"
+            android:text="@string/contact_extra_info_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vContactAddress"/>
+
+        <TextView
+            android:id="@+id/vContactExtraInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vContactExtraInfoTitle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            tools:text="Lorem ipsum dolor sit amet,\n consectetur adipiscing elit."/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -1,12 +1,24 @@
 package utn.frba.mobile.konzern
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import android.content.Intent
+import androidx.activity.viewModels
+import utn.frba.mobile.konzern.news.NewsViewModel
+import utn.frba.mobile.konzern.posts.viewModel.PostViewModel
+import utn.frba.mobile.konzern.profile.ProfileActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+    override val startsNewFlow: Boolean = false
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun getContentLayout(): Int {
+        return R.layout.content_home
+    }
+
+    override fun getViewTitle(): String? {
+        return getString(R.string.app_name)
+    }
+
+    override fun refreshData() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

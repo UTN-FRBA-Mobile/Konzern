@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/custom_toolbar_home"
+            />
+    </group>
+    <group
+        android:id="@+id/menu_modules"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_profile"
+            android:title="@string/custom_toolbar_my_profile_item" />
+        <item
+            android:id="@+id/nav_expenses"
+            android:title="@string/custom_toolbar_expenses_item" />
+        <item
+            android:id="@+id/nav_booking"
+            android:title="@string/custom_toolbar_reservations_item" />
+        <item
+            android:id="@+id/nav_contact"
+            android:title="@string/custom_toolbar_contact_info_item" />
+    </group>
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_logout"
+            android:title="@string/custom_toolbar_logout_item" />
+    </group>
+</menu>
