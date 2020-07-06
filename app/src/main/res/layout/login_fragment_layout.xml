@@ -70,7 +70,9 @@
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/vLoginGoogleSignInButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                app:buttonSize="icon_only"
+                app:colorScheme="dark"/>
 
         </LinearLayout>
     </ScrollView>
