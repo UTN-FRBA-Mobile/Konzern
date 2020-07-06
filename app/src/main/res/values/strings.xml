@@ -51,7 +51,7 @@
 
     <!-- Custom Toolbar -->
     <string name="custom_toolbar_logo_description">Konzern Logo</string>
-    <string name="custom_toolbar_menu_img">Menu for more</string>
+    <string name="custom_toolbar_home">Inicio</string>
     <string name="custom_toolbar_expenses_item">Mis Expensas</string>
     <string name="custom_toolbar_my_profile_item">Mi Perfil</string>
     <string name="custom_toolbar_reservations_item">Ver Reservas</string>
@@ -116,5 +116,6 @@
     <string name="home_show_all">Ver todas</string>
     <string name="title_posts">Publicaciones</string>
     <string name="title_news">Novedades</string>
+    <string name="title_reservations">Reservas</string>
 
 </resources>

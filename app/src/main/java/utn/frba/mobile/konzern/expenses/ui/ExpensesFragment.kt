@@ -163,11 +163,6 @@ class ExpensesFragment : Fragment() {
         vLabelPreviousExpenses.setCompoundDrawablesWithIntrinsicBounds(null, null, resources.getDrawable(R.drawable.ic_search), null)
     }
 
-    companion object {
-        fun newInstance() =
-            ExpensesFragment()
-    }
-
     interface ExpensesFragmentView {
         fun errorGettingExpensesInfo()
 

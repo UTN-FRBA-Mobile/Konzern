@@ -75,15 +75,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vReservationsDay" />
 
-    <EditText
+    <Spinner
         android:id="@+id/vReservationsHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="@string/res_form_3_hint"
-        android:inputType="text"
-        android:textAlignment="center"
-        android:gravity="center_horizontal"
+        android:hint="@string/res_form_1_hint"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vReservationsFormTitle3" />
@@ -92,11 +91,11 @@
         android:id="@+id/vReservationsForm3Bton"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="45dp"
         android:background="@android:color/white"
         android:src="@drawable/clock"
-        app:layout_constraintStart_toEndOf="@+id/vReservationsHour"
-        app:layout_constraintTop_toBottomOf="@+id/vReservationsFormTitle3" />
+        app:layout_constraintStart_toEndOf="@+id/vReservationsFormTitle3"
+        app:layout_constraintTop_toBottomOf="@+id/vReservationsForm2Bton" />
 
     <Button
         android:id="@+id/vReservationsFormCreateBtn"

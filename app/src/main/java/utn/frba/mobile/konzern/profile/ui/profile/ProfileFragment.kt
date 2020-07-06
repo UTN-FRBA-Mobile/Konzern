@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -64,11 +63,6 @@ class ProfileFragment : Fragment() {
                 profileView?.hideProgress()
             }
         })
-    }
-
-    companion object {
-        fun newInstance() =
-            ProfileFragment()
     }
 
     interface ProfileFragmentView {

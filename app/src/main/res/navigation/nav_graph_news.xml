@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_news"
-    app:startDestination="@id/newsMainFragment">
+    app:startDestination="@id/NewsMainFragment">
     <fragment
-        android:id="@+id/newsMainFragment"
+        android:id="@+id/NewsMainFragment"
         android:name="utn.frba.mobile.konzern.news.NewsMainFragment"
-        android:label="NewsMainFragment" >
+        android:label="NewsMainFragment"
+        tools:layout="@layout/fragment_post_main">
         <action
             android:id="@+id/action_newsMainFragment_to_newsDetailFragment"
             app:destination="@id/NewsDetailFragment" />
@@ -14,5 +16,6 @@
     <fragment
         android:id="@+id/NewsDetailFragment"
         android:name="utn.frba.mobile.konzern.news.NewsDetailFragment"
-        android:label="NewsDetailFragment" />
+        android:label="NewsDetailFragment"
+        tools:layout="@layout/fragment_post_detail"/>
 </navigation>
